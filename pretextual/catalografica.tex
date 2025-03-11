@@ -1,0 +1,48 @@
+% ---
+% Ficha Catalográfica
+% ---
+% Exemplo de Ficha Catalográfica (Dados Internacionais de Catalogação).
+% Se a biblioteca enviar um PDF oficial da ficha, basta:
+%
+% \begin{fichacatalografica}
+%     \includepdf{fig_ficha_catalografica.pdf}
+% \end{fichacatalografica}
+%
+% Caso contrário, use o modelo abaixo.
+% ---
+% Ficha Catalográfica
+% ---
+
+\usepackage{lastpage}
+
+\begin{fichacatalografica}
+    \vspace*{\fill}
+    \hrule
+    \begin{center}
+    \begin{minipage}[c]{12cm} % ajustado para 12cm
+
+    \imprimirautor
+
+    \hspace{0.5cm} \imprimirtitulo /\\
+    \hspace{0.5cm} \imprimirautor. -- \imprimirlocal, \imprimirdata.
+
+    \hspace{0.5cm} \pageref{LastPage} p. : il. (algumas color.) ; 30 cm.
+
+    \hspace{0.5cm} \imprimirorientadorRotulo~\imprimirorientador
+
+    \hspace{0.5cm}
+    \parbox[t]{0.9\textwidth}{% reduzindo um pouco a largura da parbox
+      \imprimirtipotrabalho~--~\imprimirinstituicao,
+      \imprimirdata.
+    }
+
+    \hspace{0.5cm}
+    1. Neuromodulação. 2. Sincronização Cérebro-Corpo. 3. Basquetebol.\\
+    I. Orientador. II. Universidade Federal do ABC. III. Programa de Pós-Graduação em Neurociência e Cognição. IV. Título.
+
+    \hspace{8.75cm} CDU 02:141:005.7
+
+    \end{minipage}
+    \end{center}
+    \hrule
+\end{fichacatalografica}

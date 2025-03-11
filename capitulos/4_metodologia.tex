@@ -1,0 +1,62 @@
+\chapter{Metodologia}
+\label{chap:metodologia}
+
+Este projeto utiliza dados previamente coletados pelo laboratório ao qual faço parte, envolvendo medidas de eletroencefalograma (EEG) e eletromiografia (EMG) de atletas profissionais de basquetebol feminino. O objetivo central deste estudo é investigar a sincronicidade cérebro-corpo e avaliar o impacto da estimulação transcraniana por corrente contínua de alta definição (HD-tDCS) no desempenho atlético durante arremessos de lance livre.
+
+\section{Participantes e Coleta de Dados}
+
+O estudo foi aprovado pelo Comitê de Ética em Pesquisa da UFABC (protocolo: 08070819.1.0000.5594) e conduzido em conformidade com os princípios éticos estabelecidos pela Declaração de Helsinque para experimentos envolvendo seres humanos. Todas as participantes assinaram o Termo de Consentimento Livre e Esclarecido (TCLE) antes de iniciarem sua participação.
+
+As participantes eram consideradas atletas de elite, com um regime de treinamento superior a 10 horas semanais, e foram selecionadas com base em critérios rigorosos:
+\begin{itemize}
+    \item Participação regular no programa de treinamento da equipe;
+    \item Ausência de doenças ou lesões que pudessem interferir na execução do protocolo;
+    \item Assinatura do Termo de Consentimento Livre e Esclarecido (TCLE).
+\end{itemize}
+
+A amostra foi caracterizada por meio da mensuração de massa corporal, estatura e coleta de informações detalhadas, como nome, data de nascimento, categoria, experiência esportiva, posição no time, fase da temporada, membro dominante e estilo de arremesso. Contudo, devido a problemas técnicos durante a coleta de dados, apenas os dados de 7 atletas foram utilizados nas análises \cite{moscaleski2022}.
+
+Embora o tamanho reduzido da amostra possa ser considerado uma limitação, ele é uma característica comum em estudos que envolvem populações específicas e de difícil acesso, como atletas de elite. Estudos prévios, como o de Boukrina et al. \cite{boukrina2020}, destacam que, em situações em que o aumento do tamanho da amostra não é viável, estratégias como a homogeneidade da amostra e análises que considerem a variabilidade individual podem proporcionar resultados robustos e significativos.
+
+\section{Delineamento Experimental}
+
+O delineamento experimental seguiu um modelo randomizado, cruzado e duplo-cego, amplamente utilizado em estudos de neurociência aplicada e psicofisiologia para minimizar viés e garantir a validade dos resultados. Esse modelo permitiu que todas as participantes fossem expostas tanto à condição de estimulação catódica (HD-tDCS) quanto à condição sham (simulada), aumentando a robustez das comparações intraindividuais.
+
+Antes das sessões experimentais, foi realizada uma sessão de familiarização, na qual as participantes receberam explicações sobre os objetivos, procedimentos, riscos e benefícios do estudo, além de um período de adaptação ao protocolo experimental. Essa familiarização assegurou que todas estivessem confortáveis com os procedimentos e equipamentos utilizados.
+
+As sessões experimentais ocorreram entre janeiro e fevereiro de 2020, com a seguinte estrutura:
+\begin{itemize}
+    \item \textbf{Sessão 1}: Familiarização com dispositivos e procedimentos do estudo.
+    \item \textbf{Sessões 2 e 3}: Protocolo experimental com 200 arremessos por sessão, totalizando 400 arremessos por atleta.
+\end{itemize}
+
+As sessões foram realizadas no mesmo local e horário do treinamento habitual das atletas, garantindo a padronização das condições ambientais. A ordem das condições experimentais foi atribuída de maneira aleatória para cada participante, conforme o modelo cruzado.
+
+\section{Questionários e Escalas}
+Além das medidas neurofisiológicas, foram aplicados questionários para avaliar aspectos subjetivos relacionados ao desempenho das atletas. Entre os instrumentos utilizados, destacam-se:
+\begin{itemize}
+    \item \textbf{Escala de Qualidade Total de Recuperação (TQR)}: avalia o estado geral de recuperação física e mental, fornecendo insights sobre como as participantes se sentem prontas para enfrentar novas atividades físicas após as sessões experimentais;
+    \item \textbf{Escala de Percepção Subjetiva de Esforço (PSE)}: mede o esforço percebido pelas participantes ao final de cada sessão experimental, permitindo relacionar o desempenho físico ao nível de fadiga subjetiva;
+    \item \textbf{Sport Competition Anxiety Test (SCAT)}: identifica os níveis de ansiedade competitiva das participantes, avaliando como essa variável psicológica pode influenciar a execução das tarefas motoras propostas;
+    \item \textbf{Questionário de Motivação Relacionado ao Exercício}: investiga os fatores motivacionais das participantes durante o experimento, analisando seu impacto no engajamento e na qualidade do desempenho.
+\end{itemize}
+Esses instrumentos permitiram uma análise detalhada de variáveis psicológicas complementares às medidas fisiológicas coletadas, contribuindo para uma visão integrada da sincronicidade cérebro-corpo no desempenho esportivo.
+
+
+\section{Estimulação Transcraniana por Corrente Contínua de Alta Definição (HD-tDCS)}
+
+A HD-tDCS foi realizada com um estimulador digital MxN da Soterix Medical, utilizando eletrodos Ag/AgCl posicionados em uma touca de EEG. O posicionamento dos eletrodos seguiu um protocolo padronizado baseado em modelagem computacional, garantindo precisão e focalidade na estimulação \cite{datta2008}. 
+
+Foram aplicadas duas condições experimentais: estimulação catódica (ativa) e sham (simulada), com as participantes expostas a ambas em sessões diferentes, de forma cruzada e randomizada. A calibração dos equipamentos foi realizada antes de cada sessão para assegurar a qualidade e a confiabilidade dos dados registrados.
+
+\subsection{Pré-processamento de Dados}
+Os sinais de EEG e EMG foram submetidos a etapas de pré-processamento, como filtragem de ruídos e segmentação temporal, para garantir qualidade e consistência nos dados analisados. Detalhes específicos sobre essas etapas estão descritos no Capítulo~\ref{chap:preprocessamento_de_dados}.
+
+\subsection{Sincronização de Sinais}
+Os sinais de EEG e ECG foram alinhados temporalmente para permitir análises integradas, ajustando diferenças nos tempos de início das gravações. Este processo assegurou a compatibilidade entre os dados das diferentes modalidades. Os procedimentos detalhados encontram-se no Capítulo~\ref{chap:preprocessamento_de_dados}.
+
+\subsection{Cálculo de Sincronização Funcional}
+A conectividade funcional foi avaliada por meio do Phase Lag Index (PLI) para pares EEG-EEG e Cross-Frequency Phase Linearity Measurement (CF-PLM) para pares EEG-ECG, que medem a consistência das diferenças de fase entre pares de sinais ao longo do tempo. Antes de sua aplicação nos dados experimentais, esses métodos foram testados e validados por meio de sinais simulados, conforme descrito no Capítulo~\ref{chap:6_metodos_de_analise_de_sincronizacao_de_fase}. A aplicação detalhada destas métricas está descrita no Capítulo~\ref{chap:preprocessamento_de_dados}.
+
+\subsection{Análise Estatística}
+Para avaliar diferenças entre condições experimentais, utilizamos métodos estatísticos robustos e não paramétricos. Gráficos e redes foram criados para visualizar os padrões de conectividade. Detalhes dessas análises estão disponíveis no Capítulo~\ref{chap:preprocessamento_de_dados}.

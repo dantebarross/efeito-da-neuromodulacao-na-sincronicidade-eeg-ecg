@@ -1,0 +1,165 @@
+% ---------------------------------------------------------------------------
+% Template simplificado para Dissertação/UFABC
+% ---------------------------------------------------------------------------
+\documentclass[
+  12pt,
+  openright,
+  twoside,
+  a4paper,
+  english,
+  brazil
+]{abntex2}
+
+% -----------------------------------------
+% Pacotes OBRIGATÓRIOS
+% -----------------------------------------
+\usepackage{lmodern}      % Usa a fonte Latin Modern
+\usepackage[T1]{fontenc}  % Codificação de fonte
+\usepackage[utf8]{inputenc}    % Reconhece acentos
+\usepackage{indentfirst}  % Indenta o primeiro parágrafo de cada seção
+\usepackage{color}        % Controle de cores
+\usepackage{graphicx}     % Inclusão de gráficos
+\usepackage{epsfig,subfig}% Inclusão de figuras
+\usepackage{lastpage}     % Usado na ficha catalográfica
+\usepackage{microtype}    % Melhora a justificação
+
+% -----------------------------------------
+% Pacotes ADICIONAIS
+% -----------------------------------------
+\usepackage{float}
+\usepackage{lipsum}                 % Texto de exemplo
+\usepackage{amsmath,amssymb,mathrsfs} 
+\usepackage{setspace}               % Espaçamento
+\usepackage{verbatim}               % Ambiente "comment"
+\usepackage{tabularx}               % Tabelas autoajustáveis
+\usepackage{afterpage}              % Comandos após o fim da página
+\usepackage{url}                    % Formatação de URLs
+
+% -----------------------------------------
+% Pacotes de CITAÇÕES (ABNT)
+% -----------------------------------------
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}  % ou [num] se preferir citações numéricas
+
+\usepackage{hyperref}
+\pdfstringdefDisableCommands{%
+  \def\uppercase#1{#1}%
+}
+
+% -----------------------------------------
+% Configurações
+% -----------------------------------------
+\input{extras/conf_citacoes}  % Ajustes de citações
+\input{extras/dados}          % Título, autor, orientador etc.
+\input{extras/conf_pdf}       % Aparência do PDF final
+
+\setlength{\parindent}{1.3cm}   % Tamanho da indentação
+\setlength{\parskip}{0.2cm}     % Espaçamento entre parágrafos
+\makeindex                       % Compilar índice remissivo
+% -----------------------------------------
+
+\begin{document}
+% Remove espaço extra entre frases
+\frenchspacing
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+
+% Capa
+\input{pretextual/capa}
+
+% Folha de rosto
+\imprimirfolhaderosto*
+
+% Ficha Catalográfica
+\input{pretextual/catalografica}
+
+% Folha de assinaturas
+\input{pretextual/assinaturas}
+
+% Dedicatória
+\input{pretextual/dedicatoria}
+
+% Agradecimentos
+\input{pretextual/agradecimentos}
+
+% Epígrafe
+\input{pretextual/epigrafe}
+
+% Resumos (Resumo e Abstract)
+\input{pretextual/resumos}
+
+% Lista de Figuras
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+% Lista de Tabelas
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+\begin{siglas}
+  \item[EEG] Eletroencefalograma
+  \item[EMG] Eletromiografia
+  \item[PLV] Phase Locking Value
+  \item[ECG] Eletrocardiograma
+  \item[HD-tDCS] Estimulação Transcraniana por Corrente Contínua de Alta Definição
+  \item[IQR] Intervalo Interquartil
+\end{siglas}
+
+% Lista de Símbolos
+\begin{simbolos}
+  \item[$\alpha$] Banda de frequência Alpha (8-13 Hz)
+  \item[$\beta$] Banda de frequência Beta (13-30 Hz)
+  \item[$\gamma$] Banda de frequência Gamma (30-60 Hz)
+  \item[$\theta$] Banda Theta (4-8 Hz)
+  \item[$\delta$] Banda Delta (0.5-4 Hz)
+\end{simbolos}
+
+% Sumário
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% ----------------------------------------------------------
+% Capítulos
+\part{Introdução e Fundamentação Teórica}
+\input{capitulos/1_introducao}
+
+\part{Objetivos e Hipóteses}
+\input{capitulos/2_objetivos}
+\input{capitulos/3_hipoteses}
+
+\part{Metodologia e Processamento}
+\input{capitulos/4_metodologia}
+\input{capitulos/5_preprocessamento_de_dados}
+
+\part{Análises e Resultados}
+\input{capitulos/6_metodos_de_analise_de_sincronizacao_de_fase} 
+\input{capitulos/7_analise_distribuicao_normalidade}
+\input{capitulos/8_analise_estatistica_np}
+
+\postextual
+
+% Bibliografia
+\bibliographystyle{abntex2-alf}
+\bibliography{bibliografia}
+
+% Anexos e Apêndices
+\input{postextual/apendices}
+\input{postextual/anexos}
+
+% Se necessário, índice remissivo
+% \printindex
+
+\end{document}
