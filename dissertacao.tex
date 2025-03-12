@@ -3,7 +3,7 @@
 % ---------------------------------------------------------------------------
 \documentclass[
   12pt,
-  openright,
+  openany,
   twoside,
   a4paper,
   english,
@@ -102,21 +102,45 @@
 \cleardoublepage
 
 \begin{siglas}
-  \item[EEG] Eletroencefalograma
+  \item[BBDS] \textit{Body Brain Dynamic System}
+  \item[EEG] Eletroencefalografia
   \item[EMG] Eletromiografia
-  \item[PLV] Phase Locking Value
   \item[ECG] Eletrocardiograma
-  \item[HD-tDCS] Estimulação Transcraniana por Corrente Contínua de Alta Definição
-  \item[IQR] Intervalo Interquartil
+  \item[tDCS] Estimulação transcraniana por corrente contínua
+  \item[HD-tDCS] Estimulação transcraniana por corrente contínua de alta definição
+  \item[CPFDL] Córtex Pré-frontal Dorsolateral
+  \item[PLI] \textit{Phase Lag Index}
+  \item[PLV] \textit{Phase Locking Value}
+  \item[CF-PLM] \textit{Cross-Frequency Phase Linearity Measurement}
+  \item[SCAT] \textit{Sport Competition Anxiety Test}
+  \item[TQR] Escala de Qualidade Total de Recuperação (\textit{Total Quality Recovery})
+  \item[PSE] Escala de Percepção Subjetiva de Esforço
+  \item[NMDA] \textit{N-methyl-D-aspartate}
+  \item[ICA] \textit{Independent Component Analysis}
+  \item[KDE] \textit{Kernel Density Estimation}
+  \item[ECOD] \textit{Empirical Cumulative Distribution-based Outlier Detection}
+  \item[GPU] \textit{Graphics Processing Unit}
+  \item[BCa] \textit{Bias-Corrected and Accelerated}
+  \item[FDR-BH] \textit{False Discovery Rate-Benjamini–Hochberg}
+  \item[RBC] \textit{Rank-Biserial Correlation}
+  \item[IQR] \textit{Interquartile Range}
 \end{siglas}
 
-% Lista de Símbolos
 \begin{simbolos}
-  \item[$\alpha$] Banda de frequência Alpha (8-13 Hz)
-  \item[$\beta$] Banda de frequência Beta (13-30 Hz)
-  \item[$\gamma$] Banda de frequência Gamma (30-60 Hz)
-  \item[$\theta$] Banda Theta (4-8 Hz)
-  \item[$\delta$] Banda Delta (0.5-4 Hz)
+  \item[$x(t)$] Sinal de entrada, função do tempo.
+  \item[$y(t)$] Segundo sinal de entrada, função do tempo.
+  \item[$x_{\mathrm{an}}(t)$] Representação analítica do sinal \(x(t)\), obtida pela Transformada de Hilbert.
+  \item[$y_{\mathrm{an}}(t)$] Representação analítica do sinal \(y(t)\), obtida pela Transformada de Hilbert.
+  \item[$\phi_x(t)$] Fase instantânea do sinal \(x(t)\).
+  \item[$\phi_y(t)$] Fase instantânea do sinal \(y(t)\).
+  \item[$\Delta \phi(t)$] Diferença de fase instantânea entre os sinais \(x(t)\) e \(y(t)\), definida por \(\Delta \phi(t)=\phi_x(t)-\phi_y(t)\).
+  \item[$z(t)$] Sinal interferométrico, definido como 
+  \[
+  z(t)=\frac{x_{\mathrm{an}}(t)\, y_{\mathrm{an}}^*(t)}{\lvert x_{\mathrm{an}}(t)\rvert\,\lvert y_{\mathrm{an}}(t)\rvert} = e^{i\Delta \phi(t)}.
+  \]
+  \item[$SZ(f)$] Densidade espectral de potência (PSD) do sinal \(z(t)\), em função da frequência \(f\).
+  \item[$f_\Delta$] Diferença entre as frequências centrais dos sinais envolvidos no acoplamento cross-frequency.
+  \item[$B$] Largura de banda utilizada para integrar a PSD na definição do índice CF-PLM.
 \end{simbolos}
 
 % Sumário

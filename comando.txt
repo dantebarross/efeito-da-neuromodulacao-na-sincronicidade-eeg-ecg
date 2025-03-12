@@ -1,1 +1,24 @@
 latexmk -pdf dissertacao.tex
+
+latexmk -pdf -bibtex -f dissertacao.tex
+
+
+
+Remove-Item -Path `
+    .\*.aux, `
+    .\*.bbl, `
+    .\*.blg, `
+    .\*.brf, `
+    .\*.fdb_latexmk, `
+    .\*.fls, `
+    .\*.ilg, `
+    .\*.idx, `
+    .\*.ind, `
+    .\*.lof, `
+    .\*.log, `
+    .\*.lot, `
+    .\*.out, `
+    .\*.toc, `
+    .\*.synctex*, `
+    .\*.gz `
+    -ErrorAction SilentlyContinue

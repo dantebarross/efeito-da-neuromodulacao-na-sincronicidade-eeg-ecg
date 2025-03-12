@@ -13,13 +13,7 @@ Nesta etapa, foram aplicados os seguintes testes:
     \item \textbf{Kruskal-Wallis:} Teste para múltiplos grupos, empregado para comparar as condições quando os dados foram agrupados por faixa de frequência, com o tamanho do efeito estimado pela razão entre a estatística do teste e o número total de observações menos um.
 \end{itemize}
 
-Os testes foram realizados separadamente para cada uma das métricas de conectividade:
-\begin{itemize}
-    \item \texorpdfstring{\texttt{median\_plv\_diff}}{median_plv_diff}
-    \item \texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff}
-    \item \texorpdfstring{\texttt{median\_cf\_plm\_diff}}{median_cf_plm_diff}
-\end{itemize}
-e para os dois grupos de canais: \texorpdfstring{\texttt{EEG\_EEG}}{EEG_EEG} e \texorpdfstring{\texttt{EEG\_ECG}}{EEG_ECG}. Ressalta-se que, embora o código inclua procedimentos para remoção de dados nulos, na prática esses valores não estão presentes, servindo apenas para tratamento de exceções.
+Os testes foram realizados separadamente para cada uma das métricas de conectividade (median_plv_diff, median_pli_diff e median_cf_plm_diff) e para os dois grupos de canais: \texorpdfstring{\texttt{EEG\_EEG}}{EEG_EEG} e \texorpdfstring{\texttt{EEG\_ECG}}{EEG_ECG}. Ressalta-se que, embora o código inclua procedimentos para remoção de dados nulos, na prática esses valores não estão presentes, servindo apenas para tratamento de exceções.
 
 \section{Resultados dos Testes}
 
@@ -70,7 +64,7 @@ e para os dois grupos de canais: \texorpdfstring{\texttt{EEG\_EEG}}{EEG_EEG} e \
 
 \section{Discussão e Justificativa dos Métodos}
 
-Dado que os testes de normalidade indicaram violações significativas do pressuposto de normalidade para as três métricas analisadas, a utilização de testes não paramétricos se mostrou necessária. Tais métodos não dependem de pressupostos sobre a distribuição dos dados, oferecendo uma análise mais robusta e confiável. Além disso, a aplicação de múltiplos testes (Mann-Whitney U, Wilcoxon e Kruskal-Wallis) permitiu uma avaliação abrangente das diferenças entre as condições \texorpdfstring{\texttt{cathodic}}{cathodic} e \texorpdfstring{\texttt{sham}}{sham}, considerando tanto comparações entre grupos independentes quanto análises pareadas intraindividuais.
+Dado que os testes de normalidade indicaram violações significativas do pressuposto de normalidade para as métricas analisadas, a utilização de testes não paramétricos se mostrou necessária. Tais métodos não dependem de pressupostos sobre a distribuição dos dados, oferecendo uma análise mais robusta e confiável. Além disso, a aplicação de múltiplos testes (Mann-Whitney U, Wilcoxon e Kruskal-Wallis) permitiu uma avaliação abrangente das diferenças entre as condições \texorpdfstring{\texttt{cathodic}}{cathodic} e \texorpdfstring{\texttt{sham}}{sham}, considerando tanto comparações entre grupos independentes quanto análises pareadas intraindividuais.
 
 Os resultados indicam que, para a maioria das faixas de frequência e para as métricas \texorpdfstring{\texttt{median\_plv\_diff}}{median_plv_diff} e \texorpdfstring{\texttt{median\_cf\_plm\_diff}}{median_cf_plm_diff}, existem diferenças estatisticamente significativas entre as condições, reforçando a importância da modulação induzida pela estimulação. Por sua vez, os achados para \texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff} foram menos consistentes, variando conforme o teste e a faixa considerada.
 
@@ -188,197 +182,49 @@ Assim, a análise dos histogramas de tamanho de efeito e valores-p fornece um pa
 \section{Análise de Rede para PLI (EEG-EEG)}
 \label{sec:rede_pli_eeg}
 
-Nesta seção, analisamos as redes de conexões significativas obtidas pela métrica PLI para pares EEG-EEG, segmentadas por bandas de frequência, considerando os cenários com e sem outliers. Em cada grafo, cada nó representa um canal EEG e o número exibido ao lado indica a quantidade de conexões significativas envolvendo aquele canal. As linhas conectando os nós correspondem aos pares significativos, onde as linhas vermelhas indicam valores de \emph{Wilcoxon RBC} tendendo a +1 (indicando conexões com efeitos extremamente fortes), enquanto linhas em azul indicariam valores próximos a -1 (não observados neste estudo).
+Nesta seção, analisamos as redes de conexões significativas obtidas pela métrica PLI para pares EEG-EEG, segmentadas por bandas de frequência, considerando os cenários com e sem outliers. Cada nó representa um canal EEG, e o número ao lado indica o total de conexões significativas envolvendo esse canal. Linhas vermelhas representam conexões com valores de \emph{Wilcoxon RBC} tendendo a +1, indicando conexões robustas.
 
-A seguir, apresentamos os gráficos para cada banda de frequência.
+Apresentamos aqui apenas exemplos representativos das redes (por exemplo, banda Alpha), enquanto a análise completa, contemplando todas as bandas e cenários, pode ser encontrada no **Apêndice \ref{apendice:pli_eeg_eeg}**.
 
-\subsection{Cenário Sem Outliers}
-\subsubsection{\texorpdfstring{Banda Delta (0.5--4\,Hz)}{Banda Delta (0.5-4 Hz)}}
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Delta_(0.5_a_4_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
-  \caption{Rede de conexões significativas na banda Delta (0.5--4\,Hz) para PLI (EEG-EEG) sem outliers. A rede é esparsa, com poucas conexões, o que sugere que a sincronização nessa faixa é limitada e pontual.}
-  \label{fig:rede_pli_delta_sem}
+  \includegraphics[width=0.75\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
+  \caption{Exemplo da rede de conexões significativas na banda Alpha (8--13\,Hz) para PLI (EEG-EEG) no cenário sem outliers. Observa-se um núcleo central de canais altamente conectados, sugerindo forte sincronização.}
+  \label{fig:exemplo_rede_pli_alpha_sem}
 \end{figure}
 
-\subsubsection{\texorpdfstring{Banda Theta (4--8\,Hz)}{Banda Theta (4-8 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Theta_(4_Hz_a_8_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
-  \caption{Rede de conexões significativas na banda Theta (4--8\,Hz) para PLI (EEG-EEG) sem outliers. A conectividade é moderada, com alguns canais exibindo um número elevado de conexões, indicando sua importância na sincronização nesta faixa.}
-  \label{fig:rede_pli_theta_sem}
-\end{figure}
+\subsection{Resumo das Comparações (PLI EEG-EEG)}
 
-\subsubsection{\texorpdfstring{Banda Alpha (8--13\,Hz)}{Banda Alpha (8-13 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
-  \caption{Rede de conexões significativas na banda Alpha (8--13\,Hz) para PLI (EEG-EEG) sem outliers. Observa-se uma rede densa com um núcleo central de canais altamente conectados, sugerindo uma forte sincronização nesta banda.}
-  \label{fig:rede_pli_alpha_sem}
-\end{figure}
+A comparação detalhada entre os cenários com e sem outliers revela que:
 
-\subsubsection{\texorpdfstring{Banda Beta (13--30\,Hz)}{Banda Beta (13-30 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
-  \caption{Rede de conexões significativas na banda Beta (13--30\,Hz) para PLI (EEG-EEG) sem outliers. A rede apresenta conectividade intermediária, com uma distribuição relativamente homogênea das conexões entre os canais.}
-  \label{fig:rede_pli_beta_sem}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Gamma (30--60\,Hz)}{Banda Gamma (30-60 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Gamma_(30_Hz_a_60_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
-  \caption{Rede de conexões significativas na banda Gamma (30--60\,Hz) para PLI (EEG-EEG) sem outliers. A rede é mais esparsa, mas destaca alguns pares de canais com conexões extremamente robustas.}
-  \label{fig:rede_pli_gamma_sem}
-\end{figure}
-
-\subsection{Cenário Com Outliers}
-\subsubsection{\texorpdfstring{Banda Delta (0.5--4\,Hz)}{Banda Delta (0.5-4 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Delta_(0.5_a_4_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
-  \caption{Rede de conexões significativas na banda Delta (0.5--4\,Hz) para PLI (EEG-EEG) com outliers mantidos. A estrutura é similar à observada sem outliers, com poucas conexões significativas.}
-  \label{fig:rede_pli_delta_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Theta (4--8\,Hz)}{Banda Theta (4-8 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Theta_(4_Hz_a_8_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
-  \caption{Rede de conexões significativas na banda Theta (4--8\,Hz) para PLI (EEG-EEG) com outliers mantidos. A conectividade moderada e os canais com alta centralidade se mantêm, confirmando a robustez dos efeitos.}
-  \label{fig:rede_pli_theta_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Alpha (8--13\,Hz)}{Banda Alpha (8-13 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
-  \caption{Rede de conexões significativas na banda Alpha (8--13\,Hz) para PLI (EEG-EEG) com outliers mantidos. A rede densa e o núcleo central de canais altamente conectados permanecem, demonstrando uma forte sincronização, similar à observada sem outliers.}
-  \label{fig:rede_pli_alpha_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Beta (13--30\,Hz)}{Banda Beta (13-30 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
-  \caption{Rede de conexões significativas na banda Beta (13--30\,Hz) para PLI (EEG-EEG) com outliers mantidos. A distribuição das conexões é semelhante à observada no cenário sem outliers, evidenciando uma conectividade intermediária.}
-  \label{fig:rede_pli_beta_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Gamma (30--60\,Hz)}{Banda Gamma (30-60 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Gamma_(30_Hz_a_60_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
-  \caption{Rede de conexões significativas na banda Gamma (30--60\,Hz) para PLI (EEG-EEG) com outliers mantidos. Mesmo com a presença de outliers, a rede se mantém esparsa, destacando os pares de canais com conexões robustas.}
-  \label{fig:rede_pli_gamma_com}
-\end{figure}
-
-\subsection{Análise Comparativa dos Cenários}
-A comparação entre os cenários com e sem outliers para a métrica PLI em pares EEG-EEG evidencia que:
 \begin{itemize}
-    \item \textbf{Topologia Geral Inalterada:} A estrutura das redes – identificada por canais com maior centralidade e o padrão de conexões – permanece praticamente a mesma em ambos os cenários.
-    \item \textbf{Número de Conexões:} Há uma ligeira redução no número de conexões significativas quando os outliers são removidos (por exemplo, 378 casos com outliers versus 363 sem outliers), o que é esperado, pois a remoção de valores extremos pode atenuar alguns efeitos marginais.
-    \item \textbf{Robustez dos Efeitos:} Os pares com \emph{Wilcoxon RBC} de +1, indicados pelas linhas vermelhas, persistem em ambos os cenários, reforçando a confiabilidade dos efeitos encontrados.
+    \item A **topologia das redes permanece semelhante entre os cenários**, indicando que a métrica PLI é robusta mesmo após a remoção de outliers.
+    \item A remoção de outliers resulta em uma **leve redução no número de conexões significativas**, mas **não altera substancialmente a estrutura da rede**.
+    \item Os **canais com maior centralidade são consistentes** em ambos os cenários, reforçando a confiabilidade dos achados.
 \end{itemize}
 
-Essas observações corroboram a robustez da análise PLI, demonstrando que, embora a remoção de outliers reduza ligeiramente o número de conexões, a topologia e a intensidade dos efeitos permanecem consistentes.
+Para uma análise detalhada de todas as bandas de frequência e cenários, consulte o **Apêndice \ref{apendice:pli_eeg_eeg}**.
 
 \section{Análise de Rede para CF-PLM (EEG-ECG, Cross-frequency)}
 \label{sec:rede_cfplm_eeg_ecg}
 
-Nesta seção, avaliamos as redes de conectividade entre sinais de EEG e ECG obtidas pela métrica CF-PLM, que quantifica a sincronização entre frequências distintas (cross-frequency). Em cada gráfico, os nós representam os canais (tanto os canais EEG quanto o canal ECG) e o número exibido ao lado de cada nó indica a quantidade de conexões significativas envolvendo aquele canal. As linhas que conectam os nós representam os pares significativos; neste estudo, os casos significativos exibem \emph{Wilcoxon RBC} de +1, o que denota efeitos extremamente robustos (não foram observados casos com valores próximos a -1).
+Nesta seção, avaliamos as redes de conectividade **cross-frequency** entre EEG e ECG usando a métrica CF-PLM. Como os resultados mostram um padrão relativamente estável entre os cenários analisados, apresentamos aqui apenas um **exemplo representativo** (banda Beta). A análise completa para todas as bandas pode ser encontrada no **Apêndice \ref{apendice:cfplm_eeg_ecg}**.
 
-Observamos que, para CF-PLM, o número total de pares significativos é idêntico (11 casos) em ambos os cenários, indicando que os efeitos cross-frequency identificados são altamente robustos e não dependem da presença de outliers.
-
-\subsection{Cenário Sem Outliers}
-\subsubsection{\texorpdfstring{Banda Delta (0.5--4\,Hz)}{Banda Delta (0.5-4 Hz)}}
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Delta_(0.5_a_4_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
-  \caption{Rede CF-PLM na banda Delta (0.5--4\,Hz) para EEG-ECG sem outliers. A rede é bastante esparsa, indicando que a sincronização cross-frequency nesta faixa ocorre de forma pontual e em poucos pares de canais.}
-  \label{fig:rede_cfplm_delta_sem}
+  \includegraphics[width=0.75\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
+  \caption{Exemplo da rede CF-PLM na banda Beta (13--30\,Hz) para EEG-ECG sem outliers. Apesar da rede ser relativamente esparsa, os pares significativos indicam uma sincronização robusta.}
+  \label{fig:exemplo_rede_cfplm_beta_sem}
 \end{figure}
 
-\subsubsection{\texorpdfstring{Banda Theta (4--8\,Hz)}{Banda Theta (4-8 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Theta_(4_Hz_a_8_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
-  \caption{Rede CF-PLM na banda Theta (4--8\,Hz) para EEG-ECG sem outliers. A conectividade é moderada, com alguns canais apresentando maior número de conexões significativas, sugerindo que certos canais desempenham um papel crucial na integração cross-frequency nesta faixa.}
-  \label{fig:rede_cfplm_theta_sem}
-\end{figure}
+\subsection{Resumo das Comparações (CF-PLM EEG-ECG)}
 
-\subsubsection{\texorpdfstring{Banda Alpha (8--13\,Hz)}{Banda Alpha (8-13 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
-  \caption{Rede CF-PLM na banda Alpha (8--13\,Hz) para EEG-ECG sem outliers. A rede apresenta conexões pontuais entre canais EEG e ECG, evidenciando a presença de sincronização cross-frequency específica nessa faixa.}
-  \label{fig:rede_cfplm_alpha_sem}
-\end{figure}
+As comparações entre os cenários com e sem outliers evidenciam que:
 
-\subsubsection{\texorpdfstring{Banda Beta (13--30\,Hz)}{Banda Beta (13-30 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
-  \caption{Rede CF-PLM na banda Beta (13--30\,Hz) para EEG-ECG sem outliers. Apesar da rede ser relativamente esparsa, os pares significativos indicam uma forte sincronização entre os canais, refletindo um efeito robusto nessa faixa.}
-  \label{fig:rede_cfplm_beta_sem}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Gamma (30--60\,Hz)}{Banda Gamma (30-60 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Gamma_(30_Hz_a_60_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
-  \caption{Rede CF-PLM na banda Gamma (30--60\,Hz) para EEG-ECG sem outliers. A rede destaca alguns pares com conexões extremamente robustas, embora a conectividade global seja pontual.}
-  \label{fig:rede_cfplm_gamma_sem}
-\end{figure}
-
-\subsection{Cenário Com Outliers}
-\subsubsection{\texorpdfstring{Banda Delta (0.5--4\,Hz)}{Banda Delta (0.5-4 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Delta_(0.5_a_4_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
-  \caption{Rede CF-PLM na banda Delta (0.5--4\,Hz) para EEG-ECG com outliers. A estrutura da rede é idêntica à observada sem outliers, evidenciando a estabilidade dos efeitos cross-frequency nesta faixa.}
-  \label{fig:rede_cfplm_delta_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Theta (4--8\,Hz)}{Banda Theta (4-8 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Theta_(4_Hz_a_8_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
-  \caption{Rede CF-PLM na banda Theta (4--8\,Hz) para EEG-ECG com outliers. A conectividade e a distribuição dos nós permanecem semelhantes às observadas no cenário sem outliers.}
-  \label{fig:rede_cfplm_theta_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Alpha (8--13\,Hz)}{Banda Alpha (8-13 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
-  \caption{Rede CF-PLM na banda Alpha (8--13\,Hz) para EEG-ECG com outliers. A topologia da rede é idêntica à observada sem outliers, demonstrando que os efeitos robustos não são afetados pela presença de valores extremos.}
-  \label{fig:rede_cfplm_alpha_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Beta (13--30\,Hz)}{Banda Beta (13-30 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
-  \caption{Rede CF-PLM na banda Beta (13--30\,Hz) para EEG-ECG com outliers. A rede apresenta uma conectividade robusta e a mesma topologia dos gráficos sem outliers, indicando que os valores extremos não alteram significativamente os efeitos identificados.}
-  \label{fig:rede_cfplm_beta_com}
-\end{figure}
-
-\subsubsection{\texorpdfstring{Banda Gamma (30--60\,Hz)}{Banda Gamma (30-60 Hz)}}
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Gamma_(30_Hz_a_60_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
-  \caption{Rede CF-PLM na banda Gamma (30--60\,Hz) para EEG-ECG com outliers. A rede exibe os mesmos pares robustos de conexão (RBC = +1) observados sem outliers, confirmando a estabilidade dos efeitos cross-frequency na faixa de alta frequência.}
-  \label{fig:rede_cfplm_gamma_com}
-\end{figure}
-
-\subsection{Comparação Geral entre Cenários para CF-PLM}
-Ao comparar os resultados dos cenários com e sem outliers para CF-PLM (EEG-ECG), observamos:
 \begin{itemize}
-    \item \textbf{Topologia Consistente:} A estrutura das redes – ou seja, quais canais se conectam e a contagem de conexões – é praticamente idêntica em ambos os cenários, para todas as bandas de frequência.
-    \item \textbf{Número de Conexões Inalterado:} O número total de pares significativos (11 casos) permanece constante, evidenciando que os efeitos cross-frequency são robustos e não dependem da remoção de outliers.
-    \item \textbf{Robustez dos Efeitos:} Todos os pares significativos exibem \emph{Wilcoxon RBC} de +1, demonstrando que, independentemente da presença de outliers, os efeitos são extremamente fortes.
+    \item A **topologia e a quantidade de pares significativos permanecem inalteradas** nos dois cenários, indicando **independência dos resultados em relação à presença de outliers**.
+    \item O **número total de pares significativos é idêntico (11 casos)**, o que sugere que os efeitos cross-frequency detectados são altamente robustos.
+    \item Todos os pares significativos apresentam **\emph{Wilcoxon RBC} = +1**, reforçando a **consistência dos achados**.
 \end{itemize}
 
-Essas análises confirmam a estabilidade e robustez dos efeitos cross-frequency medidos pelo CF-PLM para a interação entre EEG e ECG, fornecendo uma base sólida para investigações futuras sobre a integração dos sistemas neural e cardíaco.
+Para mais detalhes e visualização completa das redes de conectividade, consulte o **Apêndice \ref{apendice:cfplm_eeg_ecg}**.

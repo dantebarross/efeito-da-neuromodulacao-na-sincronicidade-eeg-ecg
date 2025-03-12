@@ -22,6 +22,13 @@ Embora o tamanho reduzido da amostra possa ser considerado uma limitação, ele 
 
 O delineamento experimental seguiu um modelo randomizado, cruzado e duplo-cego, amplamente utilizado em estudos de neurociência aplicada e psicofisiologia para minimizar viés e garantir a validade dos resultados. Esse modelo permitiu que todas as participantes fossem expostas tanto à condição de estimulação catódica (HD-tDCS) quanto à condição sham (simulada), aumentando a robustez das comparações intraindividuais.
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figs/0_intro_e_desenho_experimental/desenho_experimental_drawio.png}
+    \caption{Fluxo do protocolo experimental, incluindo a sessão de familiarização, as duas sessões experimentais (com estimulação catódica ou sham), as coletas de EEG/ECG em repouso e a execução de 200 arremessos por sessão.}
+    \label{fig:desenho_experimental}
+\end{figure}
+
 Antes das sessões experimentais, foi realizada uma sessão de familiarização, na qual as participantes receberam explicações sobre os objetivos, procedimentos, riscos e benefícios do estudo, além de um período de adaptação ao protocolo experimental. Essa familiarização assegurou que todas estivessem confortáveis com os procedimentos e equipamentos utilizados.
 
 As sessões experimentais ocorreram entre janeiro e fevereiro de 2020, com a seguinte estrutura:
@@ -49,14 +56,27 @@ A HD-tDCS foi realizada com um estimulador digital MxN da Soterix Medical, utili
 
 Foram aplicadas duas condições experimentais: estimulação catódica (ativa) e sham (simulada), com as participantes expostas a ambas em sessões diferentes, de forma cruzada e randomizada. A calibração dos equipamentos foi realizada antes de cada sessão para assegurar a qualidade e a confiabilidade dos dados registrados.
 
-\subsection{Pré-processamento de Dados}
-Os sinais de EEG e EMG foram submetidos a etapas de pré-processamento, como filtragem de ruídos e segmentação temporal, para garantir qualidade e consistência nos dados analisados. Detalhes específicos sobre essas etapas estão descritos no Capítulo~\ref{chap:preprocessamento_de_dados}.
+\subsection{Processamento e Análise de Dados}
 
-\subsection{Sincronização de Sinais}
-Os sinais de EEG e ECG foram alinhados temporalmente para permitir análises integradas, ajustando diferenças nos tempos de início das gravações. Este processo assegurou a compatibilidade entre os dados das diferentes modalidades. Os procedimentos detalhados encontram-se no Capítulo~\ref{chap:preprocessamento_de_dados}.
+O processamento e análise dos dados seguiram um fluxo estruturado que abrange desde a coleta e organização dos arquivos até a extração de métricas de sincronização e a aplicação de testes estatísticos para avaliar as diferenças entre condições experimentais. A Figura~\ref{fig:fluxo_processamento} apresenta um diagrama geral dessas etapas.
 
-\subsection{Cálculo de Sincronização Funcional}
-A conectividade funcional foi avaliada por meio do Phase Lag Index (PLI) para pares EEG-EEG e Cross-Frequency Phase Linearity Measurement (CF-PLM) para pares EEG-ECG, que medem a consistência das diferenças de fase entre pares de sinais ao longo do tempo. Antes de sua aplicação nos dados experimentais, esses métodos foram testados e validados por meio de sinais simulados, conforme descrito no Capítulo~\ref{chap:6_metodos_de_analise_de_sincronizacao_de_fase}. A aplicação detalhada destas métricas está descrita no Capítulo~\ref{chap:preprocessamento_de_dados}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figs/0_intro_e_desenho_experimental/diagrama_processamento_e_analise_drawio.png}
+    \caption{Fluxo geral de processamento e análise de dados, desde a coleta e organização dos arquivos, passando pelas etapas de pré-processamento (EEG e ECG), sincronização temporal, extração de métricas de sincronização (PLI, PLV e CF-PLM) e, por fim, análises estatísticas e de conectividade em rede.}
+    \label{fig:fluxo_processamento}
+\end{figure}
 
-\subsection{Análise Estatística}
-Para avaliar diferenças entre condições experimentais, utilizamos métodos estatísticos robustos e não paramétricos. Gráficos e redes foram criados para visualizar os padrões de conectividade. Detalhes dessas análises estão disponíveis no Capítulo~\ref{chap:preprocessamento_de_dados}.
+\subsubsection{Pré-processamento de Dados}
+Os sinais de EEG e EMG foram submetidos a etapas de pré-processamento, como filtragem de ruídos e remoção de artefatos por meio de Independent Component Analysis (ICA). Além disso, os sinais de ECG passaram por processos de detecção de picos e extração do ciclo cardíaco. Essas etapas garantiram a qualidade e consistência dos dados analisados.
+
+\subsubsection{Sincronização de Sinais}
+Para permitir uma análise integrada, os sinais de EEG e ECG foram alinhados temporalmente, garantindo que as medidas extraídas estivessem sincronizadas e pudessem ser comparadas corretamente. Esse procedimento assegurou a compatibilidade entre os dados das diferentes modalidades.
+
+\subsubsection{Cálculo de Sincronização Funcional}
+A sincronização entre os sinais foi avaliada utilizando diferentes métricas. O Phase Locking Value (PLV) e o Phase Lag Index (PLI) foram aplicados para quantificar a conectividade em uma mesma frequência, enquanto a Cross-Frequency Phase Linearity Measurement (CF-PLM) foi utilizada para avaliar acoplamento entre frequências distintas. Antes de sua aplicação nos dados experimentais, esses métodos foram testados e validados por meio de sinais simulados.
+
+\subsubsection{Análise Estatística}
+Para investigar diferenças entre condições experimentais, aplicamos métodos estatísticos robustos, incluindo testes de normalidade, testes não-paramétricos e correções para comparações múltiplas. Adicionalmente, utilizamos medidas de centralidade em redes para avaliar a conectividade funcional entre diferentes regiões corticais. Os padrões de conectividade foram representados por meio de gráficos e redes, facilitando a visualização dos resultados.
+
+Esse fluxo sistemático permitiu uma abordagem rigorosa para explorar a sincronicidade cérebro-corpo e avaliar o impacto da estimulação transcraniana no desempenho atlético.
