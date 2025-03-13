@@ -13,47 +13,25 @@ Nesta etapa, foram aplicados os seguintes testes:
     \item \textbf{Kruskal-Wallis:} Teste para múltiplos grupos, empregado para comparar as condições quando os dados foram agrupados por faixa de frequência, com o tamanho do efeito estimado pela razão entre a estatística do teste e o número total de observações menos um.
 \end{itemize}
 
-Os testes foram realizados separadamente para cada uma das métricas de conectividade (median_plv_diff, median_pli_diff e median_cf_plm_diff) e para os dois grupos de canais: \texorpdfstring{\texttt{EEG\_EEG}}{EEG_EEG} e \texorpdfstring{\texttt{EEG\_ECG}}{EEG_ECG}. Ressalta-se que, embora o código inclua procedimentos para remoção de dados nulos, na prática esses valores não estão presentes, servindo apenas para tratamento de exceções.
+Os testes foram realizados separadamente para cada uma das métricas de conectividade 
+(\texttt{median\_plv\_diff}, \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}) 
+e para os dois grupos de canais: \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. 
+
+Ressalta-se que, embora o código inclua procedimentos para remoção de dados nulos, 
+na prática, esses valores não estão presentes, servindo apenas para tratamento de exceções.
 
 \section{Resultados dos Testes}
 
-\subsection{\texorpdfstring{Métricas para \texttt{median\_plv\_diff}}{Métricas para median\_plv\_diff}}
-\paragraph{Grupo EEG\_EEG:}
-\begin{itemize}
-    \item \textbf{Mann-Whitney U:} As faixas \emph{alpha, beta, delta, gamma} e \emph{theta} apresentaram p-valores extremamente baixos (por exemplo, $p < 10^{-29}$ para \emph{alpha} e $p < 10^{-132}$ para \emph{gamma}), indicando diferenças estatisticamente significativas entre as condições. Os tamanhos de efeito variaram, com valores próximos a $-0.088$ e $0.191$.
-    \item \textbf{Wilcoxon:} Os testes pareados mostraram p-valores próximos de zero para todas as faixas, com tamanhos de efeito em torno de $0.393$.
-    \item \textbf{Kruskal-Wallis:} Também foram encontradas diferenças significativas em todas as faixas, com tamanhos de efeito entre $0.0058$ e $0.0273$.
-\end{itemize}
-
-\paragraph{Grupo EEG\_ECG:}
-\begin{itemize}
-    \item \textbf{Mann-Whitney U:} Foram significativas as faixas \emph{alpha, beta} e \emph{theta} (p-valores menores que 0.001) e a \emph{gamma} apresentou um p-valor marginal ($p \approx 0.041$), enquanto a faixa \emph{delta} não alcançou significância ($p \approx 0.148$).
-    \item \textbf{Wilcoxon:} Os testes demonstraram diferenças robustas, com p-valores extremamente baixos e tamanhos de efeito de aproximadamente $0.381$.
-    \item \textbf{Kruskal-Wallis:} Os resultados foram significativos para \emph{alpha, beta} e \emph{theta}, mas não para \emph{delta} e \emph{gamma}.
-\end{itemize}
-
 \subsection{\texorpdfstring{Métricas para \texttt{median\_pli\_diff}}{Métricas para median\_pli\_diff}}
+
 \paragraph{Grupo EEG\_EEG:}
 \begin{itemize}
     \item \textbf{Mann-Whitney U:} As faixas \emph{alpha, delta, gamma} e \emph{theta} apresentaram diferenças significativas (p-valores $< 0.001$), enquanto a faixa \emph{beta} teve um resultado marginal ($p \approx 0.051$).
     \item \textbf{Wilcoxon:} Os testes pareados indicaram significância robusta em todas as faixas, com tamanho de efeito em torno de $0.477$.
-    \item \textbf{Kruskal-Wallis:} As faixas \emph{alpha, delta, gamma} e \emph{theta} foram significativamente diferentes, com \emph{beta} sendo marginalmente não significativo.
-\end{itemize}
-
-\paragraph{Grupo EEG\_ECG:}
-\begin{itemize}
-    \item \textbf{Mann-Whitney U:} Apenas as faixas \emph{delta} e \emph{gamma} mostraram diferenças significativas, enquanto \emph{alpha} e \emph{beta} não atingiram significância.
-    \item \textbf{Wilcoxon:} Todos os testes foram altamente significativos, com tamanhos de efeito próximos a $0.441$.
-    \item \textbf{Kruskal-Wallis:} Apenas \emph{alpha, delta} e \emph{gamma} foram significativas; as faixas \emph{beta} e \emph{theta} não apresentaram diferenças estatísticas.
+    \item \textbf{Kruskal-Wallis:} As faixas \emph{alpha, delta, gamma} e \emph{theta} foram significativamente diferentes, com \emph{beta} sendo marginalmente não significativa.
 \end{itemize}
 
 \subsection{\texorpdfstring{Métricas para \texttt{median\_cf\_plm\_diff}}{Métricas para median\_cf\_plm\_diff}}
-\paragraph{Grupo EEG\_EEG:}
-\begin{itemize}
-    \item \textbf{Mann-Whitney U:} Todas as faixas foram significativamente diferentes entre as condições (p-valores muito baixos), com tamanhos de efeito variando de $-0.062$ a $0.274$.
-    \item \textbf{Wilcoxon:} Resultados extremamente significativos foram observados para todas as faixas, com tamanho de efeito em torno de $0.355$.
-    \item \textbf{Kruskal-Wallis:} Todas as faixas apresentaram diferenças significativas, com tamanhos de efeito entre $0.0029$ e $0.0563$.
-\end{itemize}
 
 \paragraph{Grupo EEG\_ECG:}
 \begin{itemize}
@@ -66,19 +44,25 @@ Os testes foram realizados separadamente para cada uma das métricas de conectiv
 
 Dado que os testes de normalidade indicaram violações significativas do pressuposto de normalidade para as métricas analisadas, a utilização de testes não paramétricos se mostrou necessária. Tais métodos não dependem de pressupostos sobre a distribuição dos dados, oferecendo uma análise mais robusta e confiável. Além disso, a aplicação de múltiplos testes (Mann-Whitney U, Wilcoxon e Kruskal-Wallis) permitiu uma avaliação abrangente das diferenças entre as condições \texorpdfstring{\texttt{cathodic}}{cathodic} e \texorpdfstring{\texttt{sham}}{sham}, considerando tanto comparações entre grupos independentes quanto análises pareadas intraindividuais.
 
-Os resultados indicam que, para a maioria das faixas de frequência e para as métricas \texorpdfstring{\texttt{median\_plv\_diff}}{median_plv_diff} e \texorpdfstring{\texttt{median\_cf\_plm\_diff}}{median_cf_plm_diff}, existem diferenças estatisticamente significativas entre as condições, reforçando a importância da modulação induzida pela estimulação. Por sua vez, os achados para \texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff} foram menos consistentes, variando conforme o teste e a faixa considerada.
+Os resultados indicam que, para a maioria das faixas de frequência e para as métricas \texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff} e \texorpdfstring{\texttt{median\_cf\_plm\_diff}}{median_cf_plm_diff}, existem diferenças estatisticamente significativas entre as condições, reforçando a importância da modulação induzida pela estimulação. Por sua vez, os achados para \texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff} foram menos consistentes, variando conforme o teste e a faixa considerada.
 
 Em suma, a escolha dos testes não paramétricos foi justificada pela distribuição não normal dos dados, e os resultados obtidos fornecem evidências sólidas de diferenças na sincronização de fase entre as condições experimentais, reforçando os efeitos da estimulação no contexto das análises de conectividade.
 
 \section{Detecção de Outliers, Análise Bootstrap e Correções para Comparações Múltiplas}
 
-Para aprimorar a qualidade dos dados e reduzir o impacto de pontos atípicos nas análises subsequentes, executamos uma etapa de detecção e remoção de outliers utilizando o método ECOD (Empirical Cumulative Distribution-based Outlier Detection). Esse método é especialmente adequado para nosso conjunto de dados por sua natureza não paramétrica, que permite identificar anomalias sem pressupor uma distribuição específica. O ECOD estima a função de distribuição cumulativa empírica em cada dimensão, identificando como outliers os pontos que se desviam significativamente do comportamento esperado. Estudos demonstram que essa abordagem supera diversas técnicas de detecção de outliers em termos de acurácia e eficiência \cite{li2022}.
+Para aprimorar a qualidade dos dados e reduzir o impacto de pontos atípicos nas análises subsequentes, executamos uma etapa de detecção e remoção de outliers utilizando o método ECOD (Empirical Cumulative Distribution-based Outlier Detection). Esse método é especialmente adequado para nosso conjunto de dados por sua natureza não paramétrica, que permite identificar anomalias sem pressupor uma distribuição específica. O ECOD estima a função de distribuição cumulativa empírica em cada dimensão, identificando como outliers os pontos que se desviam significativamente do comportamento esperado. Estudos demonstram que essa abordagem supera diversas técnicas de detecção de outliers em termos de acurácia e eficiência \cite{li2022ecod}.
 
-Aplicamos o ECOD considerando as métricas \texorpdfstring{\texttt{median\_plv\_diff}}{median_plv_diff}, \texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff} e \texorpdfstring{\texttt{median\_cf\_plm\_diff}}{median_cf_plm_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, identificamos 6146 outliers, o que corresponde a aproximadamente 5.00\% dos dados. A remoção desses outliers resultou em um dataset com 116769 linhas, melhorando a confiabilidade das análises posteriores.
+Aplicamos o ECOD considerando as métricas texorpdfstring{\texttt{median\_pli\_diff}}{median_pli_diff} e \texorpdfstring{\texttt{median\_cf\_plm\_diff}}{median_cf_plm_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, identificamos cerca de 5.00\% de dados como sendo outliers.
 
-Posteriormente, implementamos um robusto pipeline de análise por meio de bootstrap acelerado por GPU, utilizando CuPy para calcular intervalos de confiança BCa (Bias-Corrected and Accelerated). Esse método é particularmente robusto, pois ajusta tanto o viés quanto a aceleração da distribuição bootstrap, permitindo capturar as assimetrias e a presença de outliers nos dados. Essa abordagem, embora computacionalmente custosa, é amplamente considerada uma das mais robustas para a estimação de intervalos de confiança em situações em que os pressupostos de normalidade não são atendidos. Além disso, o método BCa foi escolhido em detrimento de outros métodos de intervalo de confiança por sua capacidade de corrigir a distorção na distribuição da estatística estimada.
+Posteriormente, implementamos um robusto pipeline de análise por meio de bootstrap acelerado por GPU para calcular intervalos de confiança BCa (Bias-Corrected and Accelerated). Esse método é particularmente robusto, pois ajusta tanto o viés quanto a aceleração da distribuição bootstrap, permitindo capturar as assimetrias e a presença de outliers nos dados. Essa abordagem, embora computacionalmente custosa, é amplamente considerada uma das mais robustas para a estimação de intervalos de confiança em situações em que os pressupostos de normalidade não são atendidos. Além disso, o método BCa foi escolhido em detrimento de outros métodos de intervalo de confiança por sua capacidade de corrigir a distorção na distribuição da estatística estimada.
 
-A análise é realizada agrupando os dados por combinações de \emph{channel pair}, \emph{frequency band} e \emph{channel group} (os quais são mutuamente exclusivos, como \texorpdfstring{\texttt{EEG\_EEG}}{EEG_EEG} e \texorpdfstring{\texttt{EEG\_ECG}}{EEG_ECG}). Essa estratégia permite comparar diferenças entre as condições dentro de cada subgrupo. Para mitigar o risco de falsos positivos decorrentes do elevado número de comparações (estimado em 11346 testes, considerando 1891 channel pairs e 6 faixas de frequência), foram aplicadas correções para comparações múltiplas. Entre os métodos de correção, o Bonferroni se destaca por sua extrema rigidez e conservadorismo, sendo considerado o mais robusto, principalmente em contextos com um elevado número de testes. Embora métodos como Holm e FDR-BH também tenham sido calculados e estejam disponíveis para comparação, o Bonferroni é adotado como referência primária na decisão de significância, visto que o threshold ajustado (aproximadamente 0.00000441) minimiza o risco de erros do tipo I.
+Para avaliar a significância estatística após as múltiplas comparações, utilizamos a 
+função \texttt{multipletests} da biblioteca Python \texttt{statsmodels} com o método Bonferroni. 
+Esse procedimento gera uma nova coluna, denominada 
+\texttt{bonferroni\_corrected\_p}, em que o p-valor original (``bruto'') é multiplicado 
+pelo número total de testes (neste caso, 11.346). Dessa forma, para declarar um efeito 
+significativo, basta verificar se 
+\(\texttt{bonferroni\_corrected\_p} < 0.05\).
 
 Além disso, em nosso pipeline também foram computados tamanhos de efeito utilizando diversas métricas, tais como:
 \begin{itemize}
@@ -152,22 +136,20 @@ Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (\
     \item Em virtude do elevado número de comparações, a adoção de um método rigoroso como o Bonferroni minimiza a probabilidade de falsos positivos. Por esse motivo, utilizamos o p-valor corrigido por Bonferroni como critério principal de significância.
 \end{itemize}
 
-\subsection{Comparação Entre Cenários (Com e Sem Outliers)}
-\begin{itemize}
-    \item \textbf{Diferenças Mínimas:} Em geral, a remoção de outliers reduz ligeiramente o número de casos significativos, mas não altera substancialmente a distribuição geral dos tamanhos de efeito e dos valores-p.
-    \item \textbf{PLI (EEG-EEG):} Apresenta maior número de efeitos significativos (por exemplo, 378 vs. 363), enquanto o \emph{CF-PLM (EEG-ECG)} se mostra mais pontual (apenas 11 casos) em ambos os cenários, evidenciando que a sincronia cross-frequency entre EEG e ECG é mais específica.
-    \item \textbf{Robustez do RBC e do Bonferroni:} Independentemente de manter ou remover outliers, as comparações que exibem \emph{Wilcoxon RBC} elevado e valores-p corrigidos abaixo de 0.05 são consideradas efeitos fortes e confiáveis, reforçando a relevância dessas duas métricas em nossas conclusões.
-\end{itemize}
-
-Em síntese, os histogramas de \emph{Wilcoxon RBC} (tamanho de efeito) e p-valores corrigidos por Bonferroni (significância estatística) demonstram claramente quais pares de canais se destacam por apresentarem diferenças robustas entre \emph{cathodic} e \emph{sham}. Embora \emph{Cohen's d} e \emph{Hedges' g} também sejam úteis para quantificar a magnitude do efeito, nossa análise dá ênfase ao RBC por ser não paramétrico e resiliente à heterogeneidade dos dados. Assim, estes resultados embasam as análises topográficas e de rede apresentadas nas seções seguintes.
-
 
 \subsection{Comparação Entre Cenários (Com e Sem Outliers)}
 \begin{itemize}
-    \item \textbf{Redução de Casos Significativos:} Para o PLI em \texttt{EEG\_EEG}, por exemplo, temos 378 casos significantes ao manter os outliers e 363 após removê-los. A remoção de outliers atenua ligeiramente os valores extremos, reduzindo o número de pares que atingem significância, mas não altera drasticamente a distribuição geral.
-    \item \textbf{Magnitude dos Efeitos:} Mesmo sem outliers, ainda há uma parcela considerável de pares exibindo \emph{Cohen's d} (ou \emph{Hedges' g}) em torno de 0.5 a 0.8 ou RBC acima de 0.3, sugerindo efeitos moderados a altos em alguns canais ou faixas de frequência.
-    \item \textbf{CF-PLM em \texttt{EEG\_ECG}:} Observa-se um número bem menor de casos significativos (11 em ambos os cenários), o que indica que a sincronia entre EEG e ECG (medida pelo CF-PLM) é mais pontual e dependente de condições específicas, em contraste com a PLI \texttt{EEG\_EEG}, que registra maior número de efeitos estatisticamente relevantes.
+    \item \textbf{Diferenças Mínimas:} De modo geral, a remoção de outliers reduz ligeiramente o número de casos significativos em EEG-EEG, mas não afeta substancialmente a distribuição dos tamanhos de efeito ou dos valores-p. No EEG-ECG, a diferença entre manter ou remover outliers é praticamente irrelevante.
+
+    \item \textbf{PLI (EEG-EEG):} Com um número muito maior de pares (cada um dos 61 canais de EEG formando pares entre si), foram encontrados entre 363 (com remoção de outliers) e 378 casos (sem remoção de outliers) significativos.
+
+    \item \textbf{CF-PLM (EEG-ECG):} Em contraste, apenas 11 casos significativos foram observados, mas aqui cada canal de EEG forma par com o único canal de ECG, resultando em um total menor de pares possíveis.
+    
+    \item \textbf{Robustez do RBC e do Bonferroni:} Independente de manter ou remover outliers, as comparações que exibem valores elevados de \emph{Wilcoxon RBC} e p-valores corrigidos abaixo de 0.05 permanecem confiáveis. Isso reforça o valor dessas duas métricas (RBC e Bonferroni) na interpretação dos resultados.
 \end{itemize}
+
+
+Em síntese, os histogramas de \emph{Wilcoxon RBC} (tamanho de efeito) e p-valores corrigidos por Bonferroni (significância estatística) demonstram claramente quais pares de canais se destacam por apresentarem diferenças robustas entre \emph{cathodic} e \emph{sham}. Embora \emph{Cohen's d} e \emph{Hedges' g} também sejam úteis para quantificar a magnitude do efeito, nossa análise dá ênfase ao RBC, que é não paramétrico e resiliente à heterogeneidade dos dados. Assim, estes resultados embasam as análises topográficas e de rede apresentadas nas seções seguintes.
 
 \subsection{Conclusões Principais}
 \begin{itemize}
@@ -184,7 +166,7 @@ Assim, a análise dos histogramas de tamanho de efeito e valores-p fornece um pa
 
 Nesta seção, analisamos as redes de conexões significativas obtidas pela métrica PLI para pares EEG-EEG, segmentadas por bandas de frequência, considerando os cenários com e sem outliers. Cada nó representa um canal EEG, e o número ao lado indica o total de conexões significativas envolvendo esse canal. Linhas vermelhas representam conexões com valores de \emph{Wilcoxon RBC} tendendo a +1, indicando conexões robustas.
 
-Apresentamos aqui apenas exemplos representativos das redes (por exemplo, banda Alpha), enquanto a análise completa, contemplando todas as bandas e cenários, pode ser encontrada no **Apêndice \ref{apendice:pli_eeg_eeg}**.
+Apresentamos aqui apenas exemplos representativos das redes (por exemplo, banda Alpha), enquanto a análise completa, contemplando todas as bandas e cenários, pode ser encontrada no \textbf{Apêndice \ref{apendice:pli_eeg_eeg}}.
 
 \begin{figure}[htb]
   \centering
@@ -198,17 +180,17 @@ Apresentamos aqui apenas exemplos representativos das redes (por exemplo, banda 
 A comparação detalhada entre os cenários com e sem outliers revela que:
 
 \begin{itemize}
-    \item A **topologia das redes permanece semelhante entre os cenários**, indicando que a métrica PLI é robusta mesmo após a remoção de outliers.
-    \item A remoção de outliers resulta em uma **leve redução no número de conexões significativas**, mas **não altera substancialmente a estrutura da rede**.
-    \item Os **canais com maior centralidade são consistentes** em ambos os cenários, reforçando a confiabilidade dos achados.
+    \item A \textbf{topologia das redes permanece semelhante entre os cenários}, indicando que a métrica PLI é robusta mesmo após a remoção de outliers.
+    \item A remoção de outliers resulta em uma \textbf{leve redução no número de conexões significativas}, mas \textbf{não altera substancialmente a estrutura da rede}.
+    \item Os \textbf{canais com maior centralidade são consistentes} em ambos os cenários, reforçando a confiabilidade dos achados.
 \end{itemize}
 
-Para uma análise detalhada de todas as bandas de frequência e cenários, consulte o **Apêndice \ref{apendice:pli_eeg_eeg}**.
+Para uma análise detalhada de todas as bandas de frequência e cenários, consulte o \textbf{Apêndice \ref{apendice:pli_eeg_eeg}}.
 
 \section{Análise de Rede para CF-PLM (EEG-ECG, Cross-frequency)}
 \label{sec:rede_cfplm_eeg_ecg}
 
-Nesta seção, avaliamos as redes de conectividade **cross-frequency** entre EEG e ECG usando a métrica CF-PLM. Como os resultados mostram um padrão relativamente estável entre os cenários analisados, apresentamos aqui apenas um **exemplo representativo** (banda Beta). A análise completa para todas as bandas pode ser encontrada no **Apêndice \ref{apendice:cfplm_eeg_ecg}**.
+Nesta seção, avaliamos as redes de conectividade \textbf{cross-frequency} entre EEG e ECG usando a métrica CF-PLM. Como os resultados mostram um padrão relativamente estável entre os cenários analisados, apresentamos aqui apenas um \textbf{exemplo representativo} (banda Beta). A análise completa para todas as bandas pode ser encontrada no \textbf{Apêndice \ref{apendice:cfplm_eeg_ecg}}.
 
 \begin{figure}[htb]
   \centering
@@ -222,9 +204,9 @@ Nesta seção, avaliamos as redes de conectividade **cross-frequency** entre EEG
 As comparações entre os cenários com e sem outliers evidenciam que:
 
 \begin{itemize}
-    \item A **topologia e a quantidade de pares significativos permanecem inalteradas** nos dois cenários, indicando **independência dos resultados em relação à presença de outliers**.
-    \item O **número total de pares significativos é idêntico (11 casos)**, o que sugere que os efeitos cross-frequency detectados são altamente robustos.
-    \item Todos os pares significativos apresentam **\emph{Wilcoxon RBC} = +1**, reforçando a **consistência dos achados**.
+    \item A \textbf{topologia e a quantidade de pares significativos permanecem inalteradas} nos dois cenários, indicando \textbf{independência dos resultados em relação à presença de outliers}.
+    \item O \textbf{número total de pares significativos é idêntico (11 casos)}, o que sugere que os efeitos cross-frequency detectados são altamente robustos.
+    \item Todos os pares significativos apresentam \textbf{\emph{Wilcoxon RBC} = +1}, reforçando a \textbf{consistência dos achados}.
 \end{itemize}
 
-Para mais detalhes e visualização completa das redes de conectividade, consulte o **Apêndice \ref{apendice:cfplm_eeg_ecg}**.
+Para mais detalhes e visualização completa das redes de conectividade, consulte o \textbf{Apêndice \ref{apendice:cfplm_eeg_ecg}}.
