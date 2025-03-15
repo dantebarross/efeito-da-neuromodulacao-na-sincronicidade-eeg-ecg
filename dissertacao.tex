@@ -102,29 +102,40 @@
 \cleardoublepage
 
 \begin{siglas}
-  \item[BBDS] \textit{Body Brain Dynamic System}
-  \item[EEG] Eletroencefalografia
-  \item[EMG] Eletromiografia
-  \item[ECG] Eletrocardiograma
-  \item[tDCS] Estimulação transcraniana por corrente contínua
-  \item[HD-tDCS] Estimulação transcraniana por corrente contínua de alta definição
-  \item[CPFDL] Córtex Pré-frontal Dorsolateral
-  \item[PLI] \textit{Phase Lag Index}
-  \item[PLV] \textit{Phase Locking Value}
-  \item[CF-PLM] \textit{Cross-Frequency Phase Linearity Measurement}
-  \item[SCAT] \textit{Sport Competition Anxiety Test}
+  \item[BBDS] Sistema Dinâmico Corpo-Cérebro (\textit{Body Brain Dynamic System})
+  \item[EEG] Eletroencefalografia (\textit{Electroencephalography})
+  \item[EMG] Eletromiografia (\textit{Electromyography})
+  \item[ECG] Eletrocardiograma (\textit{Electrocardiogram})
+  \item[tDCS] Estimulação Transcraniana por Corrente Contínua (\textit{transcranial Direct Current Stimulation})
+  \item[HD-tDCS] Estimulação Transcraniana por Corrente Contínua de Alta Definição (\textit{High-Definition transcranial Direct Current Stimulation})
+  \item[tACS] Estimulação Transcraniana por Corrente Alternada (\textit{transcranial Alternating Current Stimulation})
+  \item[HD-tACS] Estimulação Transcraniana por Corrente Alternada de Alta Definição (\textit{High-Definition transcranial Alternating Current Stimulation})
+  \item[rTMS] Estimulação Magnética Transcraniana Repetitiva (\textit{repetitive Transcranial Magnetic Stimulation})
+  \item[NIBS] Estimulação Cerebral Não Invasiva (\textit{Non-Invasive Brain Stimulation})
+  \item[DLPFC] Córtex Pré-frontal Dorsolateral (\textit{Dorsolateral Prefrontal Cortex})
+  \item[mPFC] Córtex Pré-frontal Medial (\textit{Medial Prefrontal Cortex})
+  \item[ASD] Transtorno do Espectro Autista (\textit{Autism Spectrum Disorder})
+  \item[RAD] Transtorno de Apego Reativo (\textit{Reactive Attachment Disorder})
+  \item[SAD] Transtorno de Ansiedade Social (\textit{Social Anxiety Disorder})
+  \item[BDNF] Fator Neurotrófico Derivado do Cérebro (\textit{Brain-Derived Neurotrophic Factor})
+  \item[PLV] Valor de Bloqueio de Fase (\textit{Phase Locking Value})
+  \item[PLI] Índice de Defasagem de Fase (\textit{Phase Lag Index})
+  \item[CF-PLM] Medida de Linearidade de Fase Cross-Frequency (\textit{Cross-Frequency Phase Linearity Measurement})
+  \item[SCAT] Teste de Ansiedade Competitiva no Esporte (\textit{Sport Competition Anxiety Test})
   \item[TQR] Escala de Qualidade Total de Recuperação (\textit{Total Quality Recovery})
-  \item[PSE] Escala de Percepção Subjetiva de Esforço
-  \item[NMDA] \textit{N-methyl-D-aspartate}
-  \item[ICA] \textit{Independent Component Analysis}
-  \item[KDE] \textit{Kernel Density Estimation}
-  \item[ECOD] \textit{Empirical Cumulative Distribution-based Outlier Detection}
-  \item[GPU] \textit{Graphics Processing Unit}
-  \item[BCa] \textit{Bias-Corrected and Accelerated}
-  \item[FDR-BH] \textit{False Discovery Rate-Benjamini–Hochberg}
-  \item[RBC] \textit{Rank-Biserial Correlation}
-  \item[IQR] \textit{Interquartile Range}
+  \item[PSE] Escala de Percepção Subjetiva de Esforço (\textit{Perceived Subjective Effort})
+  \item[NMDA] N-metil-D-aspartato (\textit{N-methyl-D-aspartate})
+  \item[ICA] Análise de Componentes Independentes (\textit{Independent Component Analysis})
+  \item[KDE] Estimativa de Densidade por Núcleo (\textit{Kernel Density Estimation})
+  \item[ECOD] Detecção de Outliers Baseada na Distribuição Cumulativa Empírica (\textit{Empirical Cumulative Distribution-based Outlier Detection})
+  \item[GPU] Unidade de Processamento Gráfico (\textit{Graphics Processing Unit})
+  \item[BCa] Intervalos de Confiança Corrigidos e Acelerados (\textit{Bias-Corrected and Accelerated})
+  \item[FDR-BH] Taxa de Falsas Descobertas – Benjamini–Hochberg (\textit{False Discovery Rate-Benjamini–Hochberg})
+  \item[RBC] Correlação Biserial de Postos (\textit{Rank-Biserial Correlation})
+  \item[IQR] Intervalo Interquartil (\textit{Interquartile Range})
+  \item[MXN] Especificação do Estimulador Digital MxN da Soterix Medical (não é uma sigla padrão; designa o modelo do dispositivo)
 \end{siglas}
+
 
 \begin{simbolos}
   \item[$x(t)$] Sinal de entrada, função do tempo.
@@ -133,15 +144,19 @@
   \item[$y_{\mathrm{an}}(t)$] Representação analítica do sinal \(y(t)\), obtida pela Transformada de Hilbert.
   \item[$\phi_x(t)$] Fase instantânea do sinal \(x(t)\).
   \item[$\phi_y(t)$] Fase instantânea do sinal \(y(t)\).
-  \item[$\Delta \phi(t)$] Diferença de fase instantânea entre os sinais \(x(t)\) e \(y(t)\), definida por \(\Delta \phi(t)=\phi_x(t)-\phi_y(t)\).
+  \item[$\Delta \phi(t)$] Diferença de fase instantânea entre os sinais \(x(t)\) e \(y(t)\), definida por \(\Delta \phi(t) = \phi_x(t)-\phi_y(t)\).
   \item[$z(t)$] Sinal interferométrico, definido como 
   \[
-  z(t)=\frac{x_{\mathrm{an}}(t)\, y_{\mathrm{an}}^*(t)}{\lvert x_{\mathrm{an}}(t)\rvert\,\lvert y_{\mathrm{an}}(t)\rvert} = e^{i\Delta \phi(t)}.
+  z(t)=\frac{x_{\mathrm{an}}(t)\, y_{\mathrm{an}}^*(t)}{\lvert x_{\mathrm{an}}(t)\rvert\, \lvert y_{\mathrm{an}}(t)\rvert} = e^{i\Delta \phi(t)}.
   \]
   \item[$SZ(f)$] Densidade espectral de potência (PSD) do sinal \(z(t)\), em função da frequência \(f\).
   \item[$f_\Delta$] Diferença entre as frequências centrais dos sinais envolvidos no acoplamento cross-frequency.
   \item[$B$] Largura de banda utilizada para integrar a PSD na definição do índice CF-PLM.
+  \item[$\text{stat}$] Valor da estatística do teste Mann-Whitney U.
+  \item[$n_{\text{cathodic}}$] Número de observações (amostras) na condição catódica.
+  \item[$n_{\text{sham}}$] Número de observações (amostras) na condição sham.
 \end{simbolos}
+
 
 % Sumário
 \pdfbookmark[0]{\contentsname}{toc}
