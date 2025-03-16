@@ -13,12 +13,16 @@ Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a
 \end{itemize}
 
 \subsection{Sincronização Temporal entre EEG e ECG}
-Devido ao início não sincronizado das gravações, foi necessário alinhar os sinais de EEG e ECG temporalmente. Com base em marcadores do período baseline, os seguintes procedimentos foram realizados:
+
+Devido à ausência de sincronização inicial nas gravações, foi necessário alinhar os sinais de EEG e ECG temporalmente. Para tanto, utilizando marcadores do período de repouso, foram realizados os seguintes procedimentos:
+
 \begin{itemize}
-    \item Extração dos tempos de início e fim do baseline para cada modalidade;
-    \item Ajuste dos timestamps para que os sinais iniciassem simultaneamente.
-    \item Remoção dos primeiros e últimos 15 segundos de cada gravação, a fim de minimizar artefatos de borda;
+    \item Extração dos tempos de início e término do período de repouso para cada modalidade;
+    \item Ajuste dos timestamps para que os sinais iniciassem simultaneamente;
+    \item Remoção dos primeiros e últimos 15 segundos de cada gravação, a fim de minimizar artefatos de borda.
 \end{itemize}
+
+Essa abordagem garante que as análises se baseiem em um estado de repouso sincronizado, eliminando inconsistências temporais entre os registros.
 
 \subsection{Estruturação dos Dados}
 Após a sincronização, os dados foram organizados para o processamento subsequente. Os sinais de EEG foram armazenados em formato FIF, preservando as informações dos canais e os metadados, enquanto os dados de ECG foram exportados em formato CSV.
@@ -35,9 +39,9 @@ Para a preparação dos dados de EEG, foram realizadas as seguintes etapas:
 \begin{itemize}
     \item \textbf{Aquisição e Carregamento:} Os dados brutos foram baixados do Google Drive e carregados utilizando a biblioteca MNE-Python a partir de arquivos exportados do software BrainVision (ou, alternativamente, em formato EEGLAB). Após o carregamento, os canais foram renomeados conforme uma convenção padronizada (por exemplo, Fp1, Fz, F3, etc.) e canais irrelevantes foram removidos. (Ver Figura~\ref{fig:exemplo_sinais_eeg})
     \item \textbf{Aplicação de Montage:} Aplicou-se o montage padrão \textit{standard\_1005} para assegurar a correta localização dos eletrodos, conforme ilustrado no diagrama do sistema 10-20. (Ver Figura~\ref{fig:sistema_10_20})
-    \item \textbf{Definição do Período de Análise:} Com base nas informações extraídas dos arquivos de baseline, os dados foram recortados para excluir os primeiros e últimos 15 segundos da gravação, reduzindo artefatos de borda.
-    \item \textbf{Filtragem:} Foi aplicado um filtro passa-banda entre 0,5 e 60 Hz para eliminar ruídos fora do intervalo de interesse, seguido de um filtro notch em 60 Hz para remover interferências da rede elétrica.
-    \item \textbf{Reamostragem:} Para padronizar a taxa de amostragem e facilitar o alinhamento com outros sinais (como o ECG), os dados de EEG foram reamostrados para 500 Hz.
+    \item \textbf{Definição do Período de Análise:} Com base nas informações extraídas dos arquivos do período de repouso, os dados foram recortados para excluir os primeiros e últimos 15 segundos da gravação, reduzindo artefatos de borda.
+    \item \textbf{Filtragem:} Foi aplicado um filtro passa-banda entre 0,5 e 60 Hz para eliminar ruídos fora do intervalo de interesse, seguido de um filtro notch em 60 Hz para remover interferências da rede elétrica (\textit{line noise}).
+    \item \textbf{Reamostragem:} Para padronizar a taxa de amostragem e assegurar o alinhamento com outros sinais (como o ECG), bem como o funcionamento das medidas de sincronicidade, os dados de EEG foram reamostrados para 500 Hz.
 \end{itemize}
 
 \begin{figure}[htb]
@@ -50,20 +54,21 @@ Para a preparação dos dados de EEG, foram realizadas as seguintes etapas:
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.8\textwidth]{figs/1_preprocessamento_eeg/1_sistema_10_20.png}
-    \caption{Diagrama do sistema 10-20, demonstrando a localização padronizada dos eletrodos no couro cabeludo.}
+    \caption{Ilustração do sistema 10-20, representando a distribuição padronizada dos eletrodos no couro cabeludo. Ressalta-se que o posicionamento apresentado é meramente ilustrativo e não reflete com exatidão a disposição real dos eletrodos.}
     \label{fig:sistema_10_20}
 \end{figure}
+
 
 \subsubsection{Limpeza de Artefatos e Remoção de Componentes de Ruído (ICA)}
 Para aprimorar a qualidade dos sinais de EEG, empregou-se a Análise de Componentes Independentes (ICA) seguindo os seguintes passos:
 \begin{itemize}
-    \item \textbf{Definição dos Componentes:} O número de componentes foi definido igual ao número de canais bons disponíveis (excluindo os canais previamente identificados como ruins por inspeção visual).
-    \item \textbf{Aplicação do ICA:} Utilizou-se o método FastICA para decompor o sinal, preservando as informações essenciais para a análise de sincronicidade.
-    \item \textbf{Estimativa de Parâmetros de Rejeição:} A biblioteca \textit{autoreject} foi empregada para determinar, por meio de épocas de duração fixa, os limites ideais para a rejeição de artefatos.
-    \item \textbf{Identificação Automática de Artefatos:} Componentes associados a artefatos oculares (utilizando canais como Fp1 e Fp2) e à atividade cardíaca foram identificados automaticamente. Adicionalmente, uma análise baseada na curtose foi realizada para detectar componentes com alta amplitude, indicativos de artefatos.
-    \item \textbf{Inspeção Visual e Seleção:} Foram gerados gráficos das propriedades dos componentes e uma visualização interativa (inclusive com animação GIF), permitindo a inspeção manual para a decisão de exclusão dos componentes indesejados. (Ver Figura~\ref{fig:componentes_pos_ICA})
-    
-    \item \textbf{Aplicação e Salvamento:} Após a definição dos componentes a serem removidos, o ICA foi aplicado para eliminar os artefatos identificados, gerando um sinal de EEG limpo, que foi salvo em formato FIF para futuras análises.
+    \item \textbf{Identificação de Canais Afetados por Ruído:} Antes da aplicação do ICA, foram identificados canais cujos sinais estavam significativamente comprometidos. Esses canais foram determinados com base em inspeção visual, considerando sinais com ruído excessivo, desvios severos em relação à morfologia típica do EEG ou padrões incompatíveis com atividade neural esperada. Tais canais foram excluídos da decomposição para evitar que influenciassem negativamente a separação dos componentes, e para que não participassem das análises posteriores.
+    \item \textbf{Definição dos Componentes:} O número de componentes foi definido igual ao número de canais restantes após a remoção dos canais afetados por ruído, garantindo uma decomposição eficiente e representativa dos sinais neurais. 
+    \item \textbf{Aplicação do ICA:} Utilizou-se o método FastICA para decompor o sinal, preservando as informações essenciais para a análise de sincronicidade. 
+    \item \textbf{Identificação de Sinais Afastados da Distribuição Geral:} Utilizou-se a biblioteca \textit{autoreject} do Python para detectar automaticamente sinais que apresentavam desvios significativos em relação aos demais. Esse método não foi empregado para aplicar limiares rígidos de rejeição, mas sim para priorizar a inspeção dos canais e épocas mais discrepantes. Todos os sinais foram inspecionados manualmente, com ênfase nos identificados pelo \textit{autoreject}.
+    \item \textbf{Identificação Automática de Artefatos:} Componentes associados a artefatos oculares (utilizando canais como Fp1 e Fp2) e à atividade cardíaca foram identificados automaticamente utilizando métodos da biblioteca MNE-Python. Adicionalmente, uma análise baseada na curtose foi realizada para detectar componentes com alta amplitude, indicativos de artefatos. 
+    \item \textbf{Inspeção Visual e Seleção:} Foram gerados gráficos das propriedades dos componentes e visualizações interativas, incluindo animações, para auxiliar na verificação do sinal de todos os canais de EEG com e sem determinados componentes específicos. Por exemplo, foi possível comparar o comportamento do sinal sem os componentes [0, 1, 2] e sem os componentes [0, 1, 2, 3], permitindo avaliar a influência da adição ou remoção do componente 3 no sinal de todos os canais. Além disso, a avaliação dos ICs foi realizada considerando sua distribuição espacial, com auxílio de \textit{topomaps} (\textit{heatmaps} da cabeça), identificando em quais regiões os componentes estavam mais concentrados. Uma forte concentração em áreas comumente associadas à geração de ruídos, como a região próxima aos olhos, pode ser um indicativo de artefato e, portanto, um critério para sua remoção.
+    \item \textbf{Aplicação e Salvamento:} Após a definição dos componentes a serem removidos, o ICA foi aplicado para eliminar os artefatos identificados, gerando um sinal de EEG considerado pré-processado, pronto para ser analisado estatisticamente. O sinal resultante foi salvo em formato FIF para futuras análises.
 \end{itemize}
 
 \begin{figure}[htb]
@@ -82,17 +87,17 @@ Para aprimorar a qualidade dos sinais de EEG, empregou-se a Análise de Componen
 \subsection{Pré-processamento do Sinal de ECG}
 \label{subsec:preprocess_ecg}
 
-O processamento do sinal de ECG teve como objetivo obter uma versão limpa e refinada, permitindo a detecção precisa dos picos R e a extração de informações de fase. Para isso, os procedimentos foram organizados em três etapas principais: aquisição e segmentação, limpeza do sinal com detecção de picos e aplicação de filtros complementares.
+O processamento do sinal de ECG teve como objetivo obter uma versão refinada do sinal, permitindo a detecção precisa dos picos R, a extração de informações de fase e a obtenção do ciclo cardíaco com base nos picos R. Este ciclo foi utilizado no cálculo de sincronicidade de fase. Para isso, os procedimentos foram organizados em três etapas principais: aquisição e segmentação, limpeza do sinal com detecção de picos e aplicação de filtros complementares.
 
 \subsubsection{Aquisição e Segmentação dos Dados de ECG}
 \begin{itemize}
-    \item \textbf{Aquisição:} Os dados de ECG foram coletados juntamente com informações sobre os tempos de início e fim do período de baseline para cada condição experimental, garantindo a correta identificação dos intervalos de interesse.
-    \item \textbf{Segmentação:} Com base nos tempos extraídos dos arquivos de baseline, o sinal bruto foi segmentado para selecionar apenas o intervalo correspondente à condição de interesse. Para reduzir artefatos nas bordas, os primeiros e últimos 15 segundos foram removidos.
+    \item \textbf{Aquisição:} Os dados de ECG foram coletados juntamente com informações sobre os tempos de início e fim do período de repouso para cada condição experimental, garantindo a correta identificação dos intervalos de interesse.
+    \item \textbf{Segmentação:} Com base nos tempos extraídos dos arquivos do período de repouso, o sinal bruto foi segmentado para selecionar apenas o intervalo correspondente à condição de interesse. Para reduzir artefatos nas bordas, os primeiros e últimos 15 segundos foram removidos.
 \end{itemize}
 
 \subsubsection{Limpeza do Sinal e Detecção de Picos}
 \begin{itemize}
-    \item \textbf{Limpeza:} Utilizou-se a biblioteca NeuroKit2 para processar o sinal segmentado, removendo ruídos e gerando uma versão limpa do ECG.
+    \item \textbf{Limpeza:} Utilizou-se a biblioteca \textit{NeuroKit2}, uma biblioteca em Python, para processar o sinal segmentado, removendo ruídos e gerando uma versão refinada do ECG.
     \item \textbf{Detecção Automática de Picos:} Um algoritmo foi aplicado para a detecção automática dos picos R (R-peaks) no sinal limpo, identificando os batimentos cardíacos. A Figura~\ref{fig:ecg_picos_detectados} ilustra um exemplo em que o sinal bruto (cinza) é sobreposto ao sinal limpo (azul), com os picos R destacados em vermelho.
     \item \textbf{Correção Manual dos Picos R:} Após a detecção automática, uma inspeção visual cuidadosa foi realizada utilizando gráficos interativos para:
     \begin{itemize}
