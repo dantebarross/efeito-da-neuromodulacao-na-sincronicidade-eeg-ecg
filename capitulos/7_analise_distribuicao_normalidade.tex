@@ -19,7 +19,7 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_CF-PLM_(EEG-ECG)_por_Banda.png}
 {Distribuição de CF-PLM (EEG-ECG) por banda. Observa-se a concentração dos valores em faixas mais baixas (próximas de 0), com maior densidade para as bandas delta e theta.}
-{fig:cfplm_eeg_ecg}
+{cfplm_eeg_ecg}
 
 
 % -----------------------------------------------------------------------------  
@@ -27,7 +27,7 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
 {Distribuição de PLI (EEG-EEG) por banda. Embora a maior parte dos valores se concentre em torno de zero, algumas bandas (alpha e gamma) apresentam caudas mais extensas, indicando pares de canais com defasagem de fase mais consistente.}
-{fig:pli_eeg_eeg}
+{pli_eeg_eeg}
 
 
 No geral, observamos que:
@@ -55,11 +55,11 @@ A seguir, ilustram-se exemplos desses histogramas:
 % Exemplo: PLI (EEG-EEG) Diferença
 \standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_PLI_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_EEG.png}
 {Distribuição da diferença da PLI (Pós -- Pré) em EEG-EEG, por faixa de frequência.}
-{fig:pli_freq_eeg_eeg}
+{pli_freq_eeg_eeg}
 
 \standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_CF-PLM_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_ECG.png}
 {Distribuição da diferença da CF-PLM (Pós -- Pré) em EEG-ECG, por faixa de frequência.}
-{fig:cf_plm_freq_eeg_ecg}
+{cf_plm_freq_eeg_ecg}
 
 Esses histogramas permitem visualizar como cada métrica (PLI ou CF-PLM) varia entre as condições Pós e Pré em diferentes faixas de frequência e fundamentam a escolha dos testes estatísticos, que serão discutidos no próximo capítulo.
 \subsubsection{Exemplo Individual por Métrica e Banda}
@@ -67,11 +67,11 @@ Para ilustrar de forma mais específica o comportamento das distribuições em u
 
 \standardfigure{figs/5_connectivity_metrics_individual_distribution/median_cf_plm_diff_athlete_4_alpha_EEG_ECG.png}
 {Distribuição da \texttt{median\_cf\_plm\_diff} (Pós -- Pré) para o atleta 4, banda alpha, em pares EEG-ECG.}
-{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg}
+{median_cf_plm_diff_ath4_alpha_eeg_ecg}
 
 \standardfigure{figs/5_connectivity_metrics_individual_distribution/median_pli_diff_athlete_4_alpha_EEG_EEG.png}
 {Distribuição da \texttt{median\_pli\_diff} (Pós -- Pré) para o atleta 4, banda alpha, em pares EEG-EEG.}
-{fig:median_pli_diff_ath4_alpha_eeg_eeg}
+{median_pli_diff_ath4_alpha_eeg_eeg}
 
 Essas figuras exemplificam como as diferenças entre as condições \emph{cathodic} (azul) e \emph{sham} (vermelho) podem se sobrepor ou divergir. Em alguns casos, a curva KDE de uma condição desloca-se para a direita (indicando aumento da métrica após a estimulação) ou para a esquerda (indicando redução), enquanto em outros há significativa sobreposição, sugerindo pouca variação entre as condições. Esse tipo de análise individual é útil para verificar a variabilidade intra-sujeito e compreender se os efeitos observados são consistentes ou pontuais.
 
@@ -97,6 +97,7 @@ Com base nessa análise preliminar, será possível conduzir as etapas subsequen
 A escolha entre testes paramétricos e não-paramétricos depende fundamentalmente da distribuição dos dados. Para as métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}) agrupadas nos grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}, aplicamos uma série de testes de normalidade, a saber: Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Além disso, para atenuar o efeito de valores extremos, os testes foram realizados tanto com os dados originais quanto após a remoção de outliers utilizando o método do Interquartile Range (IQR).
 
 \paragraph{Motivações e Procedimentos:}
+
 \begin{itemize}
     \item \textbf{Objetivo:} Verificar se as distribuições das diferenças (Pós -- Pré) seguem uma forma aproximadamente gaussiana, o que permitiria o uso de testes paramétricos.
     \item \textbf{Procedimento:} 

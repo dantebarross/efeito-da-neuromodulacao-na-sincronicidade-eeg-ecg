@@ -5,7 +5,7 @@ Neste capítulo, apresentamos os fundamentos teóricos e práticos dos métodos 
 
 \section{Fundamentos dos Métodos}
 
-A análise de sincronização de fase visa quantificar a consistência da diferença de fase entre dois sinais ao longo do tempo. Diversas abordagens foram desenvolvidas, que podem ser classificadas em técnicas baseadas em modelos e métodos \textit{data-driven}, conforme discutido em\textsuperscript{\cite{seraj2018cerebral}}. O conceito de sincronização de fase --- definido como o ajuste temporal dos ritmos de dois sinais, mesmo que suas amplitudes não estejam correlacionadas --- é essencial para a compreensão dos processos neurais\textsuperscript{\cite{seraj2018cerebral}}.
+A análise de sincronização de fase visa quantificar a consistência da diferença de fase entre dois sinais ao longo do tempo. Diversas abordagens foram desenvolvidas, que podem ser classificadas em técnicas baseadas em modelos e métodos \textit{data-driven}, conforme discutido em \cite{seraj2018cerebral}. O conceito de sincronização de fase --- definido como o ajuste temporal dos ritmos de dois sinais, mesmo que suas amplitudes não estejam correlacionadas --- é essencial para a compreensão dos processos neurais \cite{seraj2018cerebral}.
 
 Para extrair a fase dos sinais, técnicas como a Transformada de Hilbert são amplamente empregadas. Entretanto, alternativas como a Transformada de Fourier e os wavelets (por exemplo, o wavelet de Morlet) oferecem uma decomposição tempo-frequencial dos sinais. Embora a Transformada de Fourier seja eficaz para sinais estacionários, sua interpretação se torna mais complexa quando o conteúdo em frequência varia com o tempo\textsuperscript{\cite{singh2024evaluating}}. Adicionalmente, embora este estudo se concentre no acoplamento fase-fase, vale mencionar que abordagens para acoplamento fase-amplitude também foram comparadas. Hülsemann et al. (2019) \cite{hulsemann2019quantification} demonstraram que o Mean Vector Length (MVL) é particularmente sensível às modulações na força e largura do acoplamento, enquanto o Modulation Index (MI) apresenta maior robustez em condições de dados curtos e ruidosos, sugerindo que ambos os índices podem complementar a análise.
 
@@ -107,57 +107,57 @@ Exemplos dos sinais antes e após a injeção no cenário Cross-frequency são m
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/1_ECG_Original_vs_Injecao_Cross-frequency.png}
 {ECG: comparação entre o sinal original e o sinal senoidal injetado (1~Hz), cenário Cross-frequency.}
-{fig:ecg_injection}
+{ecg_injection}
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/3_EEG_Original_vs_Injecao_Cross-frequency.png}
 {EEG: comparação entre o sinal original e o sinal senoidal injetado (40~Hz), cenário Cross-frequency.}
-{fig:eeg_injection}
+{eeg_injection}
 
 
 No cenário Same-frequency, onde tanto o ECG quanto o EEG recebem sinais senoidais com a mesma frequência (10~Hz) mas com uma defasagem de \(\pi/4\), os resultados são ilustrados nas Figuras~\ref{fig:eeg_original_vs_injection_samefreq} e~\ref{fig:eeg_injected_samefreq}. Esses gráficos evidenciam a interferência gerada pela injeção controlada.
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/10_EEG_Original_vs_Injecao_Same-frequency.png}
 {EEG original (azul) e sinal de injeção de 10 Hz (vermelho) com pequena defasagem (\(\pi/4\)).}
-{fig:eeg_original_vs_injection_samefreq}
+{eeg_original_vs_injection_samefreq}
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/11_EEG_Injetado_Same-frequency.png}
 {Sinal de EEG após a injeção controlada de uma senóide (verde), comparado ao sinal original sem injeção (azul).}
-{fig:eeg_injected_samefreq}
+{eeg_injected_samefreq}
 
 
 Em seguida, extraímos as fases instantâneas utilizando a Transformada de Hilbert e geramos o sinal interferométrico, conforme exemplificado nas Figuras~\ref{fig:fases_instantaneas_samefreq} e~\ref{fig:sinal_interferometrico_samefreq}.
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/12_Passo1_Fases_Same-frequency.png}
 {Fases instantâneas extraídas dos sinais EEG e ECG injetados (ambos a 10 Hz).}
-{fig:fases_instantaneas_samefreq}
+{fases_instantaneas_samefreq}
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/13_Passo2_Interferometrico_Same-frequency.png}
 {Sinal interferométrico gerado pela diferença de fase instantânea (cenário Same-frequency).}
-{fig:sinal_interferometrico_samefreq}
+{sinal_interferometrico_samefreq}
 
 
 A seguir, calculamos o índice CF-PLM utilizando a Transformada de Fourier (FFT) sobre o sinal interferométrico. A Figura~\ref{fig:fft_psd_samefreq} exemplifica a análise, mostrando o pico em 0 Hz, que ocorre devido ao offset constante de fase entre os sinais de mesma frequência.
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/14_Passo3_FFT_PSD_Same-frequency.png}
 {PSD do sinal interferométrico, indicando o pico em 0 Hz devido ao offset constante de fase entre os sinais de mesma frequência.}
-{fig:fft_psd_samefreq}
+{fft_psd_samefreq}
 
 Por fim, analisamos o cenário especial "Same-frequency com Phase Lag Zero", onde as fases dos sinais estão perfeitamente sincronizadas. As Figuras~\ref{fig:zerolag_phases_final} e~\ref{fig:zerolag_difference_final} demonstram que, nesse caso, a diferença de fase se aproxima de zero, evidenciando a robustez do PLI contra sincronizações triviais.
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/15_ZeroLag_Fases_Same-frequency Com Phase Lag Zero.png}
 {Fases desenroladas em cenário sem defasagem (10 Hz), com sobreposição quase exata dos sinais.}
-{fig:zerolag_phases_final}
+{zerolag_phases_final}
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/16_ZeroLag_Diferenca_Fase_Same-frequency Com Phase Lag Zero.png}
 {Diferença de fase próxima a zero, indicando ausência completa de defasagem no cenário de Phase Lag Zero.}
-{fig:zerolag_difference_final}
+{zerolag_difference_final}
 
 
 O comportamento geral dos índices CF-PLM, PLV e PLI nos diferentes cenários e níveis de injeção é resumido na Figura~\ref{fig:comparativo_metricas}.
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/17_Comparativo_Subplots_Experimentos.png}
 {Comparação dos índices CF-PLM, PLV e PLI nos três cenários estudados, em função da porcentagem de injeção aplicada.}
-{fig:comparativo_metricas}
+{comparativo_metricas}
 
 Esses resultados justificam a escolha do CF-PLM para a análise de sincronização entre EEG e ECG (cross-frequency) e do PLI para sincronização em frequências iguais, evitando a detecção de acoplamentos triviais, como os decorrentes de volume conduction (phase lag zero). O PLV é reportado apenas para referência complementar, dada sua elevada sensibilidade em condições triviais.
 
@@ -180,12 +180,12 @@ Cada gráfico é construído a partir dos valores calculados em janelas de 10 se
 
 \standardfigure{figs/4_connectivity_over_time/Mediana_do_CF-PLM_ao_longo_do_tempo_(EEG_ECG)_Catódica.png}
 {Mediana do CF-PLM ao longo do tempo para a condição cathodic (EEG-ECG). Cada ponto representa a mediana da medida de sincronicidade calculada em janelas de 10 segundos, evidenciando a evolução do acoplamento cross-frequency entre EEG e ECG.}
-{fig:cfplm_time_cat}
+{cfplm_time_cat}
 
 \standardfigure{figs/4_connectivity_over_time/Mediana_do_PLI_ao_longo_do_tempo_(EEG_EEG)_Catódica.png}
 {Mediana do PLI ao longo do tempo para a condição cathodic (EEG-EEG). O gráfico mostra como a sincronização iso-frequencial entre canais cerebrais varia ao longo da gravação.}
-{fig:pli_time_cat}
+{pli_time_cat}
 
 \standardfigure{figs/4_connectivity_over_time/Mediana_do_PLV_ao_longo_do_tempo_(EEG_EEG)_Catódica.png}
 {Mediana do PLV ao longo do tempo para a condição cathodic (EEG-EEG). Este índice é apresentado para comparação com o PLI, embora seja mais sensível a ruídos e efeitos de volume conduction.}
-{fig:plv_time_cat}
+{plv_time_cat}
