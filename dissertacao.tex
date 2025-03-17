@@ -56,6 +56,17 @@
 \setlength{\parindent}{1.3cm}   % Tamanho da indentação
 \setlength{\parskip}{0.2cm}     % Espaçamento entre parágrafos
 \makeindex                       % Compilar índice remissivo
+
+% Comando de gerar imagens, padronizando a width.
+\newcommand{\standardfigure}[3]{
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[width=0.7\textwidth]{#1}
+        \caption{#2}
+        \label{fig:#3}
+    \end{figure}
+}
+
 % -----------------------------------------
 
 \begin{document}

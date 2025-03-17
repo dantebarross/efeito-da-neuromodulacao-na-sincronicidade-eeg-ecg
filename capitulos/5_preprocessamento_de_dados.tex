@@ -44,19 +44,14 @@ Para a preparação dos dados de EEG, foram realizadas as seguintes etapas:
     \item \textbf{Reamostragem:} Para padronizar a taxa de amostragem e assegurar o alinhamento com outros sinais (como o ECG), bem como o funcionamento das medidas de sincronicidade, os dados de EEG foram reamostrados para 500 Hz.
 \end{itemize}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/1_preprocessamento_eeg/2_exemplo_sinais_canais_eeg.png}
-    \caption{Exemplo de sinais brutos de EEG, ilustrando a variação natural dos canais ao longo do tempo.}
-    \label{fig:exemplo_sinais_eeg}
-\end{figure}
+\standardfigure{figs/1_preprocessamento_eeg/2_exemplo_sinais_canais_eeg.png}
+{Exemplo de sinais brutos de EEG, ilustrando a variação natural dos canais ao longo do tempo.}
+{fig:exemplo_sinais_eeg}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/1_preprocessamento_eeg/1_sistema_10_20.png}
-    \caption{Ilustração do sistema 10-20, representando a distribuição padronizada dos eletrodos no couro cabeludo. Ressalta-se que o posicionamento apresentado é meramente ilustrativo e não reflete com exatidão a disposição real dos eletrodos.}
-    \label{fig:sistema_10_20}
-\end{figure}
+\standardfigure{figs/1_preprocessamento_eeg/1_sistema_10_20.png}
+{Ilustração do sistema 10-20, representando a distribuição padronizada dos eletrodos no couro cabeludo. Ressalta-se que o posicionamento apresentado é meramente ilustrativo e não reflete com exatidão a disposição real dos eletrodos.}
+{fig:sistema_10_20}
+
 
 
 \subsubsection{Limpeza de Artefatos e Remoção de Componentes de Ruído (ICA)}
@@ -71,19 +66,16 @@ Para aprimorar a qualidade dos sinais de EEG, empregou-se a Análise de Componen
     \item \textbf{Aplicação e Salvamento:} Após a definição dos componentes a serem removidos, o ICA foi aplicado para eliminar os artefatos identificados, gerando um sinal de EEG considerado pré-processado, pronto para ser analisado estatisticamente. O sinal resultante foi salvo em formato FIF para futuras análises.
 \end{itemize}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/1_preprocessamento_eeg/3_exemplo_compomentes_pos_ICA.png}
-    \caption{Exemplo de componentes obtidos após a aplicação do ICA, com mapas topográficos que evidenciam a distribuição espacial de cada componente.}
-    \label{fig:componentes_pos_ICA}
-\end{figure}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/1_preprocessamento_eeg/4_exemplo_ICA_component_analysis.png}
-    \caption{Exemplo de análise detalhada de um componente ICA, apresentando o mapa topográfico, o espectro de frequência e outras características relevantes para a identificação de artefatos.}
-    \label{fig:exemplo_ICA_component_analysis}
-\end{figure}
+\standardfigure{figs/1_preprocessamento_eeg/3_exemplo_compomentes_pos_ICA.png}
+{Exemplo de componentes obtidos após a aplicação do ICA, com mapas topográficos que evidenciam a distribuição espacial de cada componente.}
+{fig:componentes_pos_ICA}
+
+\standardfigure{figs/1_preprocessamento_eeg/4_exemplo_ICA_component_analysis.png}
+{Exemplo de análise detalhada de um componente ICA, apresentando o mapa topográfico, o espectro de frequência e outras características relevantes para a identificação de artefatos.}
+{fig:exemplo_ICA_component_analysis}
+
+
 \subsection{Pré-processamento do Sinal de ECG}
 \label{subsec:preprocess_ecg}
 
@@ -98,7 +90,7 @@ O processamento do sinal de ECG teve como objetivo obter uma versão refinada do
 \subsubsection{Limpeza do Sinal e Detecção de Picos}
 \begin{itemize}
     \item \textbf{Limpeza:} Utilizou-se a biblioteca \textit{NeuroKit2}, uma biblioteca em Python, para processar o sinal segmentado, removendo ruídos e gerando uma versão refinada do ECG.
-    \item \textbf{Detecção Automática de Picos:} Um algoritmo foi aplicado para a detecção automática dos picos R (R-peaks) no sinal limpo, identificando os batimentos cardíacos. A Figura~\ref{fig:ecg_picos_detectados} ilustra um exemplo em que o sinal bruto (cinza) é sobreposto ao sinal limpo (azul), com os picos R destacados em vermelho.
+    \item \textbf{Detecção Automática de Picos:} Utilizou-se um método da biblioteca \textit{NeuroKit2}, implementado em Python, para a detecção automática dos picos R (\textit{R-peaks}) no sinal processado. Esses picos correspondem aos momentos de despolarização ventricular e são essenciais para a extração do ciclo cardíaco. A Figura~\ref{fig:ecg_picos_detectados} ilustra um exemplo, no qual o sinal bruto (cinza) é sobreposto ao sinal processado (azul), com os picos R destacados em vermelho.
     \item \textbf{Correção Manual dos Picos R:} Após a detecção automática, uma inspeção visual cuidadosa foi realizada utilizando gráficos interativos para:
     \begin{itemize}
         \item Inserir manualmente os picos faltantes, identificados pela ausência de eventos em locais esperados;
@@ -107,48 +99,46 @@ O processamento do sinal de ECG teve como objetivo obter uma versão refinada do
     Esse ajuste garante a acurácia na identificação dos batimentos, evitando omissões e inclusões indevidas.
 \end{itemize}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/2_preprocessamento_ecg/1_Sinal_de_ECG_-_Picos_Detectados_zoom.png}
-    \caption{Exemplo de sinal de ECG com picos detectados. O sinal bruto (cinza) é sobreposto ao sinal limpo (azul), com os picos R marcados em vermelho.}
-    \label{fig:ecg_picos_detectados}
-\end{figure}
+
+\standardfigure{figs/2_preprocessamento_ecg/1_Sinal_de_ECG_-_Picos_Detectados_zoom.png}
+{Exemplo de sinal de ECG com picos detectados. O sinal bruto (cinza) representa o sinal de EMG coletado, enquanto o sinal processado (azul) corresponde ao ECG filtrado, com os picos R marcados em vermelho.}
+{fig:ecg_picos_detectados}
+
 
 \subsubsection{Aplicação de Filtros Complementares}
-Para refinar a definição dos eventos do ECG, foram aplicados filtros adicionais:
+Para refinar a definição dos eventos de pico R no ECG, foram aplicados filtros adicionais:
 \begin{itemize}
     \item \textbf{Filtro de Janela:} Extração de uma janela de \(\pm50\) ms ao redor de cada pico, isolando os segmentos de interesse.
     \item \textbf{Filtro de Cruzamento pelo Zero:} Identificação dos pontos de cruzamento pelo zero nos segmentos próximos aos picos, permitindo um ajuste fino dos limites dos eventos.
 \end{itemize}
-A combinação desses filtros resultou em um \emph{Sinal Final Filtrado}, que destaca de forma mais clara a morfologia do ECG. A Figura~\ref{fig:ecg_filtros_aplicados} exemplifica o efeito dos filtros, comparando o sinal limpo inicial (linha colorida) com o sinal final filtrado, bem como os picos detectados.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/2_preprocessamento_ecg/2_Sinal_ECG_-_Aplicação_de_Filtros_zoom.png}
-    \caption{Exemplo de aplicação de filtros complementares ao sinal de ECG, destacando a morfologia dos picos R (em vermelho).}
-    \label{fig:ecg_filtros_aplicados}
-\end{figure}
+A combinação desses filtros resultou em um sinal final filtrado, que destaca de forma mais clara a morfologia do ECG. A Figura~\ref{fig:ecg_filtros_aplicados} exemplifica o efeito dos filtros, comparando o sinal limpo inicial (linha colorida) com o sinal final filtrado, bem como os picos detectados.
+
+\standardfigure{figs/2_preprocessamento_ecg/2_Sinal_ECG_-_Aplicação_de_Filtros_zoom.png}
+{Exemplo de aplicação de filtros complementares ao sinal de ECG, destacando a morfologia dos picos R (em vermelho).}
+{fig:ecg_filtros_aplicados}
+
+
 \subsubsection{Geração de Sinais Senoidais e Análise de Fase}
 
-Para aprimorar a análise de sincronização de fase entre os sinais de EEG e ECG, o sinal de ECG foi transformado em uma representação senoidal. Essa transformação apresenta diversos benefícios:
+Para viabilizar a análise de sincronização de fase entre os sinais de EEG e ECG, o sinal de ECG foi transformado em uma representação senoidal. Essa transformação apresenta diversos benefícios:
 \begin{itemize}
     \item \textbf{Definição Clara do Ciclo Cardíaco:} Ao utilizar os R-peaks para delimitar cada ciclo, a conversão em uma onda senoidal permite definir de forma inequívoca o início e o fim do ciclo cardíaco, fornecendo um marcador preciso para segmentação dos períodos de interesse.
     \item \textbf{Extração Precisa da Fase:} Uma onda senoidal exibe uma variação linear de fase ao longo do tempo, o que facilita a extração da fase instantânea por meio da Transformada de Hilbert, proporcionando uma determinação robusta e consistente.
-    \item \textbf{Facilitação da Análise de Sincronização:} Técnicas de sincronização de fase, como o CF-PLM (uma variante do PLV para análise cross-frequency), funcionam melhor quando a fase é clara e bem definida. A representação senoidal torna a fase do ECG mais nítida, permitindo que os algoritmos captem com maior precisão a relação de sincronização entre os ritmos neurais (EEG) e o ritmo cardíaco.
-    \item \textbf{Robustez à Variabilidade e Ruído:} A conversão do ECG, que apresenta picos acentuados e variabilidade, para uma forma senoidal suaviza essas irregularidades, melhorando a robustez do método de extração de fase mesmo na presença de ruídos ou artefatos.
-    \item \textbf{Integração com a Análise de EEG:} Como os sinais de EEG são frequentemente filtrados para se aproximarem de formas senoidais, padronizar a representação do ECG facilita a integração dos dois tipos de sinal na análise de sincronização, permitindo comparações diretas e métodos cross-frequency mais eficazes.
+    \item \textbf{Facilitação da Análise de Sincronização:} A eficácia dos métodos baseados em fase depende de uma definição clara da fase dos sinais. A conversão do sinal de ECG para uma representação senoidal aprimora essa definição, permitindo que os algoritmos de análise captem com maior precisão a sincronização entre os ritmos neurais (EEG) e o ritmo cardíaco. Isso melhora a robustez das métricas de sincronização, reduzindo ambiguidades decorrentes de distorções na extração da fase.
+    \item \textbf{Robustez à Variabilidade e Ruído:} A conversão do ECG, que apresenta picos acentuados e variabilidade, para uma forma senoidal completamente baseada no pico R suaviza essas irregularidades, melhorando a robustez do método de extração de fase mesmo na presença de ruídos ou artefatos.
+    \item \textbf{Integração com a Análise de EEG:} Como os sinais de EEG são frequentemente filtrados para realçar componentes oscilatórios em bandas de frequência específicas, a padronização da representação do ECG permite uma comparação mais coerente entre os dois sinais. Essa abordagem pode facilitar a aplicação de métricas de sincronização e análise cross-frequency durante a investigação de possíveis interações entre ritmos cardíacos e cerebrais.
 \end{itemize}
 
-Além desses benefícios, abordagens integradas, como o plugin BrainBeats \cite{cannard2023brainbeats}, facilitam a análise conjunta de sinais de EEG e cardiovasculares, oferecendo ferramentas para a remoção automatizada de artefatos cardíacos e extração de características quantitativas. Estudos como o de Mollakazemi et al. \cite{mollakazemi2021eeg} demonstram que a correta sincronização dos sinais – viabilizada pela transformação do ECG em uma representação senoidal – permite identificar segmentos de EEG com maior relevância funcional, reforçando a importância de uma segmentação temporal precisa na análise de fase.
+Além desses benefícios, estudos como o de Mollakazemi et al. \cite{mollakazemi2021eeg} demonstram que a sincronização entre EEG e ECG pode influenciar a detecção de efeitos funcionais em sinais cerebrais, reforçando a relevância de abordagens que consideram a interação entre ritmos cardíacos e neurais na análise de fase.
 
 A Figura~\ref{fig:ecg_comparacao_fase} ilustra a comparação de fase entre o sinal de ECG filtrado (azul), o sinal senoidal gerado (verde) e um sinal simulado (vermelho), evidenciando a coerência de fase entre eles.
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figs/2_preprocessamento_ecg/3_Comparação_de_Fase_entre_Sinais.png}
-    \caption{Exemplo de comparação de fase entre o ECG filtrado (azul), o ECG senoidal (verde) e um sinal simulado (vermelho). A boa concordância entre as fases indica a consistência do procedimento de geração do sinal senoidal e da extração de fase.}
-    \label{fig:ecg_comparacao_fase}
-\end{figure}
+
+\standardfigure{figs/2_preprocessamento_ecg/3_Comparação_de_Fase_entre_Sinais.png}
+{Exemplo de comparação de fase entre o ECG filtrado (azul), o ECG senoidal (verde) e um sinal simulado (vermelho). A boa concordância entre as fases indica a consistência do procedimento de geração do sinal senoidal e da extração de fase.}
+{fig:ecg_comparacao_fase}
+
 
 Em suma, a transformação do ECG em um sinal senoidal não apenas define claramente o ciclo cardíaco, mas também possibilita a extração de uma fase contínua, essencial para a análise de sincronização de fase entre EEG e ECG utilizando métodos de extração de fase empregados neste estudo.
 

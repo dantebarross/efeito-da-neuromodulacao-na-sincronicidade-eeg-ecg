@@ -4,6 +4,13 @@ latexmk -pdf -bibtex -f dissertacao.tex
 
 
 
+
+pdflatex dissertacao.tex
+bibtex dissertacao
+pdflatex dissertacao.tex
+pdflatex dissertacao.tex
+
+
 Remove-Item -Path `
     .\*.aux, `
     .\*.bbl, `
