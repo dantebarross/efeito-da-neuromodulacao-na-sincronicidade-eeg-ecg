@@ -32,7 +32,7 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 
 No geral, observamos que:
 \begin{itemize}
-    \item \textbf{EEG-EEG (PLI):} A distribuição pode se estender para valores elevados, sugerindo a presença de sincronizações robustas em algumas bandas.
+    \item \textbf{EEG-EEG (PLI):} A distribuição apresenta variabilidade entre bandas, com algumas exibindo valores mais elevados.
     \item \textbf{EEG-ECG (CF-PLM):} Os valores geralmente se concentram próximos a zero, embora haja variações que indicam acoplamento \emph{cross-frequency} pontual.
 \end{itemize}
 
@@ -40,10 +40,10 @@ Essas observações fornecem uma visão inicial do comportamento das métricas "
 
 \section{Distribuição das Diferenças (\texttt{median\_diff})}
 
-Para testar o efeito da estimulação (cathodic versus sham), comparamos os valores medidos após a intervenção (Pós) com os valores obtidos antes (Pré). Definimos a métrica:
+Para avaliar o efeito da estimulação (cathodic versus sham), calculamos a diferença entre os valores medidos após a intervenção (Pós) e os valores obtidos antes (Pré). Essa diferença representa a mudança ocorrida na métrica mediana do índice específico, sendo positiva para aumentos e negativa para reduções.
 
 \[
-\texttt{median\_diff} = (\text{pós}) - (\text{pré}),
+\texttt{median\_diff} = (\text{pós condição x}) - (\text{pré condição x})
 \]
 
 o que visa isolar o efeito da intervenção, removendo variações comuns que estariam presentes independentemente da estimulação.
