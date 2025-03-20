@@ -21,14 +21,12 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 {Distribuição de CF-PLM (EEG-ECG) por banda. Observa-se a concentração dos valores em faixas mais baixas (próximas de 0), com maior densidade para as bandas delta e theta.}
 {cfplm_eeg_ecg}
 
-
 % -----------------------------------------------------------------------------  
 % PLI (EEG-EEG)  
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
 {Distribuição de PLI (EEG-EEG) por banda. Embora a maior parte dos valores se concentre em torno de zero, algumas bandas (alpha e gamma) apresentam caudas mais extensas, indicando pares de canais com defasagem de fase mais consistente.}
 {pli_eeg_eeg}
-
 
 No geral, observamos que:
 \begin{itemize}
@@ -40,13 +38,13 @@ Essas observações fornecem uma visão inicial do comportamento das métricas "
 
 \section{Distribuição das Diferenças (\texttt{median\_diff})}
 
-Para avaliar o efeito da estimulação (cathodic versus sham), calculamos a diferença entre os valores medidos após a intervenção (Pós) e os valores obtidos antes (Pré). Essa diferença representa a mudança ocorrida na métrica mediana do índice específico, sendo positiva para aumentos e negativa para reduções.
+Para avaliar o efeito da estimulação (cathodic versus sham), calculamos a diferença entre os valores medidos após a intervenção (Pós) e os valores obtidos antes (Pré). Essa diferença representa a mudança ocorrida na métrica mediana do índice específico, sendo positiva para aumentos e negativa para reduções:
 
 \[
 \texttt{median\_diff} = (\text{pós condição x}) - (\text{pré condição x})
 \]
 
-o que visa isolar o efeito da intervenção, removendo variações comuns que estariam presentes independentemente da estimulação.
+Esse procedimento visa isolar o efeito da intervenção, removendo variações comuns que estariam presentes independentemente da estimulação.
 
 As distribuições das diferenças foram avaliadas por meio de histogramas com \emph{Kernel Density Estimation} (KDE) para as métricas utilizadas nesta análise (PLI para EEG-EEG e CF-PLM para EEG-ECG).
 
@@ -62,6 +60,7 @@ A seguir, ilustram-se exemplos desses histogramas:
 {cf_plm_freq_eeg_ecg}
 
 Esses histogramas permitem visualizar como cada métrica (PLI ou CF-PLM) varia entre as condições Pós e Pré em diferentes faixas de frequência e fundamentam a escolha dos testes estatísticos, que serão discutidos no próximo capítulo.
+
 \subsubsection{Exemplo Individual por Métrica e Banda}
 Para ilustrar de forma mais específica o comportamento das distribuições em um caso individual, a Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg} exibe a distribuição da diferença da métrica \texttt{median\_cf\_plm\_diff} (Pós -- Pré) para o atleta 4, na banda \emph{alpha}, em pares EEG-ECG. De forma semelhante, a Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg} apresenta a distribuição da diferença da métrica \texttt{median\_pli\_diff} para o mesmo atleta e banda, porém em pares EEG-EEG.
 
@@ -76,48 +75,44 @@ Para ilustrar de forma mais específica o comportamento das distribuições em u
 Essas figuras exemplificam como as diferenças entre as condições \emph{cathodic} (azul) e \emph{sham} (vermelho) podem se sobrepor ou divergir. Em alguns casos, a curva KDE de uma condição desloca-se para a direita (indicando aumento da métrica após a estimulação) ou para a esquerda (indicando redução), enquanto em outros há significativa sobreposição, sugerindo pouca variação entre as condições. Esse tipo de análise individual é útil para verificar a variabilidade intra-sujeito e compreender se os efeitos observados são consistentes ou pontuais.
 
 \section{Verificação de Normalidade e Escolha do Teste Estatístico}
-Para definir se os testes estatísticos a serem empregados serão paramétricos ou não-paramétricos, é necessário verificar a normalidade das distribuições de interesse. Nesse contexto, testes como Shapiro-Wilk e Kolmogorov-Smirnov podem ser aplicados para cada grupo de canais e faixa de frequência, tanto para as métricas de PLI quanto para as de CF-PLM.
+
+Para determinar o tipo de teste estatístico mais adequado (paramétrico ou não-paramétrico), realizamos a verificação da normalidade das distribuições de interesse. Aplicamos os testes de Shapiro-Wilk e Kolmogorov-Smirnov para cada combinação de grupo de canais (EEG-EEG ou EEG-ECG) e faixa de frequência, tanto para as métricas de PLI quanto para as de CF-PLM.
 
 \paragraph{Considerações:}
 \begin{itemize}
-    \item \textbf{Tamanho amostral:} Dada a grande quantidade de observações após agregação, mesmo pequenas diferenças em relação à normalidade podem levar à rejeição da hipótese nula.
-    \item \textbf{Forma das distribuições:} Visualmente, muitas distribuições parecem simétricas e unimodais, mas pequenas assimetrias ou caudas alongadas podem requerer cautela ao adotar testes paramétricos.
-    \item \textbf{Interpretação:} Se a maioria das distribuições apresentar p-valores inferiores a 0.05 nos testes de normalidade, a análise inferencial subsequente deve se apoiar em testes não-paramétricos (por exemplo, Wilcoxon signed-rank ou Mann-Whitney).
+    \item \textbf{Tamanho amostral:} Como dispomos de grande quantidade de observações após a agregação dos dados, mesmo desvios leves em relação à normalidade podem levar à rejeição da hipótese nula em testes de normalidade.
+    \item \textbf{Forma das distribuições:} Muitos histogramas se mostram visualmente simétricos e unimodais, mas a presença de caudas mais longas ou assimetrias moderadas requer atenção ao uso de testes paramétricos.
+    \item \textbf{Interpretação:} Quando os valores de p na maioria das distribuições são inferiores a 0.05, adotamos testes não-paramétricos (como Wilcoxon signed-rank ou Mann-Whitney) para as análises de inferência.
 \end{itemize}
 
-\paragraph{Próximos Passos:}
-\begin{itemize}
-    \item Realizar os testes de normalidade (Shapiro-Wilk e/ou Kolmogorov-Smirnov) para cada combinação relevante de faixa de frequência e grupo de canais.
-    \item Avaliar medidas de assimetria (skewness) e curtose (kurtosis) para confirmar a adequação de testes paramétricos ou justificar o uso de métodos não-paramétricos.
-\end{itemize}
-
-Com base nessa análise preliminar, será possível conduzir as etapas subsequentes de inferência estatística, levando em conta as particularidades de cada métrica (PLI e CF-PLM) e garantindo uma avaliação robusta das diferenças entre condições.
+Além desses testes de normalidade, avaliamos também as medidas de assimetria (\emph{skewness}) e curtose (\emph{kurtosis}) para confirmar a adequação de testes paramétricos ou reforçar o uso de métodos não-paramétricos. Com base nesses resultados, prosseguimos para as etapas de análise estatística, respeitando as particularidades de cada métrica (PLI e CF-PLM).
 
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
-A escolha entre testes paramétricos e não-paramétricos depende fundamentalmente da distribuição dos dados. Para as métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}) agrupadas nos grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}, aplicamos uma série de testes de normalidade, a saber: Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Além disso, para atenuar o efeito de valores extremos, os testes foram realizados tanto com os dados originais quanto após a remoção de outliers utilizando o método do Interquartile Range (IQR).
+
+Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Além dos testes de Shapiro-Wilk e Kolmogorov-Smirnov, utilizamos também Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Para avaliar o impacto de valores extremos, repetimos os testes antes e depois de remover outliers tanto pelo método do \emph{Interquartile Range} (IQR) quanto pelo \emph{Empirical Cumulative Distribution-based Outlier Detection} (ECOD).
 
 \paragraph{Motivações e Procedimentos:}
-
 \begin{itemize}
-    \item \textbf{Objetivo:} Verificar se as distribuições das diferenças (Pós -- Pré) seguem uma forma aproximadamente gaussiana, o que permitiria o uso de testes paramétricos.
-    \item \textbf{Procedimento:} 
+    \item \textbf{Objetivo:} Verificar se as distribuições das diferenças (Pós -- Pré) podem ser aproximadas por uma gaussiana e, em caso afirmativo, validar o uso de testes paramétricos.
+    \item \textbf{Condução dos testes:} 
     \begin{itemize}
-        \item Os dados foram agrupados por \texttt{channel\_group} (EEG\_EEG e EEG\_ECG) e por métrica.
-        \item Os testes de normalidade foram aplicados com e sem outliers, permitindo avaliar o efeito destes na distribuição.
+        \item Os dados foram segmentados pelo tipo de par de canais (\texttt{EEG\_EEG} ou \texttt{EEG\_ECG}) e a métrica de conectividade (PLI ou CF-PLM).
+        \item Avaliamos as faixas de frequência (delta, theta, alpha, beta, gamma), analisando se \texttt{(Pós -- Pré)} segue distribuição normal.
+        \item Fizemos comparações em três cenários: (i) dados originais, (ii) dados sem outliers detectados por IQR e (iii) dados sem outliers removidos por ECOD.
     \end{itemize}
 \end{itemize}
 
 \paragraph{Principais Resultados:}
 \begin{itemize}
-    \item \textbf{Grupo EEG\_EEG (PLI):}
+    \item \textbf{Grupo EEG\_EEG:}
     \begin{itemize}
-        \item Para \texttt{median\_pli\_diff}, todos os testes (Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino, Jarque-Bera e Lilliefors) indicaram desvios significativos da normalidade (p-valores muito baixos), mesmo após a remoção de outliers (10,66\% dos dados).
+        \item Para \texttt{median\_pli\_diff}, todos os testes (Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino, Jarque-Bera e Lilliefors) rejeitaram a hipótese de normalidade no conjunto original. Mesmo após remover aproximadamente 10\,\% de outliers via IQR ou 5\,\% via ECOD, as distribuições permaneceram distantes de uma forma gaussiana.
     \end{itemize}
-    \item \textbf{Grupo EEG\_ECG (CF-PLM):}
+    \item \textbf{Grupo EEG\_ECG:}
     \begin{itemize}
-        \item Para \texttt{median\_cf\_plm\_diff}, mesmo após a remoção de outliers (10,65\% dos dados), os testes continuaram a rejeitar a normalidade, com p-valores próximos de zero na maioria dos casos.
+        \item Os resultados de \texttt{median\_cf\_plm\_diff} foram semelhantes: praticamente todas as combinações de testes indicaram rejeição da normalidade, tanto na base original quanto após filtrar outliers por IQR ou ECOD.
     \end{itemize}
 \end{itemize}
 
 \paragraph{Interpretação e Decisão Metodológica:}
-Os resultados dos testes de normalidade indicam que, em sua maioria, as distribuições das diferenças das métricas de conectividade não se comportam de forma normal, mesmo após a remoção de outliers. Essa violação dos pressupostos de normalidade sugere que a aplicação de testes paramétricos poderia levar a inferências incorretas. Portanto, optou-se por utilizar testes não-paramétricos para as análises estatísticas subsequentes, garantindo robustez e validade às conclusões sem a necessidade de assumir normalidade dos dados.
+As distribuições analisadas mostraram desvios notáveis de normalidade em todos os cenários. Isso sugere que a aplicação de testes paramétricos (por exemplo, ANOVA e t-test) seria inadequada, pois pressupõe dados aproximadamente gaussianos. Assim, optamos por empregar métodos não-paramétricos de inferência (como Wilcoxon e Mann-Whitney) para comparar as diferenças (pós--pré) em ambas as condições (\emph{cathodic} e \emph{sham}). Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.
