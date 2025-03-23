@@ -4,11 +4,12 @@ Esta seção apresenta a análise de conectividade em nível de rede, integrando
 
 As conexões representadas por linhas refletem esses pares, sendo exibidos apenas aqueles que são significativos após a correção de Bonferroni. Os valores de Rank-Biserial Correlation (RBC) indicam a direção e tamanho do efeito (RBC +1 para um aumento da sincronia de pré para pós sob estimulação catódica e RBC –1 para uma diminuição na sincronia de pré para pós catódica, com sham em referência).
 
+Os nós pintados em verde indicam canais que possuem ao menos um par significativo.
+
 \section{Rede de Conectividade via PLI (EEG–EEG)}
 
 Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, obtida com o índice PLI.  A seguir, descrevemos os resultados para cada banda de frequência:
 
-\subsection{Banda Alpha (8–13 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
 {Versão com outliers. Na banda alpha, observa-se um predomínio de conexões em vermelho (RBC +1) que se originam na região frontal e se estendem em diagonal até a área occipital direita, culminando aproximadamente no canal PO8. Essas conexões indicam que a estimulação catódica eleva a sincronia de fase na maior parte do eixo frontal–parietal–occipital, em contraste com um grupo menor de conexões azuis (RBC –1) no lado oposto.}
@@ -19,8 +20,6 @@ Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, o
 {Versão sem outliers. Comparada à análise com outliers, nota-se que alguns canais apresentaram um aumento discreto no número de ocorrências significativas, enquanto outros registraram uma leve diminuição. Além disso, há a aparição de pares significativos em canais (como O2 e F3) que não estavam presentes na versão com outliers e a desaparecimento de conexões anteriormente notadas (por exemplo, no canal FC5).}
 {rede_alpha_pli_sem}
 
-
-\subsection{Banda Beta (13–30 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
 {Versão com outliers. Na banda beta, a rede apresenta um número menor de conexões em comparação com a banda alpha. Conexões vermelhas (RBC +1) e azuis (RBC –1) coexistem em áreas dispersas, com uma leve concentração na região delimitada por F5, CP5, CPz e Fz.}
@@ -31,8 +30,6 @@ Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, o
 {Versão sem outliers. Observa-se um aumento significativo no número de pares com o canal FFT7h (todos RBC –1) e, no geral, uma elevação nas ocorrências de conexões com RBC –1. Alguns canais que não possuíam conexões significativas na versão com outliers passam a exibir tais ocorrências (ex.: PO3, P1, P4 e F6).}
 {rede_beta_pli_sem}
 
-
-\subsection{Banda Delta (0.5–4 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Delta_(0.5_a_4_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
 {Versão com outliers. Nesta banda, todas as conexões significativas apresentam RBC –1. Destaca-se a alta incidência de conexões envolvendo o canal Fp2 (20 ocorrências), além de conexões intensas em outros canais frontais, e um menor número de conexões na região occipital. Os canais TTP8h (11 ocorrências) e AF4 (10 ocorrências) também se sobressaem.}
@@ -43,8 +40,6 @@ Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, o
 {Versão sem outliers. O cenário mostra uma redução drástica no número de conexões significativas para os mesmos canais (Fp2, TTP8h e AF4), embora permaneça o predomínio de conexões com RBC –1, com a adição isolada de um caso com RBC +1.}
 {rede_delta_pli_sem}
 
-
-\subsection{Banda Gamma (30–60 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Gamma_(30_Hz_a_60_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
 {Versão com outliers. Na banda gamma, observa-se a predominância de ocorrências com RBC –1, com conexões de longa distância entre áreas opostas. Destacam-se os canais FT10 e TT8h (com 10 e 7 ocorrências, respectivamente), e uma clara divisão entre regiões com RBC –1 e regiões com RBC +1, sendo este último associado à parte parietal direita (canal TPP8h) e à occipital direita (canal O1).}
@@ -55,8 +50,6 @@ Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, o
 {Versão sem outliers. A configuração é similar à versão com outliers, com um ligeiro aumento nas ocorrências de conexões RBC –1 e um acréscimo modesto em RBC +1. Alguns canais que não apresentavam conexões significativas na versão com outliers passam a exibi-las (por exemplo, FC2 e TTP8h).}
 {rede_gamma_pli_sem}
 
-
-\subsection{Banda Theta (4–8 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Com_Outliers/Banda_Theta_(4_Hz_a_8_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Com_Outliers.png}
 {Versão com outliers. A rede em theta apresenta um predomínio de conexões positivas (RBC +1), concentradas sobretudo na parte esquerda, embora espalhadas por todas as regiões. Em contraste, as conexões com RBC –1 se concentram entre canais da região frontal esquerda e seus pares na área fronto-central e fronto-temporal direita.}
@@ -73,7 +66,6 @@ Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, o
 
 A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamento \emph{cross‐frequency} entre sinais de EEG e ECG. Nesta abordagem, os pares significativos foram identificados para diferentes bandas de frequência, observando a mesma disposição em cenários com e sem outliers.
 
-\subsection{Banda Alpha (8–13 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
 {Versão com outliers. Nesta banda, não foram identificadas ocorrências significativas.}
@@ -84,8 +76,6 @@ A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamen
 {Versão sem outliers. O mesmo resultado é observado, com ausência de conexões significativas.}
 {rede_alpha_cfplm_sem}
 
-
-\subsection{Banda Beta (13–30 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
 {Versão com outliers. Nesta banda, os pares significativos são formados pelos canais TPP7h, CP5, CP3 e CP1, todos localizados na região parietal esquerda, apresentando RBC +1.}
@@ -96,7 +86,6 @@ A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamen
 {Versão sem outliers. O padrão é idêntico, com os mesmos pares significativos entre TPP7h, CP5, CP3 e CP1 (todos RBC +1).}
 {rede_beta_cfplm_sem}
 
-\subsection{Banda Delta (0.5–4 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Delta_(0.5_a_4_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
 {Versão com outliers. Aqui, cinco ocorrências significativas foram identificadas, envolvendo pares entre o ECG e os canais CP3, P1, Fp2, FC4 e FTT8h – predominantemente na região parieto-central esquerda e também na região frontal, fronto-central e fronto-temporal direita – todas com RBC +1.}
@@ -107,7 +96,6 @@ A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamen
 {Versão sem outliers. O padrão se mantém idêntico, com os mesmos pares significativos e RBC +1.}
 {rede_delta_cfplm_sem}
 
-\subsection{Banda Gamma (30–60 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Gamma_(30_Hz_a_60_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
 {Versão com outliers. Apenas um par significativo foi identificado, conectando o canal de EEG CP3 ao ECG na região centro-parietal esquerda, com RBC +1.}
@@ -118,8 +106,6 @@ A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamen
 {Versão sem outliers. O mesmo par significativo (ECG–CP3, RBC +1) é observado.}
 {rede_gamma_cfplm_sem}
 
-
-\subsection{Banda Theta (4–8 Hz)}
 \standardfigure
 {figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Com_Outliers/Banda_Theta_(4_Hz_a_8_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Com_Outliers.png}
 {Versão com outliers. O único par significativo nesta banda é o formado entre o EEG (canal F6) e o ECG, localizado na região frontal direita.}

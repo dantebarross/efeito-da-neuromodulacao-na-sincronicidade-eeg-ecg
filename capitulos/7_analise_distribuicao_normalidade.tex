@@ -1,14 +1,13 @@
 \chapter{Análise de Distribuição e Normalidade}
 \label{chap:analise_distribuicao_normalidade}
 
-Nesta seção, investigamos a forma das distribuições das métricas de conectividade, tanto em seus valores "puros" quanto nas diferenças (\texttt{median\_diff}) entre as condições (Pós – Pré). Inicialmente, apresentamos as distribuições originais das métricas específicas \textbf{(PLI para EEG-EEG e CF-PLM para EEG-ECG)} que serão mantidas para análise. Em seguida, explicamos que, para testar o efeito da estimulação, calculamos a diferença entre os valores pós e pré (por exemplo, \emph{pós-sham} menos \emph{pré-sham}), e por fim discutimos a escolha dos testes estatísticos com base nessas distribuições.
+Nesta seção, investigamos a forma das distribuições das métricas de conectividade, tanto em seus valores \textquotedblleft puros\textquotedblright quanto nas diferenças (\texttt{median\_diff}) entre as condições (Pós – Pré). Inicialmente, apresentamos as distribuições originais das métricas específicas \textbf{(PLI para EEG-EEG e CF-PLM para EEG-ECG)} que serão mantidas para análise. Em seguida, explicamos que, para testar o efeito da estimulação, calculamos a diferença entre os valores pós e pré (por exemplo, \emph{pós-sham} menos \emph{pré-sham}), e por fim discutimos a escolha dos testes estatísticos com base nessas distribuições.
 
 \section{Distribuição das Métricas de Conectividade}
 
-Antes de subtrair os valores pré dos pós, as métricas de conectividade foram extraídas diretamente dos sinais, refletindo as medidas originais sem a influência do efeito de estimulação. As figuras a seguir ilustram as distribuições "puras" para:
-
+Antes de subtrair os valores pré dos pós, as métricas de conectividade foram extraídas diretamente dos sinais, refletindo as medidas originais sem a influência do efeito de estimulação. As distribuições \textquotedblleft puras\textquotedblright são ilustradas nas Figuras~\ref{pli_eeg_eeg} (EEG-EEG, PLI) e~\ref{cfplm_eeg_ecg} (EEG-ECG, CF-PLM):
 \begin{itemize}
-    \item \textbf{PLI (EEG-EEG):} Avalia a sincronização de fase iso-frequencial entre canais cerebrais de EEG.
+    \item \textbf{PLI (EEG-EEG):} Avalia a sincronização de fase iso-frequencial entre sinais de canais de EEG.
     \item \textbf{CF-PLM (EEG-ECG):} Mede o acoplamento \emph{cross-frequency} entre o EEG e o ciclo cardíaco obtido via ECG.
 \end{itemize}
 
@@ -30,11 +29,11 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 
 No geral, observamos que:
 \begin{itemize}
-    \item \textbf{EEG-EEG (PLI):} A distribuição apresenta variabilidade entre bandas, com algumas exibindo valores mais elevados.
-    \item \textbf{EEG-ECG (CF-PLM):} Os valores geralmente se concentram próximos a zero, embora haja variações que indicam acoplamento \emph{cross-frequency} pontual.
+    \item \textbf{EEG-EEG (PLI)}: A distribuição apresenta variabilidade entre bandas, com algumas exibindo valores mais elevados (Figura~\ref{pli_eeg_eeg}).
+    \item \textbf{EEG-ECG (CF-PLM)}: Os valores geralmente se concentram próximos a zero, embora haja variações que indicam acoplamento \emph{cross-frequency} pontual (Figura~\ref{cfplm_eeg_ecg}).
 \end{itemize}
 
-Essas observações fornecem uma visão inicial do comportamento das métricas "puras" de conectividade, servindo de base para a comparação entre as condições (Pós e Pré), que será apresentada a seguir.
+Essas observações fornecem uma visão inicial do comportamento das métricas \textquotedblleft puras\textquotedblright de conectividade, servindo de base para a comparação entre as condições (Pós e Pré), que será apresentada a seguir.
 
 \section{Distribuição das Diferenças (\texttt{median\_diff})}
 
@@ -48,7 +47,7 @@ Esse procedimento visa isolar o efeito da intervenção, removendo variações c
 
 As distribuições das diferenças foram avaliadas por meio de histogramas com \emph{Kernel Density Estimation} (KDE) para as métricas utilizadas nesta análise (PLI para EEG-EEG e CF-PLM para EEG-ECG).
 
-A seguir, ilustram-se exemplos desses histogramas:
+Esses histogramas são apresentados nas Figuras~\ref{pli_freq_eeg_eeg} e~\ref{cf_plm_freq_eeg_ecg}:
 
 % Exemplo: PLI (EEG-EEG) Diferença
 \standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_PLI_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_EEG.png}
@@ -72,7 +71,7 @@ Para ilustrar de forma mais específica o comportamento das distribuições em u
 {Distribuição da \texttt{median\_pli\_diff} (Pós -- Pré) para o atleta 4, banda alpha, em pares EEG-EEG.}
 {median_pli_diff_ath4_alpha_eeg_eeg}
 
-Essas figuras exemplificam como as diferenças entre as condições \emph{cathodic} (azul) e \emph{sham} (vermelho) podem se sobrepor ou divergir. Em alguns casos, a curva KDE de uma condição desloca-se para a direita (indicando aumento da métrica após a estimulação) ou para a esquerda (indicando redução), enquanto em outros há significativa sobreposição, sugerindo pouca variação entre as condições. Esse tipo de análise individual é útil para verificar a variabilidade intra-sujeito e compreender se os efeitos observados são consistentes ou pontuais.
+Essas figuras exemplificam como as diferenças entre as condições \emph{cathodic} (azul) e \emph{sham} (vermelho) podem se sobrepor ou divergir. Em alguns casos, a curva KDE de uma condição desloca-se para a direita (indicando um aumento geral da métrica após a estimulação) ou para a esquerda (indicando uma redução geral), enquanto em outros há significativa sobreposição, sugerindo pouca variação entre as condições. Embora não seja o foco principal deste estudo, essas figuras permitem explorar detalhadamente o comportamento das métricas, considerando separadamente cada atleta e cada banda de frequência. Isso oferece uma visão mais clara sobre a variabilidade intra e inter-sujeitos, bem como sobre a consistência dos efeitos observados. Posteriormente realizamos análises específicas por par de canal dentro de cada faixa de frequência, proporcionando uma avaliação mais detalhada dos efeitos significativos da intervenção.
 
 \section{Verificação de Normalidade e Escolha do Teste Estatístico}
 
@@ -81,11 +80,11 @@ Para determinar o tipo de teste estatístico mais adequado (paramétrico ou não
 \paragraph{Considerações:}
 \begin{itemize}
     \item \textbf{Tamanho amostral:} Como dispomos de grande quantidade de observações após a agregação dos dados, mesmo desvios leves em relação à normalidade podem levar à rejeição da hipótese nula em testes de normalidade.
-    \item \textbf{Forma das distribuições:} Muitos histogramas se mostram visualmente simétricos e unimodais, mas a presença de caudas mais longas ou assimetrias moderadas requer atenção ao uso de testes paramétricos.
+    \item \textbf{Forma das distribuições:} Embora muitos histogramas apresentem uma simetria visual aparente, a análise considerando todos os atletas e condições agrupados revela que cada banda de frequência exibe um padrão próprio de distribuição. Isso sugere que, apesar da simetria, existem características distintas em cada banda, reforçando a importância de análises separadas por faixa de frequência para compreender melhor os efeitos da estimulação nas métricas de conectividade.
     \item \textbf{Interpretação:} Quando os valores de p na maioria das distribuições são inferiores a 0.05, adotamos testes não-paramétricos (como Wilcoxon signed-rank ou Mann-Whitney) para as análises de inferência.
 \end{itemize}
 
-Além desses testes de normalidade, avaliamos também as medidas de assimetria (\emph{skewness}) e curtose (\emph{kurtosis}) para confirmar a adequação de testes paramétricos ou reforçar o uso de métodos não-paramétricos. Com base nesses resultados, prosseguimos para as etapas de análise estatística, respeitando as particularidades de cada métrica (PLI e CF-PLM).
+Além desses testes de normalidade, avaliamos também as medidas de assimetria (\emph{skewness}) e curtose (\emph{kurtosis}) para confirmar a adequação de testes paramétricos ou reforçar o uso de métodos não-paramétricos. Com base nesses resultados, prosseguimos para as etapas de análise estatística.
 
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
 

@@ -3,7 +3,7 @@
 
 Considerando que as distribuições das métricas de conectividade (diferença entre Pós e Pré) não se comportam de maneira normal (ver Capítulo~\ref{chap:analise_distribuicao_normalidade}), optamos por empregar testes estatísticos não paramétricos para comparar as condições de estimulação (\texorpdfstring{\textit{cathodic} versus \textit{sham}}{cathodic versus sham}). Essa escolha evita pressupostos inadequados sobre a distribuição dos dados e confere maior robustez às inferências.
 
-Além da violação de normalidade, a alta variabilidade dos dados e a presença de outliers reforçaram a adoção de testes não paramétricos, pois estes conferem maior robustez em cenários de heterogeneidade amostral.
+Além da violação de normalidade, a presença de outliers reforça a adoção de testes não paramétricos neste cenário de heterogeneidade amostral.
 
 Nesta etapa, foram aplicados os seguintes testes estatísticos não paramétricos, visando comparar as condições de estimulação (\textit{cathodic} versus \textit{sham}) sem assumir normalidade dos dados:
 
@@ -51,7 +51,8 @@ Na prática, isso sugere que a estimulação catódica influencia de modo mais e
 
 \paragraph{Interpretação:}
 
-No caso da \texttt{median\_cf\_plm\_diff} (EEG-ECG), encontramos resultados que divergem ligeiramente conforme o teste aplicado: enquanto \emph{Mann-Whitney U} e \emph{Wilcoxon} apontam a significância de \emph{alpha}, \emph{beta} e \emph{delta}, o \emph{Kruskal-Wallis} identifica \emph{gamma}, porém não confirma \emph{delta} e \emph{theta}. Isso reflete a menor sensibilidade do teste global (Kruskal-Wallis) para certas diferenças pontuais, bem como a possível variabilidade nos pares \emph{EEG-ECG}. De forma geral, \emph{alpha} e \emph{beta} exibem valores \emph{cf\_plm\_diff} mais elevados em \emph{cathodic}, sugerindo maior acoplamento cérebro-coração nessas bandas sob estimulação catódica.
+No caso da \texttt{median\_cf\_plm\_diff} (EEG-ECG), encontramos resultados que divergem ligeiramente conforme o teste aplicado: enquanto \emph{Mann-Whitney U} e \emph{Wilcoxon} apontam a significância de \emph{alpha}, \emph{beta} e \emph{delta}, o \emph{Kruskal-Wallis} identifica \emph{gamma}, porém não confirma \emph{delta} e \emph{theta}. Isso reflete a menor sensibilidade do teste global (Kruskal-Wallis) para certas diferenças pontuais, bem como a possível variabilidade nos pares \emph{EEG-ECG}. De forma geral, \emph{alpha} e \emph{beta} exibem valores \emph{cf_plm_diff} mais elevados na condição \emph{cathodic}, indicando maior sincronicidade EEG-ECG após a estimulação catódica em comparação à condição \emph{sham}.
+
 
 \subsection{Conclusão Geral dos Testes}
 
@@ -62,23 +63,23 @@ Em síntese, os três testes não-paramétricos evidenciam mudanças estatistica
     \item \emph{Kruskal-Wallis}: Mostra variações no espectro como um todo, apontando quais faixas são mais afetadas.
 \end{itemize}
 
-Esses achados, em conjunto, corroboram a hipótese de que a neuromodulação catódica sobre o DLPFC impacta os padrões de sincronização tanto em \emph{resting state} (EEG-EEG) quanto no acoplamento \emph{cross-frequency} (EEG-ECG). A consistência entre testes diferentes aumenta a confiança de que os efeitos observados não são atribuíveis a ruídos ou a variações aleatórias.
+Esses achados, em conjunto, corroboram a hipótese de que a neuromodulação catódica sobre o DLPFC impacta os padrões de sincronização em \emph{resting-state}, tanto na conectividade EEG-EEG quanto no acoplamento \emph{cross-frequency} EEG-ECG. A consistência entre testes diferentes aumenta a confiança de que os efeitos observados não são atribuíveis a ruídos ou a variações aleatórias.
 
 \section{Discussão e Justificativa dos Métodos}
 
-Os testes de normalidade indicaram violações significativas dos pressupostos de normalidade para as métricas de conectividade analisadas, o que justificou o uso de testes não paramétricos para comparar as condições de estimulação (\texttt{cathodic} versus \texttt{sham}). Esses métodos não dependem de pressupostos sobre a distribuição dos dados, oferecendo uma análise mais robusta e confiável, especialmente em cenários com alta variabilidade e a presença de outliers.
+Os testes de normalidade indicaram violações significativas dos pressupostos de normalidade para as métricas de conectividade analisadas, o que justificou o uso de testes não paramétricos para comparar as condições de estimulação (\texttt{cathodic} versus \texttt{sham}). Esses métodos não dependem de pressupostos sobre a distribuição dos dados.
 
 A aplicação conjunta de múltiplos testes (Mann-Whitney U, Wilcoxon e Kruskal-Wallis) permitiu uma avaliação abrangente das diferenças entre as condições, considerando tanto comparações entre grupos independentes quanto análises pareadas intraindividuais. Os resultados indicam que, para a maioria das faixas de frequência e para as métricas \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}, existem diferenças estatisticamente significativas entre as condições, reforçando a importância da modulação induzida pela estimulação.
 
-Por outro lado, os achados para as métricas de sincronização, em especial no contexto EEG–ECG, exibiram variações dependendo do teste estatístico e da faixa de frequência considerada. Esse fato indica que cada método (Mann–Whitney, Wilcoxon ou Kruskal–Wallis) pode captar aspectos distintos dos dados ou apresentar sensibilidades diferentes à variabilidade intra e intersujeitos. Além disso, a divergência pode se relacionar a fatores ainda não elucidados, como flutuações fisiológicas, diferenças de amplitude/ruído ou mesmo sutis variações no acoplamento EEG-ECG.
+Por outro lado, os achados para as métricas de sincronização, em especial no contexto EEG–ECG, exibiram variações dependendo do teste estatístico e da faixa de frequência considerada. Esse fato indica que cada método (Mann–Whitney, Wilcoxon ou Kruskal–Wallis) pode captar aspectos distintos dos dados ou apresentar sensibilidades diferentes à variabilidade intra e intersujeitos.
 
 \section{Detecção de Outliers, Análise Bootstrap e Correções para Comparações Múltiplas}
 
-Para avaliar o impacto dos pontos atípicos nas análises subsequentes e assegurar robustez nas conclusões, optamos por realizar uma etapa adicional de detecção e remoção de outliers utilizando o método ECOD (Empirical Cumulative Distribution-based Outlier Detection). O ECOD é especialmente adequado ao nosso conjunto de dados devido à sua natureza não paramétrica (como já descrito), identificando anomalias sem pressupor uma distribuição específica dos dados. Estudos demonstram que o ECOD supera diversas técnicas convencionais de detecção de outliers em termos de acurácia e eficiência \cite{li2022ecod}.
+Para avaliar o impacto dos pontos atípicos nas análises subsequentes, optamos por realizar uma etapa adicional de detecção e remoção de outliers utilizando o método ECOD (Empirical Cumulative Distribution-based Outlier Detection). O ECOD é especialmente adequado ao nosso conjunto de dados devido à sua natureza não paramétrica, identificando anomalias sem pressupor uma distribuição específica dos dados. Estudos demonstram que o ECOD supera diversas técnicas convencionais de detecção de outliers em termos de acurácia e eficiência \cite{li2022ecod}.
 
-Aplicamos o ECOD considerando as métricas \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, aproximadamente 5,00\% dos dados foram identificados como outliers e removidos, aumentando a robustez das análises subsequentes.
+Aplicamos o ECOD considerando as métricas \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, aproximadamente 5,00\% dos dados foram identificados como outliers e removidos.
 
-Posteriormente, implementamos um robusto pipeline de análise baseado em bootstrap acelerado por GPU para o cálculo de intervalos de confiança BCa (Bias-Corrected and Accelerated). Esse método é particularmente robusto, pois ajusta tanto o viés quanto a aceleração da distribuição bootstrap, permitindo capturar assimetrias e a influência residual de outliers nos dados. Embora computacionalmente custoso, o método BCa é amplamente reconhecido como uma das abordagens mais precisas para a estimação de intervalos de confiança em situações onde os pressupostos de normalidade não são atendidos. Optamos por esse método em detrimento de outras técnicas devido à sua capacidade de corrigir distorções na distribuição da estatística estimada.
+Posteriormente, implementamos um pipeline de análise baseado em bootstrap acelerado por GPU para o cálculo de intervalos de confiança BCa (Bias-Corrected and Accelerated). Esse método é particularmente robusto, pois ajusta tanto o viés quanto a aceleração da distribuição bootstrap, permitindo capturar assimetrias e a influência residual de outliers nos dados. Embora computacionalmente custoso, o método BCa é amplamente reconhecido como uma das abordagens mais precisas para a estimação de intervalos de confiança em situações onde os pressupostos de normalidade não são atendidos. Optamos por esse método em detrimento de outras técnicas devido à sua capacidade de corrigir distorções na distribuição da estatística estimada.
 
 Para avaliar a significância estatística após múltiplas comparações, utilizamos a função \texttt{multipletests} da biblioteca Python \texttt{statsmodels} com o método Bonferroni. Este procedimento ajusta os p-valores originais multiplicando-os pelo número total de comparações realizadas, tornando o critério de significância mais conservador e minimizando o risco de falsos positivos. Dessa forma, efeitos são considerados significativos quando o p-valor corrigido por Bonferroni for inferior a 0,05.
 
@@ -173,59 +174,8 @@ Em resumo, os histogramas de \emph{Wilcoxon RBC} (indicador de tamanho de efeito
     
     \item Nos casos onde há significância estatística, os tamanhos de efeito se afastam de zero de forma mais pronunciada (conforme evidenciado por \emph{Cohen's d}, \emph{Hedges' g} ou RBC), indicando diferenças que podem ser relevantes do ponto de vista da dinâmica de conectividade funcional.
 
-    \item O \emph{Wilcoxon RBC} se destaca como uma métrica robusta para quantificar tanto a direção quanto a magnitude das diferenças, sem assumir pressupostos de normalidade. Essa característica torna o RBC uma escolha apropriada para as próximas etapas da análise, que incluem a caracterização topográfica e a construção dos grafos de conectividade.
+    \item O \emph{Wilcoxon RBC} se destaca como a métrica escolhida para quantificar tanto a direção quanto a magnitude das diferenças, sem assumir pressupostos de normalidade. Essa característica torna o RBC uma escolha apropriada para as próximas etapas da análise, que incluem a caracterização topográfica e a construção dos grafos de conectividade.
 
 \end{itemize}
 
-Dessa forma, a análise dos histogramas de tamanhos de efeito e dos p-valores fornece um panorama inicial detalhado. Embora a maioria dos pares de canais não apresente diferenças significativas, uma fração considerável exibe efeitos moderados ou altos, com p-valores corrigidos abaixo do limiar de significância. Esses achados servem como base para investigações posteriores, que buscarão identificar padrões espaciais e espectrais nos efeitos da neuromodulação, contribuindo para uma compreensão mais aprofundada das interações entre EEG e ECG nas condições experimentais avaliadas.
-
-\section{Análise de Rede para PLI (EEG-EEG)}
-\label{sec:rede_pli_eeg}
-
-Nesta seção, analisamos as redes de conexões significativas obtidas pela métrica PLI para pares EEG-EEG, segmentadas por bandas de frequência, considerando os cenários com e sem outliers. Cada nó representa um dos eletrodos EEG, e sua posição na rede é uma representação aproximada da localização do eletrodo na touca de EEG, baseada no sistema 10-20. O número adjacente a cada nó indica o total de conexões significativas envolvendo esse canal. Linhas vermelhas representam conexões com valores de \emph{Wilcoxon RBC} tendendo a +1, e linhas azuis tendendo a -1.
-
-Apresentamos aqui apenas exemplos representativos das redes (por exemplo, na banda Alpha), enquanto a análise completa, abrangendo todas as bandas e cenários, pode ser encontrada no \textbf{Apêndice \ref{apendice:pli_eeg_eeg}}.
-
-\standardfigure{figs/7_bootstrap_results_analysis/2_network_graphs/PLI_EEG-EEG_Sem_Outliers/Banda_Alpha_(8_Hz_a_13_Hz)_-_Análise_de_Rede_-_PLI_EEG-EEG_Sem_Outliers.png}
-{Exemplo da rede de conexões significativas na banda Alpha (8--13\,Hz) para PLI (EEG-EEG) no cenário sem outliers. Observa-se um núcleo central de canais altamente conectados, sugerindo forte sincronização.}
-{exemplo_rede_pli_alpha_sem}
-
-
-\subsection{Resumo das Comparações (PLI EEG-EEG)}
-
-A comparação detalhada entre os cenários com e sem outliers revela que:
-\begin{itemize}
-    \item \textbf{Impacto da Remoção de Outliers:} A remoção de outliers altera ligeiramente o número de conexões significativas.
-    \item \textbf{Mudança no Número de Conexões:} Observamos uma leve redução no número de conexões significativas após a remoção de outliers, mas a distribuição dessas conexões entre os canais ainda precisa ser considerada caso a caso.
-    \item \textbf{Consistência de Canais Relevantes:} Os canais que apresentam maior número de conexões significativas tendem a permanecer similares entre os cenários, indicando que a remoção de outliers não altera drasticamente quais regiões são mais envolvidas nas interações detectadas pela métrica PLI.
-\end{itemize}
-
-Para uma análise detalhada de todas as bandas e cenários, consulte o \textbf{Apêndice \ref{apendice:pli_eeg_eeg}}. 
-
-\section{Análise de Rede para CF-PLM (EEG-ECG, Cross-frequency)}
-\label{sec:rede_cfplm_eeg_ecg}
-
-Nesta seção, avaliamos as redes de conectividade \textbf{cross-frequency} entre EEG e ECG utilizando a métrica CF-PLM. Como os resultados mostraram padrões relativamente estáveis entre os cenários analisados, apresentamos aqui um \textbf{exemplo representativo} na banda Beta (13--30\,Hz). A análise completa para todas as bandas pode ser encontrada no \textbf{Apêndice \ref{apendice:cfplm_eeg_ecg}}.
-
-\standardfigure{figs/7_bootstrap_results_analysis/2_network_graphs/CF-PLM_EEG-ECG_Sem_Outliers/Banda_Beta_(13_Hz_a_30_Hz)_-_Análise_de_Rede_-_CF-PLM_EEG-ECG_Sem_Outliers.png}
-{Exemplo da rede CF-PLM na banda Beta (13--30\,Hz) para EEG-ECG sem outliers.}
-{exemplo_rede_cfplm_beta_sem}
-
-\subsection{Resumo das Comparações (CF-PLM EEG-ECG)}
-
-As comparações entre os cenários com e sem outliers evidenciam que:
-\begin{itemize}
-    \item \textbf{Topologia Inalterada:} Tanto a estrutura quanto a quantidade de pares significativos permanecem praticamente inalteradas entre os dois cenários, indicando que os resultados são independentes da remoção de outliers.
-    \item \textbf{Número Consistente de Pares:} O número total de pares significativos é idêntico (11 casos), sugerindo alta robustez dos efeitos cross-frequency detectados.
-    \item \textbf{Consistência dos Achados:} Todos os pares significativos apresentam \emph{Wilcoxon RBC} igual a +1, reforçando a consistência dos achados.
-\end{itemize}
-
-Para mais detalhes e visualização completa das redes de conectividade, consulte o \textbf{Apêndice \ref{apendice:cfplm_eeg_ecg}}.
-
-\subsection{Conclusões das Análises de Rede}
-\begin{itemize}
-    \item A análise de rede para PLI (EEG-EEG) evidencia que, mesmo com a remoção de outliers, a topologia das redes permanece robusta, com canais centrais consistentes, o que confirma a eficácia da métrica em capturar a sincronização entre os canais cerebrais.
-    \item A análise de rede para CF-PLM (EEG-ECG) mostra que os efeitos cross-frequency são altamente robustos, com um número fixo de pares significativos e valores consistentes de \emph{Wilcoxon RBC}.
-\end{itemize}
-
-Esses achados fundamentam as análises topográficas e de rede que serão apresentadas nas seções seguintes.
+Dessa forma, a análise dos histogramas de tamanhos de efeito e dos p-valores fornece um panorama inicial detalhado. Embora a maioria dos pares de canais não apresente diferenças significativas, observa-se um conjunto de casos com efeitos inicialmente moderados ou altos, mas que, após a correção para múltiplas comparações, se restringem predominantemente aos valores de efeito mais elevados. Esses achados servem como base para investigações posteriores, focadas na identificação de padrões espaciais e espectrais na neuromodulação, contribuindo para uma compreensão mais aprofundada das interações entre EEG e ECG nas condições experimentais avaliadas.
