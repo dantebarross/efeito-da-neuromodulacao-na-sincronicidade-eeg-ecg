@@ -1,13 +1,11 @@
 \chapter{Análise de Rede}
-
 Esta seção apresenta a análise de conectividade em nível de rede, integrando as figuras geradas para os índices de sincronização PLI (para conexões EEG–EEG) e CF‐PLM (para conexões EEG–ECG). Todas as figuras são dispostas lado a lado, com o cenário \textbf{à esquerda} representando a análise \emph{com outliers} e o cenário \textbf{à direita} a análise \emph{sem outliers}. As legendas foram elaboradas de modo a discorrer sobre os principais pontos de cada figura. 
 
-As conexões representadas por linhas refletem esses pares, sendo exibidos apenas aqueles que são significativos após a correção de Bonferroni. Os valores de Rank-Biserial Correlation (RBC) indicam a direção e tamanho do efeito (RBC +1 para um aumento da sincronia de pré para pós sob estimulação catódica e RBC –1 para uma diminuição na sincronia de pré para pós catódica, com sham em referência).
+As conexões representadas por linhas refletem esses pares, sendo exibidos apenas aqueles que são significativos após a correção de Bonferroni. Os valores de RBC indicam a direção e tamanho do efeito (RBC +1 para um aumento da sincronia de pré para pós sob estimulação catódica e RBC –1 para uma diminuição na sincronia de pré para pós catódica, com \textit{sham} em referência).
 
 Os nós pintados em verde indicam canais que possuem ao menos um par significativo.
 
 \section{Rede de Conectividade via PLI (EEG–EEG)}
-
 Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, obtida com o índice PLI.  A seguir, descrevemos os resultados para cada banda de frequência:
 
 \standardfigure
@@ -63,7 +61,6 @@ Nesta parte, analisamos a rede de sincronização de fase entre canais de EEG, o
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Rede de Conectividade via CF‐PLM (EEG–ECG)}
-
 A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamento \emph{cross‐frequency} entre sinais de EEG e ECG. Nesta abordagem, os pares significativos foram identificados para diferentes bandas de frequência, observando a mesma disposição em cenários com e sem outliers.
 
 \standardfigure
@@ -118,7 +115,6 @@ A seguir, a análise de rede baseada no índice CF‐PLM, que avalia o acoplamen
 
 
 \section{Síntese e Considerações Finais}
-
 Em ambas as metodologias de análise de rede (PLI para conexões EEG–EEG e CF‐PLM para conexões EEG–ECG), observa-se que os padrões de conectividade se mantêm, em grande parte, semelhantes entre as análises com e sem outliers. De maneira geral, os pares significativos se agrupam em dois clusters principais: 
 \begin{itemize}
     \item \textbf{Região Temporo-parietal/Parietal/Parieto-central esquerda:} Onde se concentram várias conexões negativas (RBC –1) e, em alguns casos, conexões positivas, sobretudo na análise CF‐PLM em banda beta e delta.
@@ -127,7 +123,7 @@ Em ambas as metodologias de análise de rede (PLI para conexões EEG–EEG e CF�
 
 Essa configuração sugere que a estimulação catódica sobre o DLPFC promove uma modulação diferenciada da sincronia de fase, elevando a conectividade em certas regiões enquanto reduz em outras, conforme evidenciado pelos diferentes padrões de RBC observados em cada banda de frequência.
 
-Adicionalmente, ao comparar as bandas, observa-se um padrão distinto entre as metodologias: na análise via PLI, as bandas alpha e theta tendem a exibir predominância de conexões positivas (RBC +1) – sugerindo aumento da sincronia sob a estimulação catódica – enquanto as bandas delta (e, parcialmente, a gama) apresentam maior ocorrência de conexões negativas (RBC –1), indicando uma redução na sincronia em determinadas regiões. Por outro lado, para o CF‐PLM, todas as conexões significativas identificadas são invariavelmente positivas (RBC +1), sugerindo que a neuromodulação promove um aumento consistente no acoplamento cross-frequency entre EEG e ECG nas bandas onde a significância é detectada.
+Adicionalmente, ao comparar as bandas, observa-se um padrão distinto entre as metodologias: na análise via PLI, as bandas alpha e theta tendem a exibir predominância de conexões positivas (RBC +1) – sugerindo aumento da sincronia sob a estimulação catódica – enquanto as bandas delta (e, parcialmente, a gama) apresentam maior ocorrência de conexões negativas (RBC –1), indicando uma redução na sincronia em determinadas regiões. Por outro lado, para o CF‐PLM, todas as conexões significativas identificadas são invariavelmente positivas (RBC +1), sugerindo que a neuromodulação promove um aumento consistente no acoplamento \textit{cross-frequency} entre EEG e ECG nas bandas onde a significância é detectada.
 
 A comparação entre as versões com e sem outliers reforça a robustez dos achados, já que as configurações gerais das redes não se alteram de forma substancial após a remoção dos pontos atípicos.
 

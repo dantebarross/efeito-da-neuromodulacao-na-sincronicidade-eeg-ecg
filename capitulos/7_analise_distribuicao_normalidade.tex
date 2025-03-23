@@ -1,14 +1,12 @@
 \chapter{Análise de Distribuição e Normalidade}
 \label{chap:analise_distribuicao_normalidade}
-
-Nesta seção, investigamos a forma das distribuições das métricas de conectividade, tanto em seus valores \textquotedblleft puros\textquotedblright quanto nas diferenças (\texttt{median\_diff}) entre as condições (Pós – Pré). Inicialmente, apresentamos as distribuições originais das métricas específicas \textbf{(PLI para EEG-EEG e CF-PLM para EEG-ECG)} que serão mantidas para análise. Em seguida, explicamos que, para testar o efeito da estimulação, calculamos a diferença entre os valores pós e pré (por exemplo, \emph{pós-sham} menos \emph{pré-sham}), e por fim discutimos a escolha dos testes estatísticos com base nessas distribuições.
+Nesta seção, investigamos a forma das distribuições das métricas de conectividade, tanto em seus valores ``puros'' quanto nas diferenças (\texttt{median\_diff}) entre as condições (Pós – Pré). Inicialmente, apresentamos as distribuições originais das métricas específicas \textbf{(PLI para EEG-EEG e CF-PLM para EEG-ECG)} que serão mantidas para análise. Em seguida, explicamos que, para testar o efeito da estimulação, calculamos a diferença entre os valores pós e pré (por exemplo, \emph{pós-sham} menos \emph{pré-sham}), e por fim discutimos a escolha dos testes estatísticos com base nessas distribuições.
 
 \section{Distribuição das Métricas de Conectividade}
-
-Antes de subtrair os valores pré dos pós, as métricas de conectividade foram extraídas diretamente dos sinais, refletindo as medidas originais sem a influência do efeito de estimulação. As distribuições \textquotedblleft puras\textquotedblright são ilustradas nas Figuras~\ref{pli_eeg_eeg} (EEG-EEG, PLI) e~\ref{cfplm_eeg_ecg} (EEG-ECG, CF-PLM):
+Antes de subtrair os valores pré dos pós, as métricas de conectividade foram extraídas diretamente dos sinais, refletindo as medidas originais sem a influência do efeito de estimulação. As distribuições ``puras'' são ilustradas nas Figuras~\ref{pli_eeg_eeg} (EEG-EEG, PLI) e~\ref{cfplm_eeg_ecg} (EEG-ECG, CF-PLM):
 \begin{itemize}
     \item \textbf{PLI (EEG-EEG):} Avalia a sincronização de fase iso-frequencial entre sinais de canais de EEG.
-    \item \textbf{CF-PLM (EEG-ECG):} Mede o acoplamento \emph{cross-frequency} entre o EEG e o ciclo cardíaco obtido via ECG.
+    \item \textbf{CF-PLM (EEG-ECG):} Mede o acoplamento \textit{cross-frequency} entre o EEG e o ciclo cardíaco obtido via ECG.
 \end{itemize}
 
 As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma.
@@ -17,82 +15,99 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 % CF-PLM (EEG-ECG)  
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_CF-PLM_(EEG-ECG)_por_Banda.png}
-{Distribuição de CF-PLM (EEG-ECG) por banda. Observa-se a concentração dos valores em faixas mais baixas (próximas de 0), com maior densidade para as bandas delta e theta.}
+{Distribuição de CF-PLM (EEG--ECG) por banda. Observa-se que a maioria dos valores se concentra próximo de zero, indicando acoplamento \textit{cross-frequency} tipicamente baixo entre as oscilações cerebrais e o ritmo cardíaco. Ainda assim, as bandas \emph{delta} e \emph{theta} exibem picos levemente deslocados (em torno de 0,01--0,03), sugerindo que, em frequências mais lentas, o ECG e o EEG podem sincronizar-se de forma ligeiramente mais robusta. Em contrapartida, a banda \emph{gamma} atinge valores um pouco mais elevados, embora com densidade menor, o que indica a existência de alguns pares EEG--ECG com acoplamento mais pronunciado em frequências rápidas. No geral, esses resultados reforçam a predominância de valores muito baixos de CF-PLM entre ECG e EEG no estado de repouso, mas não descartam a ocorrência de sincronias pontuais em faixas específicas.}
 {cfplm_eeg_ecg}
 
 % -----------------------------------------------------------------------------  
 % PLI (EEG-EEG)  
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
-{Distribuição de PLI (EEG-EEG) por banda. Embora a maior parte dos valores se concentre em torno de zero, algumas bandas (alpha e gamma) apresentam caudas mais extensas, indicando pares de canais com defasagem de fase mais consistente.}
+{Distribuição de PLI (EEG--EEG) por banda. Nota-se que a maior parte dos valores se concentra em torno de zero, sugerindo que, para a maioria dos pares de canais, a defasagem de fase não se mantém estável. Entretanto, as bandas \emph{alpha} e \emph{gamma} exibem caudas mais extensas, chegando a valores acima de 0,2 ou 0,3, o que indica a existência de alguns pares com sincronização de fase mais consistente. Esse contraste entre bandas mais lentas (delta, theta, beta) e as mais rápidas (alpha, gamma) reforça a hipótese de que certos ritmos corticais podem sustentar um \emph{phase-locking} mais robusto em estado de repouso.}
 {pli_eeg_eeg}
 
 No geral, observamos que:
 \begin{itemize}
-    \item \textbf{EEG-EEG (PLI)}: A distribuição apresenta variabilidade entre bandas, com algumas exibindo valores mais elevados (Figura~\ref{pli_eeg_eeg}).
-    \item \textbf{EEG-ECG (CF-PLM)}: Os valores geralmente se concentram próximos a zero, embora haja variações que indicam acoplamento \emph{cross-frequency} pontual (Figura~\ref{cfplm_eeg_ecg}).
+    \item \textbf{EEG--EEG (PLI)}: A distribuição exibe variabilidade entre as bandas. Enquanto a maioria dos valores se concentra próxima de zero (indicando baixa estabilidade de fase), algumas bandas -- sobretudo \emph{alpha} e \emph{gamma} -- apresentam caudas mais extensas, sugerindo pares de canais com maior \emph{phase-locking} (Figura~\ref{pli_eeg_eeg}).
+    \item \textbf{EEG--ECG (CF-PLM)}: A maior parte dos valores se acumula em torno de zero, evidenciando um acoplamento \textit{cross-frequency} tipicamente baixo entre o EEG e o ciclo cardíaco. Ainda assim, há um leve deslocamento em faixas mais lentas (especialmente \emph{delta} e \emph{theta}), o que indica a possibilidade de sincronia pontual em alguns pares (Figura~\ref{cfplm_eeg_ecg}).
 \end{itemize}
 
-Essas observações fornecem uma visão inicial do comportamento das métricas \textquotedblleft puras\textquotedblright de conectividade, servindo de base para a comparação entre as condições (Pós e Pré), que será apresentada a seguir.
+Essas observações fornecem uma visão inicial do comportamento das métricas ``puras'' de conectividade, servindo de base para a comparação entre as condições (Pós e Pré), que será apresentada a seguir.
 
 \section{Distribuição das Diferenças (\texttt{median\_diff})}
-
-Para avaliar o efeito da estimulação (cathodic versus sham), calculamos a diferença entre os valores medidos após a intervenção (Pós) e os valores obtidos antes (Pré). Essa diferença representa a mudança ocorrida na métrica mediana do índice específico, sendo positiva para aumentos e negativa para reduções:
+Para avaliar o efeito da estimulação \textit{cathodic} versus \textit{sham}, calculamos a diferença entre os valores medidos após a intervenção (Pós) e os valores obtidos antes (Pré). Essa diferença representa a mudança ocorrida na métrica mediana do índice específico, sendo positiva para aumentos e negativa para reduções:
 
 \[
-\texttt{median\_diff} = (\text{pós condição x}) - (\text{pré condição x})
+\texttt{median\_diff} = (\text{pós condição x}) - (\text{pré condição x}),
 \]
+o que visa isolar o efeito da intervenção, removendo variações comuns que estariam presentes independentemente da estimulação.
 
-Esse procedimento visa isolar o efeito da intervenção, removendo variações comuns que estariam presentes independentemente da estimulação.
+As distribuições dessas diferenças foram avaliadas por meio de histogramas com \textit{cross-frequency} (KDE) para as métricas utilizadas nesta análise (PLI para EEG--EEG e CF-PLM para EEG--ECG). Os resultados são apresentados nas Figuras~\ref{pli_freq_eeg_eeg} e~\ref{cf_plm_freq_eeg_ecg}.
 
-As distribuições das diferenças foram avaliadas por meio de histogramas com \emph{Kernel Density Estimation} (KDE) para as métricas utilizadas nesta análise (PLI para EEG-EEG e CF-PLM para EEG-ECG).
-
-Esses histogramas são apresentados nas Figuras~\ref{pli_freq_eeg_eeg} e~\ref{cf_plm_freq_eeg_ecg}:
-
-% Exemplo: PLI (EEG-EEG) Diferença
 \standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_PLI_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_EEG.png}
-{Distribuição da diferença da PLI (Pós -- Pré) em EEG-EEG, por faixa de frequência.}
+{Distribuição da diferença da PLI (Pós -- Pré) em EEG--EEG, por faixa de frequência.}
 {pli_freq_eeg_eeg}
 
 \standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_CF-PLM_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_ECG.png}
-{Distribuição da diferença da CF-PLM (Pós -- Pré) em EEG-ECG, por faixa de frequência.}
+{Distribuição da diferença da CF-PLM (Pós -- Pré) em EEG--ECG, por faixa de frequência.}
 {cf_plm_freq_eeg_ecg}
 
-Esses histogramas permitem visualizar como cada métrica (PLI ou CF-PLM) varia entre as condições Pós e Pré em diferentes faixas de frequência e fundamentam a escolha dos testes estatísticos, que serão discutidos no próximo capítulo.
+Na Figura \ref{pli_freq_eeg_eeg} (diferença da PLI em EEG--EEG), podemos observar:
+\begin{itemize}
+    \item \textbf{Alpha e Beta}: distribuições com picos relativamente bem-definidos próximos de zero, porém com caudas que se estendem para valores positivos e negativos. Isso indica que, embora a maioria dos pares de canais não apresente mudanças extremas de \emph{phase-locking}, há casos em que a PLI sofre variações mais intensas (tanto de aumento quanto de redução).
+    \item \textbf{Delta e Theta}: apresentam formatos mais “achatados” (\emph{platocúrticos}), com uma região larga de valores ao redor de zero em vez de um pico pontudo. Sugere-se, assim, que múltiplos pares sofrem pequenas variações dispersas, em vez de convergirem para um valor dominante.
+    \item \textbf{Gamma}: exibe uma curva um pouco mais pontuda, ainda que com assimetria leve. Isso pode significar que, em alguns pares, a diferença entre pós e pré se concentra de forma mais coesa em torno de um desvio particular (positivo ou negativo), enquanto a maioria dos pares permanece próxima de zero.
+\end{itemize}
+
+Já na Figura~\ref{cf_plm_freq_eeg_ecg} (diferença da CF-PLM em EEG--ECG), o comportamento difere:
+\begin{itemize}
+    \item \textbf{Gamma}: é a única banda que se aproxima de uma forma mais simétrica e quase gaussiana em torno de zero, indicando que os valores de diferença se distribuem de modo relativamente uniforme, com menor propensão a distorções ou caudas prolongadas.
+    \item \textbf{Delta, Alpha e Theta}: exibem curvas mais “achatadas”, sugerindo novamente distribuições \emph{platocúrticas}. O pico central menos pronunciado e a largura mais acentuada indicam variações difusas em torno de zero (seja aumento ou redução), sem um valor predominante.
+    \item \textbf{Beta}: apresenta uma assimetria mais clara (cauda se estendendo em uma das direções), apontando que uma fração dos pares EEG--ECG tende a exibir diferenças (Pós $-$ Pré) mais extremas, enquanto a maioria se mantém próxima de zero.
+\end{itemize}
+
+Esses perfis de dispersão são fundamentais para a escolha dos testes estatísticos, que será abordada no próximo capítulo, além de fornecerem pistas sobre como as diferentes faixas de frequência podem responder à neuromodulação em termos de sincronização de fase.
 
 \subsubsection{Exemplo Individual por Métrica e Banda}
-Para ilustrar de forma mais específica o comportamento das distribuições em um caso individual, a Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg} exibe a distribuição da diferença da métrica \texttt{median\_cf\_plm\_diff} (Pós -- Pré) para o atleta 4, na banda \emph{alpha}, em pares EEG-ECG. De forma semelhante, a Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg} apresenta a distribuição da diferença da métrica \texttt{median\_pli\_diff} para o mesmo atleta e banda, porém em pares EEG-EEG.
+Para ilustrar de forma mais específica o comportamento das distribuições em um caso individual, a Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg} exibe a diferença da métrica \texttt{median\_cf\_plm\_diff} (Pós -- Pré) para o atleta 4, na banda \emph{alpha}, considerando todos os pares EEG--ECG. Já a Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg} apresenta a diferença da \texttt{median\_pli\_diff} para o mesmo atleta e banda, mas agora em pares EEG--EEG.
 
 \standardfigure{figs/5_connectivity_metrics_individual_distribution/median_cf_plm_diff_athlete_4_alpha_EEG_ECG.png}
-{Distribuição da \texttt{median\_cf\_plm\_diff} (Pós -- Pré) para o atleta 4, banda alpha, em pares EEG-ECG.}
+{Distribuição da \texttt{median\_cf\_plm\_diff} (Pós -- Pré) para o atleta 4, banda \emph{alpha}, em pares EEG--ECG.}
 {median_cf_plm_diff_ath4_alpha_eeg_ecg}
 
 \standardfigure{figs/5_connectivity_metrics_individual_distribution/median_pli_diff_athlete_4_alpha_EEG_EEG.png}
-{Distribuição da \texttt{median\_pli\_diff} (Pós -- Pré) para o atleta 4, banda alpha, em pares EEG-EEG.}
+{Distribuição da \texttt{median\_pli\_diff} (Pós -- Pré) para o atleta 4, banda \emph{alpha}, em pares EEG--EEG.}
 {median_pli_diff_ath4_alpha_eeg_eeg}
 
-Essas figuras exemplificam como as diferenças entre as condições \emph{cathodic} (azul) e \emph{sham} (vermelho) podem se sobrepor ou divergir. Em alguns casos, a curva KDE de uma condição desloca-se para a direita (indicando um aumento geral da métrica após a estimulação) ou para a esquerda (indicando uma redução geral), enquanto em outros há significativa sobreposição, sugerindo pouca variação entre as condições. Embora não seja o foco principal deste estudo, essas figuras permitem explorar detalhadamente o comportamento das métricas, considerando separadamente cada atleta e cada banda de frequência. Isso oferece uma visão mais clara sobre a variabilidade intra e inter-sujeitos, bem como sobre a consistência dos efeitos observados. Posteriormente realizamos análises específicas por par de canal dentro de cada faixa de frequência, proporcionando uma avaliação mais detalhada dos efeitos significativos da intervenção.
+Nesses gráficos, cada curva KDE (azul para \textit{cathodic}, vermelha para \textit{sham}) reflete como os valores de diferença (Pós $-$ Pré) se distribuem entre todos os pares de canais daquele atleta e banda de frequência. Um deslocamento maior de uma curva em relação à outra indica uma tendência geral de aumento (deslocamento à direita) ou redução (deslocamento à esquerda) na métrica pós-estimulação, enquanto uma sobreposição acentuada sugere pouca variação entre as condições. 
+
+No exemplo da Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg}, observa-se que a curva azul (\textit{cathodic}) está levemente à direita da curva vermelha (\textit{sham}), indicando um ligeiro aumento na \texttt{median\_cf\_plm\_diff} para a maioria dos pares. Já na Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg}, as curvas mostram maior sobreposição, sugerindo que a diferença na \texttt{median\_pli\_diff} entre \textit{cathodic} e \textit{sham} é menos pronunciada.
+
+Embora não seja o foco principal deste estudo, a análise individual por atleta e banda oferece uma visão clara sobre a variabilidade intra e intersujeitos, além de evidenciar como a neuromodulação pode afetar a conectividade de modo heterogêneo. Posteriormente, analisamos cada par de canal em cada faixa de frequência, aprofundando a avaliação dos efeitos significativos da intervenção.
 
 \section{Verificação de Normalidade e Escolha do Teste Estatístico}
-
-Para determinar o tipo de teste estatístico mais adequado (paramétrico ou não-paramétrico), realizamos a verificação da normalidade das distribuições de interesse. Aplicamos os testes de Shapiro-Wilk e Kolmogorov-Smirnov para cada combinação de grupo de canais (EEG-EEG ou EEG-ECG) e faixa de frequência, tanto para as métricas de PLI quanto para as de CF-PLM.
+Para determinar o tipo de teste estatístico mais adequado (paramétrico ou não-paramétrico), realizamos a verificação da normalidade das distribuições de interesse. Aplicamos os testes de Shapiro-Wilk e Kolmogorov-Smirnov para cada combinação de grupo de canais (EEG--EEG ou EEG--ECG) e faixa de frequência, tanto para as métricas de PLI quanto para as de CF-PLM. 
+Além disso, considerando o grande número de observações em cada grupo, mesmo desvios leves podem resultar em p-valores extremamente baixos, justificando o uso de vários testes de normalidade para reforçar a robustez da análise.}
 
 \paragraph{Considerações:}
 \begin{itemize}
-    \item \textbf{Tamanho amostral:} Como dispomos de grande quantidade de observações após a agregação dos dados, mesmo desvios leves em relação à normalidade podem levar à rejeição da hipótese nula em testes de normalidade.
+    \item \textbf{Tamanho amostral:} Como dispomos de grande quantidade de observações após a agregação dos dados, mesmo desvios sutis em relação à normalidade podem levar à rejeição da hipótese nula nos testes de normalidade. 
+    Adicionalmente, aplicamos diversos testes (Anderson-Darling, D'Agostino, Jarque-Bera, Lilliefors) para abranger diferentes perspectivas de assimetria e curtose.}
     \item \textbf{Forma das distribuições:} Embora muitos histogramas apresentem uma simetria visual aparente, a análise considerando todos os atletas e condições agrupados revela que cada banda de frequência exibe um padrão próprio de distribuição. Isso sugere que, apesar da simetria, existem características distintas em cada banda, reforçando a importância de análises separadas por faixa de frequência para compreender melhor os efeitos da estimulação nas métricas de conectividade.
     \item \textbf{Interpretação:} Quando os valores de p na maioria das distribuições são inferiores a 0.05, adotamos testes não-paramétricos (como Wilcoxon signed-rank ou Mann-Whitney) para as análises de inferência.
 \end{itemize}
 
-Além desses testes de normalidade, avaliamos também as medidas de assimetria (\emph{skewness}) e curtose (\emph{kurtosis}) para confirmar a adequação de testes paramétricos ou reforçar o uso de métodos não-paramétricos. Com base nesses resultados, prosseguimos para as etapas de análise estatística.
+Além desses testes de normalidade, avaliamos também as medidas de assimetria (\emph{skewness}) e curtose (\emph{kurtosis}) para confirmar a adequação de testes paramétricos ou reforçar o uso de métodos não-paramétricos. 
+Observou-se que a remoção de outliers via Intervalo Interquartil (IQR) ou \textit{Empirical Cumulative Distribution-based Outlier Detection} (ECOD) reduziu a amplitude de variação em alguns casos, mas não eliminou a não-normalidade das distribuições, mantendo inviável o uso de testes paramétricos.
+
+Com base nesses resultados, prosseguimos para as etapas de análise estatística.
 
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
-
-Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Além dos testes de Shapiro-Wilk e Kolmogorov-Smirnov, utilizamos também Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Para avaliar o impacto de valores extremos, repetimos os testes antes e depois de remover outliers tanto pelo método do \emph{Interquartile Range} (IQR) quanto pelo \emph{Empirical Cumulative Distribution-based Outlier Detection} (ECOD).
+Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Além dos testes de Shapiro-Wilk e Kolmogorov-Smirnov, utilizamos também Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Para avaliar o impacto de valores extremos, repetimos os testes antes e depois de remover outliers tanto pelo método do IQR quanto pelo ECOD.
 
 \paragraph{Motivações e Procedimentos:}
 \begin{itemize}
-    \item \textbf{Objetivo:} Verificar se as distribuições das diferenças (Pós -- Pré) podem ser aproximadas por uma gaussiana e, em caso afirmativo, validar o uso de testes paramétricos.
+    \item \textbf{Objetivo:} Verificar se as distribuições das diferenças (Pós -- Pré) podem ser aproximadas por uma gaussiana e, em caso afirmativo, validar o uso de testes paramétricos. 
+    A confirmação de normalidade permitiria, por exemplo, empregar ANOVA ou t-test para investigar diferenças entre condições.}
     \item \textbf{Condução dos testes:} 
     \begin{itemize}
         \item Os dados foram segmentados pelo tipo de par de canais (\texttt{EEG\_EEG} ou \texttt{EEG\_ECG}) e a métrica de conectividade (PLI ou CF-PLM).
@@ -114,4 +129,6 @@ Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de 
 \end{itemize}
 
 \paragraph{Interpretação e Decisão Metodológica:}
-As distribuições analisadas mostraram desvios notáveis de normalidade em todos os cenários. Isso sugere que a aplicação de testes paramétricos (por exemplo, ANOVA e t-test) seria inadequada, pois pressupõe dados aproximadamente gaussianos. Assim, optamos por empregar métodos não-paramétricos de inferência (como Wilcoxon e Mann-Whitney) para comparar as diferenças (pós--pré) em ambas as condições (\emph{cathodic} e \emph{sham}). Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.
+As distribuições analisadas mostraram desvios notáveis de normalidade em todos os cenários. Isso sugere que a aplicação de testes paramétricos (por exemplo, ANOVA e t-test) seria inadequada, pois pressupõe dados aproximadamente gaussianos. 
+Portanto, considerando tanto a alta sensibilidade dos testes de normalidade quanto a permanência de assimetrias e curtoses mesmo após remoção de outliers, concluímos que a abordagem mais confiável seria a utilização de métodos não-paramétricos.
+Assim, optamos por empregar testes não-paramétricos de inferência (como Wilcoxon e Mann-Whitney) para comparar as diferenças (pós--pré) em ambas as condições \textit{cathodic} e \textit{sham}. Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.

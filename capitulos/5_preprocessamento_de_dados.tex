@@ -1,8 +1,7 @@
 \chapter{Pré-processamento de Dados}
 \label{chap:preprocessamento_de_dados}
-
 \section{Preparação dos Dados}
-Para este estudo, os dados foram coletados em sessões experimentais com atletas profissionais de basquetebol feminino, submetidas a duas condições: estimulação transcraniana por corrente contínua de alta definição (HD-tDCS) catódica e uma condição de controle (sham). Neste capítulo, descrevemos os procedimentos adotados para organizar, sincronizar e preparar os sinais de eletroencefalografia (EEG) e eletrocardiografia (ECG) para análise.
+Para este estudo, os dados foram coletados em sessões experimentais com atletas profissionais de basquetebol feminino, submetidas a duas condições: HD-tDCS catódica e uma condição de controle (\textit{sham}). Neste capítulo, descrevemos os procedimentos adotados para organizar, sincronizar e preparar os sinais de EEG e ECG para análise.
 
 \subsection{Organização Inicial dos Dados}
 Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a cada atleta e a cada condição experimental (\textit{pre\_sham}, \textit{post\_sham}, \textit{pre\_cathodic}, \textit{post\_cathodic}). Os sinais de EEG foram originalmente registrados a 1000 Hz, enquanto os sinais de ECG – obtidos a partir do EMG do músculo peitoral maior – foram registrados a 1111,11 Hz. Nesta etapa, os arquivos passaram por:
@@ -13,7 +12,6 @@ Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a
 \end{itemize}
 
 \subsection{Sincronização Temporal entre EEG e ECG}
-
 Devido à ausência de sincronização inicial nas gravações, foi necessário alinhar os sinais de EEG e ECG temporalmente. Para tanto, utilizando marcadores do período de repouso, foram realizados os seguintes procedimentos:
 
 \begin{itemize}
@@ -26,12 +24,11 @@ Essa abordagem garante que as análises se baseiem em um estado de repouso sincr
 
 \subsection{Estruturação dos Dados}
 Após a sincronização, os dados foram organizados para o processamento subsequente. Os sinais de EEG foram armazenados em formato FIF, preservando as informações dos canais e os metadados, enquanto os dados de ECG foram exportados em formato CSV.
-\section{Pré-processamento dos Sinais}
 
+\section{Pré-processamento dos Sinais}
 Esta seção descreve os procedimentos aplicados para garantir a qualidade dos sinais, abrangendo etapas de filtragem, remoção de artefatos e segmentação, com foco especial no processamento dos dados de EEG.
 
 \subsection{Pré-processamento do EEG}
-
 O processamento dos dados de EEG compreende duas etapas principais: a preparação dos dados brutos e a limpeza de artefatos utilizando técnicas de decomposição.
 
 \subsubsection{Filtragem, Reamostragem e Preparação dos Dados de EEG}
@@ -54,8 +51,7 @@ Para a preparação dos dados de EEG, foram realizadas as seguintes etapas:
 
 
 \subsubsection{Limpeza de Artefatos e Remoção de Componentes de Ruído (ICA)}
-
-Antes da aplicação da Análise de Componentes Independentes (ICA), foram identificados canais cujos sinais estavam significativamente comprometidos por ruído. Esses canais foram determinados por inspeção visual, considerando ruído excessivo, desvios severos da morfologia típica do EEG ou padrões incompatíveis com atividade neural esperada, sendo excluídos para evitar impactos negativos na separação dos componentes.
+Antes da aplicação da ICA, foram identificados canais cujos sinais estavam significativamente comprometidos por ruído. Esses canais foram determinados por inspeção visual, considerando ruído excessivo, desvios severos da morfologia típica do EEG ou padrões incompatíveis com atividade neural esperada, sendo excluídos para evitar impactos negativos na separação dos componentes.
 
 A seguir, foram adotados os seguintes passos para aplicação do ICA:
 \begin{itemize}
@@ -80,7 +76,6 @@ A seguir, foram adotados os seguintes passos para aplicação do ICA:
 
 \subsection{Pré-processamento do Sinal de ECG}
 \label{subsec:preprocess_ecg}
-
 O processamento do sinal de ECG teve como objetivo obter uma versão refinada do sinal, permitindo a detecção precisa dos picos R, a extração de informações de fase e a obtenção do ciclo cardíaco com base nos picos R. Este ciclo foi utilizado no cálculo de sincronicidade de fase. Para isso, os procedimentos foram organizados em três etapas principais: aquisição e segmentação, limpeza do sinal com detecção de picos e aplicação de filtros complementares.
 
 \subsubsection{Aquisição e Segmentação dos Dados de ECG}
@@ -101,11 +96,9 @@ O processamento do sinal de ECG teve como objetivo obter uma versão refinada do
     Esse ajuste garante a acurácia na identificação dos batimentos, evitando omissões e inclusões indevidas.
 \end{itemize}
 
-
 \standardfigure{figs/2_preprocessamento_ecg/1_Sinal_de_ECG_-_Picos_Detectados_zoom.png}
 {Exemplo de sinal de ECG com picos detectados. O sinal bruto (cinza) representa o sinal de EMG coletado, enquanto o sinal processado (azul) corresponde ao ECG filtrado, com os picos R marcados em vermelho.}
 {ecg_picos_detectados}
-
 
 \subsubsection{Aplicação de Filtros Complementares}
 Para refinar a definição dos eventos de pico R no ECG, foram aplicados filtros adicionais:
@@ -120,20 +113,17 @@ A combinação desses filtros resultou em um sinal final filtrado. A Figura~\ref
 {Exemplo de aplicação de filtros complementares ao sinal de ECG, destacando a morfologia dos picos R (em vermelho).}
 {ecg_filtros_aplicados}
 
-
 \subsubsection{Geração de Sinais Senoidais e Análise de Fase}
-
 Para viabilizar a análise de sincronização de fase entre os sinais de EEG e ECG, o sinal de ECG foi transformado em uma representação senoidal. Essa transformação apresenta diversos benefícios:
 \begin{itemize}
-    \item \textbf{Definição Clara do Ciclo Cardíaco:} Ao utilizar os R-peaks para delimitar cada ciclo, a conversão em uma onda senoidal permite definir de forma inequívoca o início e o fim do ciclo cardíaco, fornecendo um marcador preciso para segmentação dos períodos de interesse.
+    \item \textbf{Definição Clara do Ciclo Cardíaco:} Ao utilizar os picos R para delimitar cada ciclo, a conversão em uma onda senoidal permite definir de forma inequívoca o início e o fim do ciclo cardíaco, fornecendo um marcador preciso para segmentação dos períodos de interesse.
     \item \textbf{Extração Precisa da Fase:} Uma onda senoidal exibe uma variação linear de fase ao longo do tempo, o que facilita a extração da fase instantânea por meio da Transformada de Hilbert, proporcionando uma determinação robusta e consistente.
     \item \textbf{Facilitação da Análise de Sincronização:} A eficácia dos métodos baseados em fase depende de uma definição clara da fase dos sinais. A conversão do sinal de ECG para uma representação senoidal aprimora essa definição, permitindo que os algoritmos de análise captem com maior precisão a sincronização entre os ritmos neurais (EEG) e o ritmo cardíaco, reduzindo ambiguidades decorrentes de distorções na extração da fase.
     \item \textbf{Robustez à Variabilidade e Ruído:} A conversão do ECG, que apresenta picos acentuados e variabilidade, para uma forma senoidal completamente baseada no pico R suaviza essas irregularidades.
-    \item \textbf{Integração com a Análise de EEG:} Como os sinais de EEG são frequentemente filtrados para realçar componentes oscilatórios em bandas de frequência específicas, a padronização da representação do ECG permite uma comparação mais coerente entre os dois sinais. Essa abordagem pode facilitar a aplicação de métricas de sincronização e análise cross-frequency durante a investigação de possíveis interações entre ritmos cardíacos e cerebrais.
+    \item \textbf{Integração com a Análise de EEG:} Como os sinais de EEG são frequentemente filtrados para realçar componentes oscilatórios em bandas de frequência específicas, a padronização da representação do ECG permite uma comparação mais coerente entre os dois sinais. Essa abordagem pode facilitar a aplicação de métricas de sincronização e análise \textit{cross-frequency} durante a investigação de possíveis interações entre ritmos cardíacos e cerebrais.
 \end{itemize}
 
-Estudos como o de Mollakazemi et al. \cite{mollakazemi2021eeg} evidenciam que a segmentação do EEG em diferentes fases do ciclo cardíaco pode revelar interações EEG-ECG relevantes para a detecção de efeitos funcionais nos sinais cerebrais, particularmente no contexto da escuta musical. No entanto, esses autores utilizam índices baseados na complexidade espectral dos sinais, sem explorar diretamente métricas de sincronização de fase entre EEG e ECG. O presente estudo, por sua vez, investiga explicitamente essa interação entre ritmos cardíacos e neurais por meio de um método de \textit{cross-frequency coupling} (CFC), e mais especificamente \textit{Phase-Phase Coupling} (PPC), método este intitulado \textit{Cross-Frequency Phase Linearity Measurement} (CF-PLM). Além disso, avalia-se o impacto da neuromodulação (HD-tDCS) sobre essa conectividade, explorando potenciais modificações no travamento fásico entre EEG e ECG induzidas pela estimulação.
-
+Estudos como o de \citeonline{mollakazemi2021eeg} evidenciam que a segmentação do EEG em diferentes fases do ciclo cardíaco pode revelar interações EEG-ECG relevantes para a detecção de efeitos funcionais nos sinais cerebrais, particularmente no contexto da escuta musical. No entanto, esses autores utilizam índices baseados na complexidade espectral dos sinais, sem explorar diretamente métricas de sincronização de fase entre EEG e ECG. O presente estudo, por sua vez, investiga explicitamente essa interação entre ritmos cardíacos e neurais por meio de um método de \textit{cross-frequency coupling} (CFC), e mais especificamente \textit{Phase-Phase Coupling} (PPC), método este intitulado CF-PLM. Além disso, avalia-se o impacto da neuromodulação (HD-tDCS) sobre essa conectividade, explorando potenciais modificações no travamento fásico entre EEG e ECG induzidas pela estimulação.
 
 A Figura~\ref{fig:ecg_comparacao_fase} ilustra a comparação de fase entre o sinal de ECG filtrado (azul), o sinal senoidal gerado (verde) e um sinal simulado (vermelho), evidenciando a diferença entre o sinal de ECG limpo e o transformado em senoide, que é totalmente baseado nos picos R detectados.
 
@@ -141,21 +131,18 @@ A Figura~\ref{fig:ecg_comparacao_fase} ilustra a comparação de fase entre o si
 {Exemplo de comparação de fase entre o ECG filtrado (azul), o ECG senoidal (verde) e um sinal simulado (vermelho). A boa concordância entre as fases do ECG senoidal e da senoide simulada indica a consistência do procedimento de geração do sinal senoidal baseado em picos R e da extração de fase.}
 {ecg_comparacao_fase}
 
-
 Em suma, a transformação do ECG em um sinal senoidal não apenas define claramente o ciclo cardíaco, mas também possibilita a extração de uma fase contínua, essencial para a análise de sincronização de fase entre EEG e ECG utilizando métodos de extração de fase empregados neste estudo.
 
 \subsubsection{Estrutura do Dado Final e Armazenamento}
-
-O conjunto final de dados resultante do processamento do ECG foi estruturado em um DataFrame que integra as seguintes variáveis:
+O conjunto final de dados resultante do processamento do ECG foi estruturado em uma tabela que integra as seguintes variáveis:
 \begin{itemize}
     \item \textbf{Tempo:} Timestamps sincronizados.
     \item \textbf{Sinal Bruto (EMG):} Valor original do sinal.
     \item \textbf{Sinal Limpo (ECG):} Versão filtrada do sinal obtida na primeira etapa de limpeza, utilizando a biblioteca \textit{NeuroKit2}.
-    \item \textbf{Picos:} Indicador binário dos R-peaks detectados.
+    \item \textbf{Picos:} Indicador binário dos picos R detectados.
     \item \textbf{First Filtered:} Sinal obtido após a aplicação do filtro de janela (\(\pm50\) ms).
     \item \textbf{Final Filtered:} Sinal final obtido após a combinação dos filtros aplicados.
-    \item \textbf{ECG Senoidal:} Sinal senoidal derivado dos R-peaks.
+    \item \textbf{ECG Senoidal:} Sinal senoidal derivado dos picos R.
 \end{itemize}
 
-
-Este DataFrame foi exportado em formato CSV para facilitar o acesso e a análise subsequente dos dados.
+Esta tabela foi exportada em formato CSV para facilitar o acesso e a análise subsequente dos dados.
