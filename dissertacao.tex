@@ -67,6 +67,15 @@
     \end{figure}
 }
 
+\newcommand{\smallfigure}[3]{
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{#1}
+  \caption{\small #2}
+  \label{#3}
+  \end{figure}
+}
+
 % -----------------------------------------
 
 \begin{document}
@@ -157,7 +166,7 @@
   \item[$SZ(f)$] Densidade espectral de potência (PSD) do sinal \(z(t)\), em função da frequência \(f\).
   \item[$f_\Delta$] Diferença entre as frequências centrais dos sinais envolvidos no acoplamento cross-frequency.
   \item[$B$] Largura de banda utilizada para integrar a PSD na definição do índice CF-PLM.
-  \item[$\text{stat}$] Valor da estatística do teste Mann-Whitney U.
+  \item[$\text{stat}$] Valor da estatística do teste \textit{Mann-Whitney U}.
   \item[$n_{\text{cathodic}}$] Número de observações (amostras) na condição catódica.
   \item[$n_{\text{sham}}$] Número de observações (amostras) na condição \textit{sham}.
 \end{simbolos}

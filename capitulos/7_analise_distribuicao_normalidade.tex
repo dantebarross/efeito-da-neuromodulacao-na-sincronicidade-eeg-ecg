@@ -15,14 +15,14 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 % CF-PLM (EEG-ECG)  
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_CF-PLM_(EEG-ECG)_por_Banda.png}
-{Distribuição de CF-PLM (EEG--ECG) por banda. Observa-se que a maioria dos valores se concentra próximo de zero, indicando acoplamento \textit{cross-frequency} tipicamente baixo entre as oscilações cerebrais e o ritmo cardíaco. Ainda assim, as bandas \emph{delta} e \emph{theta} exibem picos levemente deslocados (em torno de 0,01--0,03), sugerindo que, em frequências mais lentas, o ECG e o EEG podem sincronizar-se de forma ligeiramente mais robusta. Em contrapartida, a banda \emph{gamma} atinge valores um pouco mais elevados, embora com densidade menor, o que indica a existência de alguns pares EEG--ECG com acoplamento mais pronunciado em frequências rápidas. No geral, esses resultados reforçam a predominância de valores muito baixos de CF-PLM entre ECG e EEG no estado de repouso, mas não descartam a ocorrência de sincronias pontuais em faixas específicas.}
+{Distribuição de CF-PLM (EEG--ECG) por banda. Observa-se que é praticamente inexistente valores muito próximos a zero. A maior parte encontra-se entre 0.05 e 0.20. A depender da banda de frequência analisada, é possível observar um deslocamento de seus dados em relação às demais. No geral, é possível observar que quanto mais rápidas as bandas de frequência (e.g. gamma), menores os valores de CF-PLM, e menos densos (curvas mais pontudas). Quanto mais lentas (e.g. delta), maiores os valores de CF-PLM, e mais densos (curvas menos pontudas).}
 {cfplm_eeg_ecg}
 
 % -----------------------------------------------------------------------------  
 % PLI (EEG-EEG)  
 % -----------------------------------------------------------------------------  
 \standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
-{Distribuição de PLI (EEG--EEG) por banda. Nota-se que a maior parte dos valores se concentra em torno de zero, sugerindo que, para a maioria dos pares de canais, a defasagem de fase não se mantém estável. Entretanto, as bandas \emph{alpha} e \emph{gamma} exibem caudas mais extensas, chegando a valores acima de 0,2 ou 0,3, o que indica a existência de alguns pares com sincronização de fase mais consistente. Esse contraste entre bandas mais lentas (delta, theta, beta) e as mais rápidas (alpha, gamma) reforça a hipótese de que certos ritmos corticais podem sustentar um \emph{phase-locking} mais robusto em estado de repouso.}
+{Distribuição de PLI (EEG–EEG) por banda. Nota-se uma clara concentração de valores próximos a zero em todas as bandas de frequência, com a maioria situada entre 0 e 0.2. As bandas rápidas (beta e gamma) apresentam curvas mais estreitas e concentradas perto de zero. Já as bandas mais lentas (delta, theta e alpha), embora também centradas próximo a zero, exibem caudas superiores maiores, especialmente a banda delta (a mais lenta) onde se destacam alguns valores próximos a 1 (excepcionalmente altos nesta distribuição).}
 {pli_eeg_eeg}
 
 No geral, observamos que:
@@ -51,7 +51,7 @@ As distribuições dessas diferenças foram avaliadas por meio de histogramas co
 {Distribuição da diferença da CF-PLM (Pós -- Pré) em EEG--ECG, por faixa de frequência.}
 {cf_plm_freq_eeg_ecg}
 
-Na Figura \ref{pli_freq_eeg_eeg} (diferença da PLI em EEG--EEG), podemos observar:
+Na Figura~\ref{pli_freq_eeg_eeg} (diferença da PLI em EEG--EEG), podemos observar:
 \begin{itemize}
     \item \textbf{Alpha e Beta}: distribuições com picos relativamente bem-definidos próximos de zero, porém com caudas que se estendem para valores positivos e negativos. Isso indica que, embora a maioria dos pares de canais não apresente mudanças extremas de \emph{phase-locking}, há casos em que a PLI sofre variações mais intensas (tanto de aumento quanto de redução).
     \item \textbf{Delta e Theta}: apresentam formatos mais “achatados” (\emph{platocúrticos}), com uma região larga de valores ao redor de zero em vez de um pico pontudo. Sugere-se, assim, que múltiplos pares sofrem pequenas variações dispersas, em vez de convergirem para um valor dominante.
@@ -93,16 +93,16 @@ Além disso, considerando o grande número de observações em cada grupo, mesmo
     \item \textbf{Tamanho amostral:} Como dispomos de grande quantidade de observações após a agregação dos dados, mesmo desvios sutis em relação à normalidade podem levar à rejeição da hipótese nula nos testes de normalidade. 
     Adicionalmente, aplicamos diversos testes (Anderson-Darling, D'Agostino, Jarque-Bera, Lilliefors) para abranger diferentes perspectivas de assimetria e curtose.}
     \item \textbf{Forma das distribuições:} Embora muitos histogramas apresentem uma simetria visual aparente, a análise considerando todos os atletas e condições agrupados revela que cada banda de frequência exibe um padrão próprio de distribuição. Isso sugere que, apesar da simetria, existem características distintas em cada banda, reforçando a importância de análises separadas por faixa de frequência para compreender melhor os efeitos da estimulação nas métricas de conectividade.
-    \item \textbf{Interpretação:} Quando os valores de p na maioria das distribuições são inferiores a 0.05, adotamos testes não-paramétricos (como Wilcoxon signed-rank ou Mann-Whitney) para as análises de inferência.
+    \item \textbf{Interpretação:} Quando os valores de p na maioria das distribuições são inferiores a 0.05, adotamos testes não-paramétricos (como \textit{Wilcoxon signed-rank} ou \textit{Mann-Whitney}) para as análises de inferência.
 \end{itemize}
 
 Além desses testes de normalidade, avaliamos também as medidas de assimetria (\emph{skewness}) e curtose (\emph{kurtosis}) para confirmar a adequação de testes paramétricos ou reforçar o uso de métodos não-paramétricos. 
-Observou-se que a remoção de outliers via Intervalo Interquartil (IQR) ou \textit{Empirical Cumulative Distribution-based Outlier Detection} (ECOD) reduziu a amplitude de variação em alguns casos, mas não eliminou a não-normalidade das distribuições, mantendo inviável o uso de testes paramétricos.
+Observou-se que a remoção de \texit{outliers} via Intervalo Interquartil (IQR) ou \textit{Empirical Cumulative Distribution-based Outlier Detection} (ECOD) reduziu a amplitude de variação em alguns casos, mas não eliminou a não-normalidade das distribuições, mantendo inviável o uso de testes paramétricos.
 
 Com base nesses resultados, prosseguimos para as etapas de análise estatística.
 
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
-Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Além dos testes de Shapiro-Wilk e Kolmogorov-Smirnov, utilizamos também Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Para avaliar o impacto de valores extremos, repetimos os testes antes e depois de remover outliers tanto pelo método do IQR quanto pelo ECOD.
+Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Além dos testes de Shapiro-Wilk e Kolmogorov-Smirnov, utilizamos também Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors. Para avaliar o impacto de valores extremos, repetimos os testes antes e depois de remover \texit{outliers} tanto pelo método do IQR quanto pelo ECOD.
 
 \paragraph{Motivações e Procedimentos:}
 \begin{itemize}
@@ -112,7 +112,7 @@ Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de 
     \begin{itemize}
         \item Os dados foram segmentados pelo tipo de par de canais (\texttt{EEG\_EEG} ou \texttt{EEG\_ECG}) e a métrica de conectividade (PLI ou CF-PLM).
         \item Avaliamos as faixas de frequência (delta, theta, alpha, beta, gamma), analisando se \texttt{(Pós -- Pré)} segue distribuição normal.
-        \item Fizemos comparações em três cenários: (i) dados originais, (ii) dados sem outliers detectados por IQR e (iii) dados sem outliers removidos por ECOD.
+        \item Fizemos comparações em três cenários: (i) dados originais, (ii) dados sem \texit{outliers} detectados por IQR e (iii) dados sem \texit{outliers} removidos por ECOD.
     \end{itemize}
 \end{itemize}
 
@@ -120,15 +120,15 @@ Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de 
 \begin{itemize}
     \item \textbf{Grupo EEG\_EEG:}
     \begin{itemize}
-        \item Para \texttt{median\_pli\_diff}, todos os testes (Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino, Jarque-Bera e Lilliefors) rejeitaram a hipótese de normalidade no conjunto original. Mesmo após remover aproximadamente 10\,\% de outliers via IQR ou 5\,\% via ECOD, as distribuições permaneceram distantes de uma forma gaussiana.
+        \item Para \texttt{median\_pli\_diff}, todos os testes (Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino, Jarque-Bera e Lilliefors) rejeitaram a hipótese de normalidade no conjunto original. Mesmo após remover aproximadamente 10\,\% de \texit{outliers} via IQR ou 5\,\% via ECOD, as distribuições permaneceram distantes de uma forma gaussiana.
     \end{itemize}
     \item \textbf{Grupo EEG\_ECG:}
     \begin{itemize}
-        \item Os resultados de \texttt{median\_cf\_plm\_diff} foram semelhantes: praticamente todas as combinações de testes indicaram rejeição da normalidade, tanto na base original quanto após filtrar outliers por IQR ou ECOD.
+        \item Os resultados de \texttt{median\_cf\_plm\_diff} foram semelhantes: praticamente todas as combinações de testes indicaram rejeição da normalidade, tanto na base original quanto após filtrar \texit{outliers} por IQR ou ECOD.
     \end{itemize}
 \end{itemize}
 
 \paragraph{Interpretação e Decisão Metodológica:}
 As distribuições analisadas mostraram desvios notáveis de normalidade em todos os cenários. Isso sugere que a aplicação de testes paramétricos (por exemplo, ANOVA e t-test) seria inadequada, pois pressupõe dados aproximadamente gaussianos. 
-Portanto, considerando tanto a alta sensibilidade dos testes de normalidade quanto a permanência de assimetrias e curtoses mesmo após remoção de outliers, concluímos que a abordagem mais confiável seria a utilização de métodos não-paramétricos.
-Assim, optamos por empregar testes não-paramétricos de inferência (como Wilcoxon e Mann-Whitney) para comparar as diferenças (pós--pré) em ambas as condições \textit{cathodic} e \textit{sham}. Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.
+Portanto, considerando tanto a alta sensibilidade dos testes de normalidade quanto a permanência de assimetrias e curtoses mesmo após remoção de \texit{outliers}, concluímos que a abordagem mais confiável seria a utilização de métodos não-paramétricos.
+Assim, optamos por empregar testes não-paramétricos de inferência (como \textit{Wilcoxon} e Mann-Whitney) para comparar as diferenças (pós--pré) em ambas as condições \textit{cathodic} e \textit{sham}. Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.

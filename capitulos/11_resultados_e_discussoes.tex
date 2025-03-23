@@ -11,12 +11,12 @@ A aplicação de métodos baseados na análise da fase (conforme detalhado no Ca
 Esses resultados corroboram a hipótese de que a intervenção neuromodulatória altera a dinâmica dos sistemas neural e cardiovascular, promovendo uma reorganização dos ritmos cerebrais e suas interações com processos fisiológicos.
 
 \section{Testes Estatísticos e Estimativas de Efeito}
-Como exposto no Capítulo \ref{chap:analise_estatistica_np}, a aplicação dos testes não paramétricos (Mann-Whitney U, Wilcoxon signed-rank e Kruskal-Wallis) demonstrou que:
+Como exposto no Capítulo \ref{chap:analise_estatistica_np}, a aplicação dos testes não paramétricos (\textit{Mann-Whitney U}, \textit{Wilcoxon signed-rank} e \textit{Kruskal-Wallis}) demonstrou que:
 \begin{itemize}
     \item Nos pares EEG--EEG, as diferenças (pós--pré) foram estatisticamente significativas nas bandas \emph{alpha}, \emph{delta}, \emph{gamma} e \emph{theta}, com a banda \emph{beta} apresentando uma tendência marginal.
-    \item Nos pares EEG--ECG, os testes indicaram diferenças significativas em bandas como \emph{alpha}, \emph{beta} e \emph{delta}. Embora o teste global (Kruskal-Wallis) tenha mostrado variações na sensibilidade, o teste de Wilcoxon reforçou a consistência das mudanças intraindividuais.
+    \item Nos pares EEG--ECG, os testes indicaram diferenças significativas em bandas como \emph{alpha}, \emph{beta} e \emph{delta}. Embora o teste global (\textit{Kruskal-Wallis}) tenha mostrado variações na sensibilidade, o teste de \textit{Wilcoxon} reforçou a consistência das mudanças intraindividuais.
 \end{itemize}
-Adicionalmente, as estimativas de tamanho de efeito (como o \emph{Wilcoxon Rank-Biserial Correlation}, Cohen's \emph{d} e Hedges' \emph{g}) sugerem efeitos de magnitude moderada a alta em determinadas faixas, reforçando que as alterações observadas são não somente estatisticamente significativas, mas também relevantes do ponto de vista funcional.
+Adicionalmente, as estimativas de tamanho de efeito (como o \textit{Wilcoxon Rank-Biserial Correlation}, \textit{Cohen's d} e \textit{Hedges' g}) sugerem efeitos de magnitude moderada a alta em determinadas faixas, reforçando que as alterações observadas são não somente estatisticamente significativas, mas também relevantes do ponto de vista funcional.
 
 \section{Análise de Rede e Conectividade Funcional}
 A visualização dos grafos de conectividade (conforme ilustrado no Capítulo \ref{chap:analise_de_rede}) permitiu identificar os padrões espaciais das conexões significativas:
@@ -24,14 +24,14 @@ A visualização dos grafos de conectividade (conforme ilustrado no Capítulo \r
     \item Os grafos baseados no PLI (EEG--EEG) revelaram que, na condição \emph{cathodic}, as conexões positivas (indicadas por valores de RBC $+1$) se distribuem de maneira contínua, especialmente na banda \emph{alpha}, com uma extensão que vai da região frontal até a occipital. Em contrapartida, na banda \emph{delta} predominam conexões negativas (RBC $-1$), sugerindo uma redução da sincronização em determinadas áreas.
     \item Nos grafos obtidos via CF-PLM (EEG--ECG), as conexões significativas foram invariavelmente positivas, indicando um aumento do acoplamento \emph{cross-frequency} sob a estimulação catódica.
 \end{itemize}
-A comparação entre as análises com e sem remoção de outliers demonstrou que os padrões gerais se mantêm, confirmando a robustez dos achados.
+A comparação entre as análises com e sem remoção de \texit{outliers} demonstrou que os padrões gerais se mantêm, confirmando a robustez dos achados.
 
 \section{Análise de Centralidade de Grafos}
 A análise de centralidade (Capítulo \ref{chap:analise_centralidade_de_grafos}) permitiu identificar os hubs e a hierarquia dos canais na rede:
 \begin{itemize}
-    \item Na banda \emph{alpha}, o canal \textbf{Fp2} destacou-se consistentemente como o nodo mais central, aparecendo com os maiores valores nas métricas de Betweenness, Degree e Eigenvector Centrality. Tal resultado sugere que \textbf{Fp2} desempenha um papel crucial na mediação da comunicação entre as regiões cerebrais.
+    \item Na banda \emph{alpha}, o canal \textbf{Fp2} destacou-se consistentemente como o nodo mais central, aparecendo com os maiores valores nas métricas de \textit{Betweenness}, \textit{Degree} e \textit{Eigenvector Centrality}. Tal resultado sugere que \textbf{Fp2} desempenha um papel crucial na mediação da comunicação entre as regiões cerebrais.
     \item Na banda \emph{beta}, canais como \textbf{TPP7h} e \textbf{F5} emergiram como hubs principais, refletindo uma reorganização da conectividade em frequências mais altas.
-    \item As bandas \emph{delta} e \emph{gamma} evidenciaram maior sensibilidade à remoção de outliers, embora a análise tenha apontado a relevância de regiões parietais e frontais, respectivamente.
+    \item As bandas \emph{delta} e \emph{gamma} evidenciaram maior sensibilidade à remoção de \texit{outliers}, embora a análise tenha apontado a relevância de regiões parietais e frontais, respectivamente.
 \end{itemize}
 Estes resultados enfatizam que a neuromodulação não só altera os níveis de sincronia, mas também modifica a topologia da rede, favorecendo a emergência de pontos de integração que podem ser fundamentais para a transmissão de informação.
 
@@ -46,7 +46,7 @@ Embora os resultados apresentados indiquem efeitos significativos da HD-tDCS cat
 \begin{itemize}
     \item \textbf{Procedimentos de Estimulação em Dias Diferentes:} As sessões de estimulação \emph{sham} e catódica foram realizadas em dias distintos, o que pode introduzir variáveis confundidoras (como variações no estado fisiológico, psicológico ou condições ambientais) que influenciam os resultados. Apesar dessa limitação, a robustez de um desenho experimental bem controlado e da análise estatística empregada (com testes não paramétricos e métodos de correção para comparações múltiplas) contribui para mitigar parte da variabilidade natural dos dados.
     
-    \item \textbf{Análise em Cenários com e sem Outliers:} Para reforçar a confiabilidade dos achados, as análises foram conduzidas em dois cenários: considerando e excluindo outliers. O pré-processamento cuidadoso dos dados de EEG – com filtragem rigorosa e avaliação dos componentes individuais via técnicas de ICA – buscou identificar e remover artefatos indesejáveis.
+    \item \textbf{Análise em Cenários com e sem \textit{Outliers}:} Para reforçar a confiabilidade dos achados, as análises foram conduzidas em dois cenários: considerando e excluindo \texit{outliers}. O pré-processamento cuidadoso dos dados de EEG – com filtragem rigorosa e avaliação dos componentes individuais via técnicas de ICA – buscou identificar e remover artefatos indesejáveis.
     
     \item \textbf{Acessibilidade da HD-tDCS:} Embora a \emph{HD-tDCS} proporcione uma estimulação mais focalizada, sua implementação requer equipamentos específicos e consideravelmente mais custoso, o que pode representar uma limitação para a reprodutibilidade do estudo em outros laboratórios. Em comparação com a tDCS clássica, a \emph{HD-tDCS} é menos acessível.
     
