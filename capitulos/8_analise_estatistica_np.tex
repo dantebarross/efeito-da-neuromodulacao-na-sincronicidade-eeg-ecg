@@ -1,6 +1,6 @@
 \chapter{Análise Estatística Não Paramétrica}
 \label{chap:analise_estatistica_np}
-Considerando que as distribuições das métricas de conectividade (diferença entre Pós e Pré) não se comportam de maneira normal (ver Capítulo~\ref{chap:analise_distribuicao_normalidade}), optamos por empregar testes estatísticos não paramétricos para comparar as condições de estimulação \textit{cathodic} versus \textit{sham}. Essa escolha evita pressupostos inadequados sobre a distribuição dos dados. Além da violação de normalidade, a presença de \texit{outliers} reforça a adoção de testes não paramétricos neste cenário de heterogeneidade amostral.
+Considerando que as distribuições das métricas de conectividade (diferença entre Pós e Pré) não se comportam de maneira normal (ver Capítulo~\ref{chap:analise_distribuicao_normalidade}), optamos por empregar testes estatísticos não paramétricos para comparar as condições de estimulação \textit{cathodic} versus \textit{sham}. Essa escolha evita pressupostos inadequados sobre a distribuição dos dados. Além da violação de normalidade, a presença de \textit{outliers} reforça a adoção de testes não paramétricos neste cenário de heterogeneidade amostral.
 
 Nesta etapa, foram aplicados os seguintes testes estatísticos não paramétricos:
 
@@ -15,13 +15,14 @@ Nesta etapa, foram aplicados os seguintes testes estatísticos não paramétrico
 Os testes foram realizados separadamente para cada uma das métricas de conectividade (\texttt{median\_plv\_diff}, \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}) e para os dois grupos de canais: \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Ressalta-se que, embora o código inclua procedimentos para remoção de dados nulos, na prática esses valores não estão presentes, servindo apenas para tratamento de exceções.
 
 \section{Resultados dos Testes}
-Nesta seção, comparamos as diferenças (pós -- pré) das métricas de conectividade entre as condições \textit{cathodic} e \textit{sham} por meio de três testes não-paramétricos: \textit{Mann-Whitney U}, \textit{Wilcoxon signed-rank} e \textit{Kruskal-Wallis}. Cada teste fornece uma perspectiva ligeiramente distinta sobre as diferenças entre os grupos de dados:
+Nesta seção, comparamos as diferenças (pós -- pré) das métricas de conectividade entre as condições \textit{cathodic} e \textit{sham} por meio de três testes não-paramétricos: \textit{Mann-Whitney U}, \textit{Wilcoxon signed-rank} e \textit{Kruskal-Wallis}. 
 
-\begin{itemize}
-  \item \textbf{\textit{Mann-Whitney U} (amostras independentes):} Avalia se as distribuições da métrica em \textit{cathodic} e \textit{sham} diferem de forma consistente em seus valores medianos, quando os grupos não são necessariamente pareados.
-  \item \textbf{\textit{Wilcoxon signed-rank} (amostras pareadas):} Verifica se há diferença na mesma variável entre dois estados para o \emph{mesmo} participante ou canal, isto é, um teste de antes e depois (pós -- pré) que controla variações intraindividuais.
-  \item \textbf{\textit{Kruskal-Wallis} (comparação de múltiplos grupos):} Geralmente utilizado para verificar se há diferença \emph{global} entre três ou mais grupos, mas aqui também se aplica a subdivisões (como faixas de frequência) para avaliar se alguma banda difere significativamente das demais.
-\end{itemize}
+\inputtable{tabelas/nonparametric_tests_results.tex}
+{Resultados dos testes de Kruskal-Wallis por banda de frequência}
+{kruskal_results}
+{Elaborado pelo autor (2025). Nota: * indica significância estatística (p < 0,025, corrigido por FDR-BH).}
+
+Como pode ser observado na Tabela~\ref{tab:kruskal_results}, diferenças significativas foram encontradas principalmente nas bandas delta (EEG-ECG: p = 7,62×10\textsuperscript{-28}, η = 0,164; EEG-EEG: p = 7,31×10\textsuperscript{-271}, η = 0,056) e gamma (EEG-ECG: p = 5,05×10\textsuperscript{-3}, η = 0,011; EEG-EEG: p = 5,25×10\textsuperscript{-190}, η = 0,039).
 
 \subsection{Métricas para \texttt{median\_pli\_diff}}
 
@@ -67,11 +68,11 @@ A aplicação conjunta de múltiplos testes (\textit{Mann-Whitney U}, \textit{Wi
 Por outro lado, os achados para as métricas de sincronização, em especial no contexto EEG–ECG, exibiram variações dependendo do teste estatístico e da faixa de frequência considerada. Esse fato indica que cada método (Mann–Whitney, \textit{Wilcoxon} ou Kruskal–Wallis) pode captar aspectos distintos dos dados ou apresentar sensibilidades diferentes à variabilidade intra e intersujeitos.
 
 \section{Detecção de \textit{Outliers}, Análise \textit{Bootstrap} e Correções para Comparações Múltiplas}
-Para avaliar o impacto dos pontos atípicos nas análises subsequentes, optamos por realizar uma etapa adicional de detecção e remoção de \texit{outliers} utilizando o método ECOD, especialmente adequado ao nosso conjunto de dados devido à sua natureza não paramétrica, identificando anomalias sem pressupor uma distribuição específica dos dados. Estudos demonstram que o ECOD supera diversas técnicas convencionais de detecção de \texit{outliers} em termos de acurácia e eficiência \cite{li2022ecod}.
+Para avaliar o impacto dos pontos atípicos nas análises subsequentes, optamos por realizar uma etapa adicional de detecção e remoção de \textit{outliers} utilizando o método ECOD, especialmente adequado ao nosso conjunto de dados devido à sua natureza não paramétrica, identificando anomalias sem pressupor uma distribuição específica dos dados. Estudos demonstram que o ECOD supera diversas técnicas convencionais de detecção de \textit{outliers} em termos de acurácia e eficiência \cite{li2022ecod}.
 
-Aplicamos o ECOD considerando as métricas \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, aproximadamente 5,00\% dos dados foram identificados como \texit{outliers} e removidos.
+Aplicamos o ECOD considerando as métricas \texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, aproximadamente 5,00\% dos dados foram identificados como \textit{outliers} e removidos.
 
-Posteriormente, implementamos um pipeline de análise baseado em \textit{Bootstrap} acelerado por placa de vídeo (GPU) para o cálculo de intervalos de confiança \textit{Bias-Corrected and Accelerated} (BCa). Esse método é particularmente robusto, pois ajusta tanto o viés quanto a aceleração da distribuição \textit{Bootstrap}, permitindo capturar assimetrias e a influência residual de \texit{outliers} nos dados. Embora computacionalmente custoso, o método BCa é amplamente reconhecido como uma das abordagens mais precisas para a estimação de intervalos de confiança em situações onde os pressupostos de normalidade não são atendidos. Optamos por esse método em detrimento de outras técnicas devido à sua capacidade de corrigir distorções na distribuição da estatística estimada.
+Posteriormente, implementamos um pipeline de análise baseado em \textit{Bootstrap} acelerado por placa de vídeo (GPU) para o cálculo de intervalos de confiança \textit{Bias-Corrected and Accelerated} (BCa). Esse método é particularmente robusto, pois ajusta tanto o viés quanto a aceleração da distribuição \textit{Bootstrap}, permitindo capturar assimetrias e a influência residual de \textit{outliers} nos dados. Embora computacionalmente custoso, o método BCa é amplamente reconhecido como uma das abordagens mais precisas para a estimação de intervalos de confiança em situações onde os pressupostos de normalidade não são atendidos. Optamos por esse método em detrimento de outras técnicas devido à sua capacidade de corrigir distorções na distribuição da estatística estimada.
 
 Para avaliar a significância estatística após múltiplas comparações, utilizamos a função \texttt{multipletests} da biblioteca Python \texttt{statsmodels} com o método \textit{Bonferroni}. Este procedimento ajusta os p-valores originais multiplicando-os pelo número total de comparações realizadas, tornando o critério de significância mais conservador e minimizando o risco de falsos positivos. Dessa forma, efeitos são considerados significativos quando o p-valor corrigido por \textit{Bonferroni} for inferior a 0,05.
 
@@ -90,11 +91,38 @@ Em resumo, nossa abordagem compreende as seguintes etapas:
     \item \textbf{Testes Não Paramétricos e Correção para Comparações Múltiplas:} Aplicamos testes não paramétricos, como o teste de \textit{Wilcoxon} para dados emparelhados, e corrigimos os p-valores utilizando o método \textit{Bonferroni} (além de outras correções complementares), minimizando o risco de erros do tipo I.
 \end{enumerate}
 
-Os resultados deste processamento serão apresentados em detalhes nos anexos, permitindo a comparação dos resultados obtidos com e sem a remoção de \texit{outliers}, bem como a análise dos diferentes tamanhos de efeito e métodos de correção.
+Devido ao grande número de comparações realizadas e à necessidade de correção para múltiplos testes, apresentamos aqui um sumário estatístico dos resultados significativos. As tabelas completas com todos os resultados individuais estão disponíveis publicamente em nosso repositório GitHub \cite{barros2025repository} (\url{https://github.com/dantebarross/efeito-da-neuromodulacao-na-sincronicidade-eeg-ecg}). As Tabelas \ref{tab:summary_eeg_eeg_with} e \ref{tab:summary_eeg_eeg_without} apresentam os resultados sumarizados para as comparações EEG-EEG, com e sem outliers, respectivamente. Já as Tabelas \ref{tab:summary_eeg_ecg_with} e \ref{tab:summary_eeg_ecg_without} mostram os resultados para as comparações EEG-ECG.
+
+\inputtable{tabelas/summary_eeg_eeg_with_outliers.tex}
+{Sumário estatístico das comparações EEG-EEG com outliers}
+{summary_eeg_eeg_with}
+{Elaborado pelo autor}
+
+\inputtable{tabelas/summary_eeg_eeg_without_outliers.tex}
+{Sumário estatístico das comparações EEG-EEG sem outliers}
+{summary_eeg_eeg_without}
+{Elaborado pelo autor}
+
+Para cada banda de frequência, as tabelas apresentam: o número de comparações significativas (n\_significant), a média (mean\_diff) e desvio padrão (std\_diff) das diferenças, a mediana das diferenças (median\_diff), o g de Hedges médio e mediano (mean\_hedges\_g, median\_hedges\_g), a correlação biserial de postos média e mediana (mean\_rbc, median\_rbc), os limites inferior e superior do intervalo de confiança (ci\_lower, ci\_upper) e a porcentagem de diferenças positivas (percent\_positive).
+
+\inputtable{tabelas/summary_eeg_ecg_with_outliers.tex}
+{Sumário estatístico das comparações EEG-ECG com outliers}
+{summary_eeg_ecg_with}
+{Elaborado pelo autor}
+
+\inputtable{tabelas/summary_eeg_ecg_without_outliers.tex}
+{Sumário estatístico das comparações EEG-ECG sem outliers}
+{summary_eeg_ecg_without}
+{Elaborado pelo autor}
+
+Na seção seguinte, fornecemos uma análise mais detalhada através de visualizações das distribuições dos tamanhos de efeito (\textit{Cohen's d}, \textit{Hedges' g} e \textit{Wilcoxon RBC}) e dos valores-p.
 
 \section{Distribuição de Tamanhos de Efeito e p-valores}
 \label{sec:effect_size_distribution}
-Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (\textit{Cohen's d}, \textit{Hedges' g} e \textit{Wilcoxon RBC}) e dos valores-p (brutos e corrigidos por \textit{Bonferroni}) para as análises de PLI (EEG-EEG) e CF-PLM (EEG-ECG), considerando cenários com e sem \texit{outliers}. A Figura~\ref{fig:effectsizehist_all} ilustra, em quatro subfiguras, como essas métricas se distribuem ao longo dos pares de canal e faixas de frequência analisados.
+Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (\textit{Cohen's d}, \textit{Hedges' g} e \textit{Wilcoxon RBC}) e dos valores-p (brutos e corrigidos por \textit{Bonferroni}) para as análises de PLI (EEG-EEG) e CF-PLM (EEG-ECG), considerando cenários com e sem \textit{outliers}. 
+
+
+A Figura~\ref{fig:effectsizehist_all} ilustra, em quatro subfiguras, como essas métricas se distribuem ao longo dos pares de canal e faixas de frequência analisados.
 
 \begin{figure}[htb]
     \centering
@@ -117,7 +145,7 @@ Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (\
     \subfloat[Com Outliers -- CF-PLM (EEG-ECG)]{
         \includegraphics[width=0.45\textwidth]{figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_CFPLM_EEGECG_Com_Outliers.png}
     }
-    \caption[Distribuições de tamanhos de efeito e valores-p]{Distribuição das métricas de tamanho de efeito (\textit{Cohen's d}, \textit{Hedges' g} e \textit{Wilcoxon RBC}) e dos valores-p (brutos e corrigidos por \textit{Bonferroni}) para PLI (EEG-EEG) e CF-PLM (EEG-ECG), em cenários com e sem \texit{outliers}. O \textit{Wilcoxon RBC} e o p-valor corrigido por \textit{Bonferroni} (vertical tracejada vermelha em $p=0.05$) foram escolhidos como as métricas para representar, respectivamente, o tamanho do efeito e a significância estatística nas análises subsequentes.}
+    \caption[Distribuições de tamanhos de efeito e valores-p]{Distribuição das métricas de tamanho de efeito (\textit{Cohen's d}, \textit{Hedges' g} e \textit{Wilcoxon RBC}) e dos valores-p (brutos e corrigidos por \textit{Bonferroni}) para PLI (EEG-EEG) e CF-PLM (EEG-ECG), em cenários com e sem \textit{outliers}. O \textit{Wilcoxon RBC} e o p-valor corrigido por \textit{Bonferroni} (vertical tracejada vermelha em $p=0.05$) foram escolhidos como as métricas para representar, respectivamente, o tamanho do efeito e a significância estatística nas análises subsequentes.}
     \label{fig:effectsizehist_all}    
 \end{figure}
 
@@ -132,7 +160,7 @@ Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (\
 \paragraph{\textit{Wilcoxon Rank-Biserial Correlation} (\textit{Wilcoxon RBC})}
 \begin{itemize}
     \item O \textit{Wilcoxon RBC} é derivado do teste não paramétrico de \textit{Wilcoxon} e reflete a correlação de postos entre as condições, tipicamente variando de -1 a +1.
-    \item Por não exigir pressupostos de normalidade, o RBC se mostra mais robusto no tratamento de dados heterogêneos e na presença de \texit{outliers}.
+    \item Por não exigir pressupostos de normalidade, o RBC se mostra mais robusto no tratamento de dados heterogêneos e na presença de \textit{outliers}.
     \item Valores acima de 0.3 ou abaixo de -0.3 sugerem um efeito moderado; valores acima de 0.5 (ou abaixo de -0.5) indicam um efeito alto, e quando se aproximam de ±1, as condições diferem de forma quase absoluta.
     \item Devido a essa robustez, o RBC foi escolhido como nosso principal indicador de tamanho de efeito nas análises subsequentes.
 \end{itemize}
@@ -146,13 +174,13 @@ Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (\
 
 \subsection{Comparação Entre Cenários (Com e Sem Outliers)}
 \begin{itemize}
-    \item \textbf{Impacto da Remoção de \textit{Outliers}:} De modo geral, a remoção de \texit{outliers} reduz ligeiramente o número de casos significativos em EEG-EEG, mas não altera substancialmente a distribuição dos tamanhos de efeito ou dos p-valores. No caso do EEG-ECG, a diferença entre manter ou remover \texit{outliers} é mínima, indicando que a presença de valores extremos tem pouco impacto na detecção de efeitos significativos nesse grupo.
+    \item \textbf{Impacto da Remoção de \textit{Outliers}:} De modo geral, a remoção de \textit{outliers} reduz ligeiramente o número de casos significativos em EEG-EEG, mas não altera substancialmente a distribuição dos tamanhos de efeito ou dos p-valores. No caso do EEG-ECG, a diferença entre manter ou remover \textit{outliers} é mínima, indicando que a presença de valores extremos tem pouco impacto na detecção de efeitos significativos nesse grupo.
 
-    \item \textbf{PLI (EEG-EEG):} O número de comparações realizadas no cenário EEG-EEG é consideravelmente maior, pois cada um dos 61 canais de EEG forma pares com os demais canais EEG. Isso resulta em \( 61 \times 60 \) pares únicos por banda de frequência. Com 5 bandas de frequência e 6 atletas, obtemos um total de aproximadamente \( 109.800 \) comparações. Entre essas, foram identificados entre \( 363 \) (com remoção de \texit{outliers}) e \( 378 \) (sem remoção de \texit{outliers}) casos significativos.
+    \item \textbf{PLI (EEG-EEG):} O número de comparações realizadas no cenário EEG-EEG é consideravelmente maior, pois cada um dos 61 canais de EEG forma pares com os demais canais EEG. Isso resulta em \( 61 \times 60 \) pares únicos por banda de frequência. Com 5 bandas de frequência e 6 atletas, obtemos um total de aproximadamente \( 109.800 \) comparações. Entre essas, foram identificados entre \( 363 \) (com remoção de \textit{outliers}) e \( 378 \) (sem remoção de \textit{outliers}) casos significativos.
 
     \item \textbf{CF-PLM (EEG-ECG):} Em contraste, no cenário EEG-ECG, cada um dos 61 canais EEG é comparado a um único canal de ECG, resultando em \( 61 \times 1 \) pares por banda de frequência. Assim, considerando as mesmas 5 bandas e 6 atletas, temos um total de \( 3.660 \) comparações, o que representa uma redução drástica na quantidade de testes estatísticos realizados em relação ao EEG-EEG. Como esperado, isso levou à detecção de um número muito menor de casos significativos, totalizando apenas \( 11 \).
 
-    \item \textbf{Robustez do RBC e do \textit{Bonferroni}:} Independentemente da remoção de \texit{outliers}, as comparações que apresentam valores elevados de \textit{Wilcoxon RBC} e p-valores corrigidos abaixo de \( 0.05 \) permanecem confiáveis. Isso reforça a utilidade dessas métricas como principais indicadores da magnitude e significância estatística dos efeitos encontrados, independentemente da heterogeneidade dos dados.
+    \item \textbf{Robustez do RBC e do \textit{Bonferroni}:} Independentemente da remoção de \textit{outliers}, as comparações que apresentam valores elevados de \textit{Wilcoxon RBC} e p-valores corrigidos abaixo de \( 0.05 \) permanecem confiáveis. Isso reforça a utilidade dessas métricas como principais indicadores da magnitude e significância estatística dos efeitos encontrados, independentemente da heterogeneidade dos dados.
 \end{itemize}
 
 Em resumo, os histogramas de \textit{Wilcoxon RBC} (indicador de tamanho de efeito) e os p-valores corrigidos por \textit{Bonferroni} (indicador de significância estatística) evidenciam quais pares de canais apresentam diferenças robustas entre as condições \textit{cathodic} e \textit{sham}. Embora \textit{Cohen's d} e \textit{Hedges' g} também sejam úteis para quantificar a magnitude do efeito, enfatizamos o RBC devido à sua robustez, natureza não paramétrica e resiliência à heterogeneidade dos dados. Esses resultados fornecem uma base sólida para as análises topográficas e de rede apresentadas nas seções seguintes.
@@ -168,3 +196,4 @@ Em resumo, os histogramas de \textit{Wilcoxon RBC} (indicador de tamanho de efei
 \end{itemize}
 
 Dessa forma, a análise dos histogramas de tamanhos de efeito e dos p-valores fornece um panorama inicial detalhado. Embora a maioria dos pares de canais não apresente diferenças significativas, observa-se um conjunto de casos com efeitos inicialmente moderados ou altos, mas que, após a correção para múltiplas comparações, se restringem predominantemente aos valores de efeito mais elevados. Esses achados servem como base para investigações posteriores, focadas na identificação de padrões espaciais e espectrais na neuromodulação, contribuindo para uma compreensão mais aprofundada das interações entre EEG e ECG nas condições experimentais avaliadas.
+

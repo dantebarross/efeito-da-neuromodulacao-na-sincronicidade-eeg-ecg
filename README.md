@@ -1,4 +1,6 @@
-# Efeito da Neuromodulação Não Invasiva na Sincronicidade Cérebro-Corpo em Atletas do Basquetebol
+# Effects of Non-Invasive Neuromodulation on Brain-Body Synchronicity in Basketball Athletes
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15282796.svg)](https://doi.org/10.5281/zenodo.15282796)
 
 ## Author
 Danilo Cavalcante Brambila de Barros
@@ -38,21 +40,26 @@ The project is structured into several chapters and sections, including:
   - Normality Distribution Analysis
   - Non-parametric Statistical Analysis
 
-## Files and Directories
-- **dissertacao.tex**: Main LaTeX document.
-- **bibliografia.bib**: Bibliography file.
-- **capitulos/**: Directory containing individual chapter files.
-- **extras/**: Directory containing additional configuration files.
-- **figs/**: Directory containing figures and images.
-- **manuais/**: Directory containing manuals and references.
-- **postextual/**: Directory containing post-textual elements like appendices and annexes.
-- **pretextual/**: Directory containing pre-textual elements like cover, acknowledgments, and abstracts.
+## Reproducibility
+This repository contains all materials necessary to reproduce the dissertation, including:
+- LaTeX source files
+- Analysis codes
+- Figures and plots
+- Complete results tables
+- Data processing scripts
+
+The complete statistical results tables can be found in `[path-to-tables]`.
 
 ## How to Compile
 To compile the LaTeX document, use the following command:
 ```sh
 pdflatex dissertacao.tex
 ```
+
+## How to Cite
+If you use any part of this work, please cite:
+
+Barros, D. C. B. (2025). Effects of Non-Invasive Neuromodulation on Brain-Body Synchronicity in Basketball Athletes. (Master's Thesis). Federal University of ABC, São Bernardo do Campo, SP, Brazil. https://doi.org/10.5281/zenodo.15282796
 
 ## License
 This project is licensed under the MIT License.
