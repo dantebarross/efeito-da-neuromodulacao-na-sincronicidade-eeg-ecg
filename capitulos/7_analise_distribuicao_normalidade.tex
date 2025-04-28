@@ -106,10 +106,15 @@ Com base nesses resultados, prosseguimos para as etapas de análise estatística
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
 Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\texttt{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. A Tabela~\ref{tab:normality_tests} apresenta os resultados completos dos testes de normalidade, incluindo Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors, tanto para os dados originais quanto após a remoção de \textit{outliers} pelos métodos IQR e ECOD.
 
-\inputtable{tabelas/normality_test_results.tex}
-{Resultados dos testes de normalidade para as métricas de conectividade}
-{normality_tests}
-{Fonte: Elaborado pelo autor.}
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados dos testes de normalidade para as métricas de conectividade}
+    \label{tab:normality_tests}
+    \begin{adjustbox}{max width=1.2\textwidth}
+        \input{tabelas/normality_test_results.tex}
+    \end{adjustbox}
+    \source{Fonte: Elaborado pelo autor.}
+\end{table}
 
 \paragraph{Interpretação dos Resultados:}
 Com base nos resultados apresentados na Tabela~\ref{tab:normality_tests}, observamos que:

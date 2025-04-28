@@ -51,8 +51,11 @@ This repository contains all materials necessary to reproduce the dissertation, 
 The complete statistical results tables can be found in `[path-to-tables]`.
 
 ## How to Compile
-To compile the LaTeX document, use the following command:
+To compile the LaTeX document, use the following commands (it's called multiple times to force the compilation):
 ```sh
+pdflatex dissertacao.tex
+bibtex dissertacao
+pdflatex dissertacao.tex
 pdflatex dissertacao.tex
 ```
 
