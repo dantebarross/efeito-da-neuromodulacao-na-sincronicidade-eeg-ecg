@@ -12,7 +12,7 @@ Foram selecionadas atletas de elite, caracterizadas por:
     \item Ausência de doenças ou lesões que pudessem interferir na execução do protocolo.
 \end{itemize}
 
-A amostra foi detalhadamente caracterizada por meio da mensuração de parâmetros como massa corporal e estatura, além da coleta de informações pessoais e esportivas (nome, data de nascimento, categoria, experiência esportiva, posição no time, fase da temporada, membro dominante e estilo de arremesso). Devido a problemas técnicos durante a coleta, apenas os dados de 6 atletas foram incluídos nas análises. O número de sujeitos reflete não apenas a disponibilidade das participantes, mas também a especificidade do grupo estudado – atletas de basquetebol feminino de elite da mesma equipe – e a complexidade dos protocolos, que exigem múltiplas visitas ao laboratório e a sincronização de diversos equipamentos.
+A amostra foi detalhadamente caracterizada por meio da mensuração de parâmetros como massa corporal e estatura, além da coleta de informações pessoais e esportivas (nome, data de nascimento, categoria, experiência esportiva, posição no time, fase da temporada, membro dominante e estilo de arremesso). Devido a problemas técnicos durante a coleta, apenas os dados de 6 atletas foram incluídos nas análises. O número de sujeitos reflete não apenas a disponibilidade das participantes, mas também a especificidade do grupo estudado (atletas de basquetebol feminino de elite da mesma equipe) e a complexidade dos protocolos, que exigem múltiplas visitas ao laboratório e a sincronização de diversos equipamentos.
 
 \section{Delineamento Experimental}
 O estudo utilizou um delineamento experimental randomizado, cruzado e duplo-cego. Cada participante foi submetida às condições catódica (HD-tDCS) e \textit{sham} em momentos distintos, e a análise foi realizada considerando os pares de canais de forma agrupada.
@@ -29,8 +29,9 @@ As sessões experimentais seguiram a seguinte estrutura:
     \item \textbf{Sessões 2 e 3:} Execução do protocolo experimental, na qual cada atleta realizou 100 arremessos pré-estimulação e 100 arremessos pós-estimulação, totalizando 200 arremessos por sessão (ou 400 no total).
 \end{itemize}
 
-
 Para garantir a padronização das condições experimentais, todas as sessões foram realizadas no mesmo local e horário habitual de treinamento das atletas, sob condições controladas de iluminação, temperatura e ruído. A ordem das condições (HD-tDCS ativa e \textit{sham}) foi definida aleatoriamente para cada participante por meio de um gerador de números aleatórios, assegurando imparcialidade no delineamento cruzado. Antes de cada sessão, os equipamentos de EEG e ECG foram calibrados e tiveram suas impedâncias verificadas, garantindo a qualidade dos registros. As participantes foram continuamente monitoradas quanto a possíveis efeitos adversos ou desconfortos decorrentes da estimulação, e os dados foram armazenados digitalmente com protocolos rigorosos de backup e verificação de integridade, assegurando sua reprodutibilidade e confiabilidade para as análises subsequentes.
+
+Em cada sessão experimental, registramos EEG/ECG em repouso por 5 min antes (pré) e 5 min após (pós) a aplicação da HD-tDCS (ativa ou sham). Todas as análises subsequentes foram realizadas sobre a diferença pós-pré em cada condição, de modo a quantificar explicitamente o efeito da estimulação catódica em relação à sham.
 
 \section{Questionários e Escalas}
 Durante a coleta dos dados experimentais, foram aplicados questionários e escalas com o intuito de avaliar aspectos subjetivos relacionados ao estado psicológico e fisiológico das atletas. Embora esses instrumentos tenham sido incluídos no protocolo inicial com a finalidade de fornecer uma visão complementar às medidas neurofisiológicas, os dados obtidos não foram utilizados nas análises estatísticas ou nos resultados apresentados neste estudo. Os instrumentos aplicados foram:
@@ -71,8 +72,11 @@ Os sinais de EEG e EMG foram submetidos a etapas de pré-processamento que inclu
 Para possibilitar uma análise integrada, os sinais de EEG e ECG foram alinhados temporalmente, assegurando que as medidas extraídas estivessem sincronizadas e pudessem ser comparadas corretamente.
 
 \subsubsection{Cálculo de Sincronização Funcional}
-A sincronização entre os sinais foi avaliada utilizando três métricas. O \textit{Phase Lag Index} (PLV) e o \textit{Phase Lag Index} (PLI) foram aplicados para quantificar a conectividade na mesma faixa de frequência, enquanto o \textit{Cross-Frequency Phase Linearity Measurement} (CF-PLM) foi empregada para avaliar o acoplamento entre frequências distintas. Antes de sua aplicação nos dados experimentais, esses métodos foram testados e validados utilizando sinais simulados.
+A sincronização entre os sinais foi avaliada utilizando três métricas. O \textit{Phase Lock Value} (PLV) e o \textit{Phase Lag Index} (PLI) foram aplicados para quantificar a conectividade na mesma faixa de frequência, enquanto o \textit{Cross-Frequency Phase Linearity Measurement} (CF-PLM) foi empregada para avaliar o acoplamento entre frequências distintas. Antes de sua aplicação nos dados experimentais, esses métodos foram testados e validados utilizando sinais simulados.
 
-\subsubsection{Análise Estatística} Para investigar as diferenças entre as condições experimentais, aplicamos métodos estatísticos robustos, incluindo testes de normalidade, testes não paramétricos e correções para comparações múltiplas. Adicionalmente, foram utilizadas medidas de centralidade em redes para avaliar a conectividade funcional entre diferentes regiões corticais. Os padrões de conectividade foram representados por meio de gráficos e redes, facilitando a visualização e a interpretação dos resultados.
+\subsubsection{Análise Estatística} 
+Para cada par de canais e para cada condição (catódica e sham), computamos a diferença de sincronização \(\Delta = \text{valor}_{\text{pós}} - \text{valor}_{\text{pré}}\). Essas diferenças foram então submetidas aos testes estatísticos.
+
+Para investigar as diferenças entre as condições experimentais, aplicamos métodos estatísticos robustos, incluindo testes de normalidade, testes não paramétricos e correções para comparações múltiplas. Adicionalmente, foram utilizadas medidas de centralidade em redes para avaliar a conectividade funcional entre diferentes regiões corticais. Os padrões de conectividade foram representados por meio de gráficos e redes, facilitando a visualização e a interpretação dos resultados.
 
 Esse fluxo sistemático permitiu uma abordagem rigorosa para explorar a sincronicidade cerebral e avaliar o impacto da estimulação transcraniana na conectividade neural das atletas em estado de repouso.

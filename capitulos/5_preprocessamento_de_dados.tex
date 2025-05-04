@@ -4,7 +4,7 @@
 Para este estudo, os dados foram coletados em sessões experimentais com atletas profissionais de basquetebol feminino, submetidas a duas condições: HD-tDCS catódica e uma condição de controle (\textit{sham}). Neste capítulo, descrevemos os procedimentos adotados para organizar, sincronizar e preparar os sinais de EEG e ECG para análise.
 
 \subsection{Organização Inicial dos Dados}
-Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a cada atleta e a cada condição experimental (\textit{pre\_sham}, \textit{post\_sham}, \textit{pre\_cathodic}, \textit{post\_cathodic}). Os sinais de EEG foram originalmente registrados a 1000 Hz, enquanto os sinais de ECG – obtidos a partir do EMG do músculo peitoral maior – foram registrados a 1111,11 Hz. Nesta etapa, os arquivos passaram por:
+Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a cada atleta e a cada condição experimental (\textit{pre\_sham}, \textit{post\_sham}, \textit{pre\_cathodic}, \textit{post\_cathodic}). Os sinais de EEG foram originalmente registrados a 1000 Hz, enquanto os sinais de ECG (obtidos a partir do EMG do músculo peitoral maior) foram registrados a 1111,11 Hz. Nesta etapa, os arquivos passaram por:
 \begin{itemize}
     \item Identificação e associação a cada atleta e condição;
     \item Renomeação e normalização para garantir consistência;
@@ -37,7 +37,7 @@ Para a preparação dos dados de EEG, foram realizadas as seguintes etapas:
     \item \textbf{Aquisição e Carregamento:} Os dados brutos foram baixados do Google Drive e carregados utilizando a biblioteca MNE-Python a partir de arquivos exportados do software BrainVision (ou, alternativamente, em formato EEGLAB). Após o carregamento, os canais foram renomeados conforme uma convenção padronizada (por exemplo, Fp1, Fz, F3, etc.) e canais irrelevantes foram removidos. (Ver Figura~\ref{fig:exemplo_sinais_eeg})
     \item \textbf{Aplicação de Montage:} Aplicou-se o montage padrão \textit{standard\_1005} para assegurar a correta localização dos eletrodos, conforme ilustrado no diagrama do sistema 10-20. (Ver Figura~\ref{fig:sistema_10_20})
     \item \textbf{Definição do Período de Análise:} Com base nas informações extraídas dos arquivos do período de repouso, os dados foram recortados para excluir os primeiros e últimos 15 segundos da gravação, reduzindo artefatos de borda.
-    \item \textbf{Filtragem:} Foi aplicado um filtro passa-banda entre 0 e 30 Hz para limitar o sinal às frequências de interesse, seguido de um filtro notch em 60 Hz para remover interferências da rede elétrica (\textit{line noise}).
+    \item \textbf{Filtragem:} Foi aplicado um filtro passa-banda entre 0 e 60 Hz para limitar o sinal às frequências de interesse, seguido de um filtro notch em 60 Hz para remover interferências da rede elétrica (\textit{line noise}).
     \item \textbf{Reamostragem:} Para padronizar a taxa de amostragem e alinhar precisamente os sinais de EEG e ECG, assegurando o correto funcionamento das medidas de sincronicidade, os dados de EEG foram reamostrados.
 \end{itemize}
 

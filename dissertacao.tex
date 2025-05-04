@@ -79,7 +79,7 @@
   \end{figure}
 }
 
-\newcommand{\inputtable}[4]{
+\newcommand{\inputtable}[4]{%
     \begin{table}[htbp]
         \centering
         \caption{#2}
@@ -87,6 +87,7 @@
         \begin{adjustbox}{width=\textwidth}
             \input{#1}
         \end{adjustbox}
+        \vspace{0.5em}% <— espaço extra antes da fonte
         \source{#4}
     \end{table}
 }
@@ -160,7 +161,7 @@
   \item[ECOD] Detecção de Outliers Baseada na Distribuição Cumulativa Empírica (\textit{Empirical Cumulative Distribution-based Outlier Detection})
   \item[GPU] Unidade de Processamento Gráfico (\textit{Graphics Processing Unit})
   \item[BCa] Intervalos de Confiança Corrigidos e Acelerados (\textit{Bias-Corrected and Accelerated})
-  \item[FDR-BH] Taxa de Falsas Descobertas – Benjamini–Hochberg (\textit{False Discovery Rate-Benjamini–Hochberg})
+  \item[FDR-BH] Taxa de Falsas Descobertas-Benjamini-Hochberg (\textit{False Discovery Rate-Benjamini-Hochberg})
   \item[RBC] Correlação Biserial de Postos (\textit{Rank-Biserial Correlation})
   \item[IQR] Intervalo Interquartil (\textit{Interquartile Range})
 \end{siglas}
