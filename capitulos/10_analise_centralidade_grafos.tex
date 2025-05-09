@@ -2,7 +2,7 @@
 \label{chap:analise_centralidade_de_grafos}
 As redes apresentadas nesta seção foram construídas a partir dos mesmos resultados dos testes estatísticos sobre as diferenças mediana (\emph{Pós} - \emph{Pré}) das métricas de sincronização. Em cada par de eletrodos (após \textit{bootstrap} e correção de Bonferroni), calculamos o \emph{Wilcoxon rank-biserial correlation} (RBC) para quantificar o tamanho e a direção do efeito da condição \emph{catódica} em relação ao \emph{sham}. Assim, cada aresta da rede não reflete o grau absoluto de sincronia em repouso, mas sim o quanto a estimulação catódica modulou essa sincronia comparada ao sham. Os nós pintados em tons quentes indicam os canais que mais se destacaram como ``\textit{hubs}'' desse efeito de neuromodulação.
 
-Nesta seção, apresentamos a análise de centralidade dos canais na rede de conectividade EEG-EEG, obtida apenas a partir do índice PLI. Devido à natureza dos dados EEG-ECG, em que o ECG está presente em todas as conexões, não faria sentido exibi-los aqui, já que todas as arestas envolveriam o mesmo canal (o ECG), impedindo qualquer distinção hierárquica entre os nós.
+Neste capítulo, apresentamos as figuras resultantes da análise de centralidade utilizando a rede dos efeitos (da HD-tDCS catódica em relação à sham) na sincronicidade de fase par-a-par, obtida apenas a partir do índice PLI. Devido à natureza dos dados EEG-ECG, em que o ECG está presente em todas as conexões, não faria sentido exibi-los aqui, já que todas as arestas envolveriam o mesmo canal (o ECG), impedindo qualquer distinção hierárquica entre os nós.
 
 Os gráficos foram gerados para as três métricas de centralidade (\textit{Degree}, \textit{Betweenness} e \textit{Eigenvector}) e cada figura é apresentada lado a lado:
 \begin{itemize}
@@ -233,16 +233,3 @@ A seguir, apresentam-se as análises para cada faixa de frequência, com as inte
     \caption{\small \textbf{\textit{Eigenvector Centrality} - Banda Theta (4-8 Hz):} As figuras evidenciam a hierarquia de influência na rede theta, com reorganização mais evidente na versão sem outliers.}
     \label{fig:eigenvector_theta}
 \end{figure}
-
-\section{Considerações Finais sobre a Centralidade de Grafos}
-Os gráficos de centralidade apresentados evidenciam a hierarquia dos canais na rede de conectividade EEG-EEG (obtida via PLI). Em todas as métricas, os nós com maior centralidade, indicados por cores mais intensas (vermelho) e maiores tamanhos, correspondem a canais que atuam como \textit{hubs} ou pontos-chave na rede. 
-
-Observa-se que:
-\begin{itemize}
-    \item \textbf{Exibição dos Dados:} Apenas os casos de PLI EEG-EEG foram apresentados, uma vez que a análise de CF‐PLM (EEG-ECG) não fornece uma hierarquia diferenciada entre canais, dado que o ECG aparece em todas as conexões.
-    \item \textbf{Hierarquia e Distribuição:} Em cada banda, os canais mais relevantes são listados em ordem decrescente de centralidade. Por exemplo, na banda alpha, o canal \textbf{Fp2} é consistentemente o mais central, seguido por grupos de canais como \textbf{PO8}, \textbf{FC3} e outros, com pequenas variações entre os cenários com e sem \textit{outliers}. Em bandas como beta e gamma, determinados canais (por exemplo, \textbf{TPP7h} na banda beta e \textbf{FT10} na banda gamma) se destacam como \textit{hubs} principais.
-    \item \textbf{Impacto da Remoção de \textit{Outliers}:} Embora a remoção de \textit{outliers} gere ajustes nos valores absolutos de centralidade e, consequentemente, na ordem intermediária dos canais, a estrutura global da rede se mantém similar entre os cenários. Em alguns casos, a hierarquia se reorganiza, como na banda delta, onde a remoção de \textit{outliers} desloca a centralidade de canais frontais (como \textbf{Fp2}) para canais parietais (\textbf{CP5} e \textbf{CP4}).
-    \item \textbf{Padrões entre Bandas:} As bandas alpha e theta tendem a apresentar elevados valores de centralidade, refletindo uma maior integração e influência dos nós nessas frequências. Em contraste, a banda delta exibe uma hierarquia mais sensível à presença de \textit{outliers}, enquanto nas bandas beta e gamma certos canais se destacam de forma consistente.
-\end{itemize}
-
-Essas observações contribuem para a compreensão dos efeitos da neuromodulação na dinâmica da conectividade neural, destacando a importância dos canais em diferentes bandas de frequência e demonstrando a robustez dos achados mesmo após a remoção de \textit{outliers}.

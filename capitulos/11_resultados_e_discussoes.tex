@@ -1,66 +1,143 @@
 \chapter{Resultados e Discussões}
 \label{chap:resultados_e_discussoes}
 
-A compreensão dos mecanismos neurobiológicos subjacentes aos efeitos da neuromodulação não-invasiva é uma das fronteiras atuais da neurociência aplicada ao esporte de alto rendimento. Neste capítulo, integramos os resultados obtidos com a estimulação transcraniana por corrente contínua de alta definição (HD-tDCS) catódica aplicada ao córtex pré-frontal dorsolateral (DLPFC) esquerdo, discutindo-os em quatro eixos complementares:
+A compreensão dos mecanismos neurobiológicos subjacentes aos efeitos da neuromodulação não-invasiva é uma das fronteiras atuais da neurociência aplicada ao esporte de alto rendimento. Neste capítulo, retomamos os principais achados apresentados nas análises anteriores (Capítulos~\ref{chap:analise_de_rede} e~\ref{chap:analise_centralidade_de_grafos}), discutindo suas implicações funcionais e possíveis interpretações neurobiológicas. Os dados completos estão disponíveis no repositório público\footnote{\url{https://github.com/dantebarross/efeito-da-neuromodulacao-na-sincronicidade-eeg-ecg}}.
 
-\begin{enumerate}
-  \item \textbf{Sincronização de fase intrafrequencial} (\emph{EEG-EEG}) quantificada pelo \textit{Phase Lag Index} (PLI);
-  \item \textbf{Acoplamento \textit{cross-frequency}} (\emph{EEG-ECG}) mensurado pelo \textit{Cross-Frequency Phase Linearity Measurement} (CF-PLM);
-  \item \textbf{Significância estatística e magnitude dos efeitos} - primeiro por testes não-paramétricos globais (Mann-Whitney U, Wilcoxon signed-rank e Kruskal-Wallis) e, em seguida, por estimativas \emph{bootstrap} par-a-par (Hedges' g e \textit{Rank-Biserial Correlation});
-  \item \textbf{Organização topológica do efeito da neuromodulação} avaliada por métricas de teoria de grafos e centralidade.
-\end{enumerate}
+A apresentação dos resultados está organizada em \textbf{três fases analíticas complementares}, com crescente complexidade interpretativa:
 
-Esses domínios metodológicos são detalhados nos Capítulos~\ref{chap:6_metodos_de_analise_de_sincronizacao_de_fase}-\ref{chap:analise_centralidade_de_grafos}. A seguir apresentamos os achados, distinguindo a fase \emph{macro} (testes globais sobre o conjunto completo de amostras) da fase \emph{micro} (\emph{bootstrap} par-a-par, cujas análises gráficas estão nos Capítulos \ref{chap:analise_de_rede} e \ref{chap:analise_centralidade_de_grafos}, e os dados completos estão no repositório público\footnote{\url{https://github.com/dantebarross/efeito-da-neuromodulacao-na-sincronicidade-eeg-ecg}}).
-
-%-------------------------------------------------------------------
-\section{Análise de Sincronização de Fase}
-%-------------------------------------------------------------------
-
-\subsection{Conectividade intrafrequencial (\emph{EEG-EEG})}
-
-Os testes globais (Mann-Whitney U/Kruskal-Wallis) apontaram:
 \begin{itemize}
-  \item alpha, delta, theta e gamma: $p<\alpha_{\mathrm{corr}}=\mathbf{0{,}005}$;
-  \item beta: efeito marginalmente não-significativo ($p=0{,}052$).
+    \item \textbf{Fase 1 — Testes Estatísticos Globais:} comparação geral dos efeitos da catódica em relação à sham sobre as métricas de sincronização em diferentes bandas de frequência.
+    \item \textbf{Fase 2 — Análise Bootstrap Par-a-Par:} identificação dos pares de canais com diferenças significativas na catódica em relação à sham..
+    \item \textbf{Fase 3 — Análise de Centralidade:} construção de redes de centralidade baseadas nas relações par-a-par para os casos de efeitos significativos. Através dos resultados plotados, foi possível analisar a hierarquia de importância na centralidade de canais.
 \end{itemize}
 
-\inputtable{tabelas/nonparametric_tests_results.tex}
-{Resultados dos testes não-paramétricos (Mann-Whitney U, Wilcoxon signed-rank e Kruskal-Wallis) por faixa de frequência e grupo de canais}
-{tab:nonparametric_results}
-{Elaborado pelo autor (2025). Nota: * indica significância estatística ($p < \alpha_{\mathrm{corr}}$).}
+Importante destacar que as análises aqui não visam descrever o estado absoluto de sincronização. Em vez disso, investigamos o \textbf{efeito da estimulação HD-tDCS catódica em comparação à condição sham}, por meio de \textit{contrastes de diferença pré-pós}: para cada condição, calculou-se \emph{pós - pré}, e as análises estatísticas comparam essas variações entre as condições, globalmente na fase 1 e par-a-par nas fases 2 e 3 abaixo.
 
-Em todas as faixas em que houve significância global (alpha, delta, theta, gamma), a análise \emph{bootstrap} confirmou robustez do sinal e permitiu estimar:
+%-------------------------------------------------------------------
+\section{Fase 1 — Testes Globais (Mann-Whitney, Kruskal-Wallis e Wilcoxon)}
+%-------------------------------------------------------------------
+Para cada métrica de conectividade, calculamos a diferença Pós-Pré por participante, comparando as condições \textit{cathodic} versus \textit{sham} com testes não-paramétricos. Os resultados foram corrigidos por múltiplas comparações (Bonferroni, $\alpha_{\mathrm{corr}}=0{,}005$).
+
 \begin{itemize}
-  \item \textbf{Alpha:} aumento da diferença Pós–Pré sob catódica (RBC médio $\approx+1$);
-  \item \textbf{Delta \& Gamma:} diminuição da sincronia sob catódica (RBC médio $\approx-1$).
+  \item \textbf{EEG-EEG:} A PLV indicou diferenças significativas em todas as bandas (alpha, beta, delta, gamma e theta). A PLI confirmou efeitos significativos em alpha, delta, gamma e theta, mas não em beta.
+  \item \textbf{EEG-ECG:} O CF-PLM revelou significância em delta, beta e gamma (com $p$-valores corrigidos $< 0{,}005$), sendo a banda delta a mais robusta. Alpha e theta não atingiram significância global.
+  \item Em relação aos tamanhos de efeito e suas direções: aumentos em alpha (positivo) e reduções em delta/gamma (negativo) para EEG-EEG; reduções generalizadas no CF-PLM (positivo, pois sham > cathodic).
 \end{itemize}
 
-%-------------------------------------------------------------------
-\subsection{Acoplamento \emph{cross‐frequency} (\emph{EEG–ECG})}
-%-------------------------------------------------------------------
+\subsection{Resultados para Conectividade Intra-Frequencial (EEG-EEG)}
 
-Nos testes globais, apenas beta e delta atingiram $p<0{,}005$ (gamma marginalmente não-significativo, $p\approx0{,}00505$); alpha e theta ficaram fora do limiar.
+\inputtable{tabelas/nonparametric_tests_results_EEG_EEG.tex}
+{Resultados dos testes não-paramétricos (PLV e PLI) por faixa de frequência — grupo EEG-EEG}
+{nonparametric_results_EEG_EEG}
+{Elaborado pelo autor (2025). Nota: * indica significância estatística ($p < \alpha_{\mathrm{corr}}=0{,}005$).}
 
-A fase \emph{micro} (\emph{bootstrap}) confirmou:
+Os testes não-paramétricos aplicados às métricas de conectividade intra-frequencial (\textit{median\_plv\_diff} e \textit{median\_pli\_diff}) revelaram padrões consistentes de modulação induzida pela estimulação catódica com HD-tDCS.
+
+A métrica PLV apresentou diferenças significativas entre as condições \textit{cathodic} e \textit{sham} em todas as cinco faixas de frequência analisadas ($\alpha$, $\beta$, $\delta$, $\theta$, $\gamma$), conforme indicado pelos testes de Mann-Whitney U e Kruskal-Wallis (com $p < \alpha_{\mathrm{corr}}=0{,}005$). A direção do efeito pode ser inferida pelo sinal da correlação bisserial de postos (RBC) nos resultados de Mann-Whitney:
 \begin{itemize}
-  \item \textbf{Beta e Delta:} redução consistente do acoplamento catódica \textit{versus} sham (RBC médio $\approx+0.9$);
-  \item \textbf{Gamma:} redução moderada (RBC $\approx+1$).
+  \item A banda $\alpha$ apresentou um leve efeito negativo (RBC = $-0{,}29$), sugerindo uma tendência de redução da conectividade sob a condição catódica.
+  \item As bandas $\beta$, $\delta$, $\theta$ e $\gamma$ mostraram efeitos positivos (RBC entre $+0{,}57$ e $+1{,}00$), indicando um aumento da sincronia funcional sob catódica em relação à sham.
 \end{itemize}
 
-%-------------------------------------------------------------------
-\subsection{Pipeline Estatístico}
-%-------------------------------------------------------------------
-
-\subsubsection{Fase 1 - Testes Globais} 
-Aplicamos Mann-Whitney U e Kruskal-Wallis para amostras independentes e Wilcoxon signed-rank para amostras pareadas, com correção de Bonferroni em função dos 10 testes totais (2 grupos × 5 bandas) ($\alpha_{\mathrm{corr}}=0{,}005$). Resultados completos na Tabela \ref{tab:nonparametric_results}. Aqui está a síntese dos resultados globais:
+A métrica PLI também evidenciou significância estatística em quatro das cinco bandas ($\alpha$, $\delta$, $\theta$, $\gamma$), com exceção da banda $\beta$, que apresentou valores marginais (por exemplo, $p = 0{,}063$ no teste de Mann-Whitney). Os sinais dos efeitos, quando disponíveis, indicam:
 \begin{itemize}
-    \item A HD-tDCS catódica \emph{potenciou} significativamente a sincronia alpha em EEG-EEG e \emph{reduziu} sincronia em delta/gamma.
-    \item Em EEG-ECG, houve \emph{redução} de acoplamento em beta, delta e gamma.
-    \item Os testes globais e o \textit{bootstrap} convergiram nas direções e magnitudes de efeito (RBC próximos a \(\pm1\)).
-  \end{itemize}
+  \item Aumento de sincronia em $\alpha$, $\theta$ e $\delta$ sob catódica (efeitos positivos).
+  \item Redução de sincronia em $\gamma$ (RBC = $-0{,}71$) e possível queda em $\beta$ (embora não significativa).
+\end{itemize}
 
-\subsubsection{Fase 2 - \textit{Bootstrap} Par-a-Par} 
-Nessa etapa, para cada par de canais realizamos 10.000 reamostragens (\textit{bootstrap}) BCa aceleradas por GPU, a partir das quais extraímos a diferença média Pós–Pré (\(\bar{\Delta}\)), o \textit{bias} da estimativa, o erro-padrão (\(\mathrm{SE}\)) e o intervalo de confiança BCa a 95\%. Além disso, calculamos a estatística de Wilcoxon (\(W\)) e sua correlação bisserial de postos (RBC), o tamanho de efeito de Hedges' \(g\) corrigido para amostras pequenas, o p-valor empírico em duas faces gerado pelo bootstrap. Utilizamos Bonferroni, Holm e FDR-BH como métodos de correção; para as análises de redes e medidas de centralidade, adotamos Bonferroni. Os resultados par-a-par completos (54.900 pares EEG-EEG e 1.830 pares EEG-ECG) estão no repositório.
+Os testes de Wilcoxon signed-rank (aplicados para avaliar mudanças pareadas entre Pré e Pós dentro de cada condição) corroboraram a presença de efeitos nas bandas significativas, embora, por construção, não permitam inferência da direção (só magnitude).
+
+No geral, os resultados sugerem que a HD-tDCS catódica promove modulações seletivas da sincronia intra-frequencial: há indícios de aumento da conectividade funcional em faixas como $\delta$, $\theta$, $\beta$ e $\gamma$ segundo a PLV, e de aumento em $\alpha$ e $\theta$ segundo o PLI. A ausência de significância para a banda $\beta$ na PLI, contrastando com o achado positivo na PLV, pode refletir a maior sensibilidade da PLV a mudanças de fase, enquanto a PLI é mais conservadora por descartar acoplamentos de fase com atraso zero.
+
+Esses achados indicam que, embora ambas as métricas captem aspectos parecidos da sincronização funcional, a PLV é mais sensível por não descartar acoplamentos de fase próximos a zero (que pode ou não significar ruído de \textit{volume conduction}).
+
+\subsection{Resultados para Acoplamento Cross-Frequency (EEG-ECG)}
+
+\inputtable{tabelas/nonparametric_tests_results_EEG_ECG.tex}
+{Resultados dos testes não-paramétricos (CF‑PLM) por faixa de frequência — grupo EEG-ECG}
+{nonparametric_results_EEG_ECG}
+{Elaborado pelo autor (2025). Nota: * indica significância estatística ($p < \alpha_{\mathrm{corr}}=0{,}01$).}
+
+Os testes não paramétricos aplicados à métrica \texttt{median\_cf\_plm\_diff} — que quantifica o acoplamento entre sinais de EEG e ECG em diferentes faixas de frequência — revelaram padrões específicos de modulação induzida pela HD-tDCS catódica. Utilizou-se o teste de Mann-Whitney U com correção de Bonferroni para múltiplas comparações ($\alpha_{\mathrm{corr}}=0{,}01$). Foram observados os seguintes achados principais:
+
+\begin{itemize}
+  \item \textbf{Delta e Beta} apresentaram efeitos altamente significativos ($p < 0{,}01$ após correção), com tamanhos de efeito negativos de magnitude moderada a elevada (respectivamente $-0{,}467$ e $-0{,}236$), sugerindo uma redução do acoplamento cérebro-coração (CF-PLM) na condição catódica em relação ao sham.
+  \item \textbf{Gamma} também demonstrou significância marginal ($p = 0{,}005$; $p_{\text{corr}} = 0{,}025$), com tamanho de efeito negativo ($-0{,}120$), indicando tendência de redução do acoplamento, embora não atingindo o limiar de significância após correção múltipla.
+  \item \textbf{Alpha e Theta} não apresentaram diferenças significativas ($p > 0{,}05$), com tamanhos de efeito pequenos (respectivamente $-0{,}085$ e $-0{,}025$), sugerindo que essas bandas não foram substancialmente moduladas pela estimulação catódica.
+\end{itemize}
+
+Em conjunto, os resultados reforçam a sensibilidade do acoplamento cross-frequency (EEG-ECG) nas bandas \textbf{Delta} e \textbf{Beta} à modulação neuromodulatória, com efeito mais fraco porém presente em \textbf{Gamma}. A direção negativa dos efeitos indica que, em média, a condição catódica esteve associada a uma diminuição da coerência de fase entre sinais neurais e cardíacos.
+
+%-------------------------------------------------------------------
+\section{Fase 2 — Análise Bootstrap e Distribuições de Efeito}
+%-------------------------------------------------------------------
+
+Complementando os testes globais apresentados anteriormente, esta fase explorou os efeitos da neuromodulação com maior granularidade por meio de reamostragens \textit{bootstrap} BCa com 10.000 iterações. Foram avaliadas todas as combinações possíveis de pares de canais (EEG-EEG para PLI e EEG-ECG para CF-PLM), extraindo:
+\begin{itemize}
+  \item Intervalos de confiança corrigidos (BCa);
+  \item Estatísticas de Wilcoxon pareado ($W$);
+  \item Correlação bisserial de postos (RBC);
+  \item Tamanho de efeito de Hedges' $g$;
+  \item Correções múltiplas (Bonferroni, Holm e FDR-BH).
+\end{itemize}
+
+\subsection{Resultados Bootstrap — EEG-EEG (PLI)}
+
+Os resultados do \textit{bootstrap} para conectividade intra-frequencial revelaram padrões distintos de modulação da sincronia cerebral:
+
+\begin{itemize}
+  \item A banda \textbf{alpha} exibiu um predomínio robusto de conexões com \textbf{RBC positivo}, sobretudo em trajetórias fronto-parietais diagonais (ex.: Fp2-PO8), indicando um \textbf{aumento da sincronia de fase} induzido pela estimulação catódica.
+  \item Em \textbf{theta}, observaram-se padrões semelhantes, com conexões RBC +1 concentradas à esquerda e algumas RBC -1 na fronteira frontal direita, sugerindo uma modulação assimétrica.
+  \item As bandas \textbf{delta} e \textbf{gamma} apresentaram \textbf{predomínio de conexões RBC -1}, com destaque para o canal Fp2 e áreas fronto-temporais, sugerindo \textbf{redução de sincronia} em regiões específicas sob a estimulação.
+  \item A banda \textbf{beta} mostrou comportamento mais heterogêneo: conexões positivas e negativas coexistiram, com leve predominância de \textbf{RBC negativo} após remoção de outliers.
+\end{itemize}
+
+Esses resultados indicam que a HD-tDCS catódica não afeta uniformemente a sincronia entre regiões cerebrais, mas tende a \textbf{aumentar a conectividade nas bandas alpha e theta} e a \textbf{reduzir nas bandas delta e gamma}, com variações topológicas evidentes por banda.
+
+\subsection{Resultados Bootstrap — EEG-ECG (CF-PLM)}
+
+O acoplamento \textit{cross-frequency} entre sinais cerebrais e cardíacos revelou efeitos mais localizados:
+
+\begin{itemize}
+  \item Todas as conexões significativas identificadas apresentaram \textbf{RBC positivo}, sugerindo um \textbf{aumento consistente no acoplamento cérebro-coração} induzido pela estimulação catódica.
+  \item A banda \textbf{beta} destacou-se com múltiplas conexões significativas envolvendo a região parietal esquerda (CP1, CP3, CP5 e TPP7h).
+  \item Em \textbf{delta}, observaram-se pares adicionais, com envolvimento de regiões frontais (Fp2, FC4), fronto-temporais (FTT8h) e parietais (CP3, P1).
+  \item As bandas \textbf{theta} e \textbf{gamma} exibiram um único par significativo cada (F6-ECG e CP3-ECG, respectivamente).
+  \item A banda \textbf{alpha} não apresentou nenhuma conexão significativa.
+\end{itemize}
+
+O padrão unidirecional de RBC +1 sugere que a neuromodulação intensifica seletivamente o acoplamento EEG-ECG nas faixas de frequência com significância, possivelmente refletindo mecanismos autonômicos de integração corpo-cérebro.
+
+\subsection{Síntese dos Resultados \textit{Bootstraped} Par-a-par}
+
+Com base nos achados descritos, é possível sintetizar os seguintes pontos:
+
+\begin{itemize}
+  \item A HD-tDCS catódica produz \textbf{efeitos direcionais distintos por banda}: sincronia aumentada nas faixas alpha e theta, e reduzida nas faixas delta e gamma (para EEG-EEG); aumento consistente de acoplamento em todas as faixas com efeito significativo (para EEG-ECG).
+  \item Os \textbf{valores de RBC tendem a ser extremos} (próximos de $+1$ ou $-1$), indicando modulações pronunciadas e robustas mesmo após correção por múltiplos testes.
+  \item A \textbf{estrutura topológica das redes} obtidas via bootstrap revelou a formação de ``\textit{hubs} de modulação'' (canais que concentram pares significativamente alterados) e variou por banda e localização cortical.
+  \item A remoção de \textit{outliers} pouco afetou a estrutura geral das redes, indicando que os achados são robustos e replicáveis.
+\end{itemize}
+
+As visualizações completas das distribuições de RBC, Hedges' $g$ e $p$-valores corrigidos encontram-se nos Capítulos~\ref{chap:analise_de_rede} e~\ref{chap:analise_centralidade_de_grafos}.
+
+
+\section{Fase 3 — Centralidade de Grafos e Hierarquia Funcional}
+\label{sec:fase3_centralidade}
+
+Nesta fase, partimos dos resultados estatísticos da Fase 2 para calcular medidas de centralidade utilizando as redes de efeito da HD-tDCS na sincronicidade de fase baseadas no índice PLI (EEG-EEG), onde cada aresta representa a magnitude (positiva ou negativa) do efeito da estimulação catódica em comparação ao sham, quantificada pelo \textit{rank-biserial correlation} (RBC). Com base nessas redes ponderadas, estimamos três métricas clássicas de centralidade (\textit{Degree}, \textit{Betweenness} e \textit{Eigenvector}) para investigar a organização hierárquica dos canais cerebrais como \textit{hubs} funcionais, e também explorar o efeito da remoção de \textit{outliers} na estrutura da rede.
+
+A análise foi conduzida separadamente para cada banda de frequência, considerando dois cenários: com e sem remoção de \textit{outliers}. Canais com valores elevados de centralidade aparecem destacados em vermelho e com maior tamanho nos grafos. Embora esta análise não avalie diretamente a direção das conexões, a combinação com os resultados da Fase 2 permite inferir possíveis padrões de entrada e saída de informação.
+
+Os resultados da Fase 3 reforçam e complementam os achados da Fase 2, oferecendo uma perspectiva topológica de centralidade sobre o efeito da HD-tDCS catódica no DLPFC esquerdo em comparação à sham. Os principais pontos observados incluem:
+
+\begin{itemize}
+    \item \textbf{Fp2} foi o canal mais central na banda alpha em todas as métricas, sugerindo forte modulação frontal mesmo após remoção de \textit{outliers}, em linha com os efeitos esperados da estimulação no DLPFC esquerdo.
+    \item Na banda beta, \textbf{TPP7h} emergiu como \textit{hub} dominante em quase todas as métricas, indicando um possível redirecionamento da influência funcional para regiões temporo-parietais.
+    \item A banda delta apresentou mudança marcante: \textbf{Fp2} foi o mais central com \textit{outliers}, mas os canais parietais \textbf{CP5} e \textbf{CP4} assumiram o protagonismo sem \textit{outliers}, apontando para uma redistribuição mais estável de centralidade nessas regiões.
+    \item Nas bandas gamma e theta, houve maior variabilidade. Ainda assim, canais como \textbf{F3}, \textbf{FT10} e \textbf{TP9} se destacaram, com reorganizações relevantes entre os cenários. Esses padrões podem refletir a sensibilidade das redes de alta frequência à variabilidade interindividual.
+    \item A remoção de \textit{outliers} alterou a ordem de hierarquia em algumas bandas, mas não mudou os principais \textit{hubs}, evidenciando a robustez dos achados.
+\end{itemize}
 
 \section{Discussão Integrada}
 % --- síntese entre intrafreq e cross-freq ---
@@ -69,7 +146,7 @@ Em ambas as análises, intrafrequencial (PLI) e \textit{cross-frequency} (CF-PLM
 % --- implicações de rede e hubs ---
 Na construção da rede, cada aresta reflete o quanto a estimulação catódica alterou a sincronia em relação ao sham (diferença cathodic-sham) após 10.000 reamostragens BCa e correção de Bonferroni. Ou seja, não se trata de uma rede da sincronia basal em repouso, mas de uma rede das mudanças induzidas pela HD-tDCS.
 
-Nas medidas de centralidade, os canais de maior centralidade correspondem, portanto, àqueles que participaram de um maior número de pares em que o efeito da HD-tDCS sobre a sincronia foi mais pronunciado. Na banda \textbf{alpha} (8-13 Hz), o canal \textbf{Fp2} emergiu como hub de maior centralidade em todas as métricas (\textit{Betweenness}, \textit{Degree} e \textit{Eigenvector}), tanto com outliers quanto sem outliers, indicando que é justamente nessa região que as ocorrências de pares com maiores diferenças cathodic-sham foram mais frequentes.
+Nas medidas de centralidade, os canais de maior centralidade correspondem, portanto, àqueles que participaram de um maior número de pares em que o efeito da HD-tDCS sobre a sincronia foi mais pronunciado. Na banda \textbf{alpha} (8-13 Hz), o canal \textbf{Fp2} emergiu como hub de maior centralidade em todas as métricas (\textit{Betweenness}, \textit{Degree} e \textit{Eigenvector}), tanto com outliers quanto sem outliers, indicando que é justamente nessa região que as ocorrências de pares com maiores diferenças cathodic-sham foram mais frequentes.
 
 Em outras faixas de frequência, observamos reorganizações na hierarquia de \textit{hubs}: por exemplo, \textbf{TPP7h} na banda \textbf{beta} e, no cenário sem remoção de outliers, \textbf{CP5} e \textbf{CP4} na banda \textbf{delta}.
 

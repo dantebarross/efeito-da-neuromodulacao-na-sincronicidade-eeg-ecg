@@ -147,7 +147,7 @@ Para ilustrar o processo de injeção controlada, as Figuras~\ref{fig:ecg_inject
 {ecg_injection}
 
 \standardfigure{figs/3_2_testing_connectivity_metrics/3_EEG_Original_vs_Injecao_Cross-frequency.png}
-{EEG: comparação entre o sinal original (azul) e o sinal senoidal injetado de 40~Hz (vermelho) no cenário \textit{cross-frequency}. A alta frequência do sinal injetado simula ritmos gama cerebrais, permitindo avaliar a detecção de acoplamentos entre oscilações rápidas cerebrais e ritmos cardíacos mais lentos.}
+{EEG: comparação entre o sinal original (azul) e o sinal senoidal injetado de 40~Hz (vermelho) no cenário \textit{cross-frequency}. A alta frequência do sinal injetado simula ritmos gamma cerebrais, permitindo avaliar a detecção de acoplamentos entre oscilações rápidas cerebrais e ritmos cardíacos mais lentos.}
 {eeg_injection}
 
 Para complementar a avaliação no cenário \textit{cross-frequency}, implementamos também um cenário \textit{same-frequency}, onde tanto o ECG quanto o EEG receberam sinais senoidais com frequências idênticas, mas com uma defasagem controlada de \(\pi/4\) radianos. Este cenário é particularmente relevante para avaliar a capacidade dos métodos em detectar sincronizações intrafrequencial com defasagens específicas, um padrão que pode ocorrer em determinados estados fisiológicos onde diferentes regiões cerebrais ou sistemas corporais oscilam na mesma frequência, mas com relações de fase estáveis. As Figuras~\ref{fig:eeg_original_vs_injection_samefreq} e~\ref{fig:eeg_injected_samefreq} ilustram este cenário experimental, evidenciando tanto os sinais de injeção quanto o resultado da incorporação controlada destes sinais aos dados originais.
