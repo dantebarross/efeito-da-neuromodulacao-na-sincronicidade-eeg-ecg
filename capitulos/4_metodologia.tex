@@ -19,7 +19,7 @@ O estudo utilizou um delineamento experimental randomizado, cruzado e duplo-cego
 
 Antes do início das sessões experimentais, foi realizada uma sessão de familiarização na qual as atletas receberam informações detalhadas sobre os objetivos, procedimentos, riscos e benefícios do estudo, além de treinamento prático para se familiarizarem com o protocolo e os equipamentos utilizados.
 
-\standardfigure{figs/0_intro_e_desenho_experimental/desenho_experimental_drawio.png}
+\ultrawidefigure{figs/0_intro_e_desenho_experimental/desenho_experimental_drawio.png}
 {Fluxo do protocolo experimental, incluindo a sessão de familiarização, as duas sessões experimentais (com estimulação catódica ou \textit{sham}), as coletas de EEG/ECG em repouso e a execução de 100 arremessos pré-estimulação e 100 arremessos pós-estimulação por sessão.}
 {desenho_experimental}
 
@@ -31,7 +31,7 @@ As sessões experimentais seguiram a seguinte estrutura:
 
 Para garantir a padronização das condições experimentais, todas as sessões foram realizadas no mesmo local e horário habitual de treinamento das atletas, sob condições controladas de iluminação, temperatura e ruído. A ordem das condições (HD-tDCS ativa e \textit{sham}) foi definida aleatoriamente para cada participante por meio de um gerador de números aleatórios, assegurando imparcialidade no delineamento cruzado. Antes de cada sessão, os equipamentos de EEG e ECG foram calibrados e tiveram suas impedâncias verificadas, garantindo a qualidade dos registros. As participantes foram continuamente monitoradas quanto a possíveis efeitos adversos ou desconfortos decorrentes da estimulação, e os dados foram armazenados digitalmente com protocolos rigorosos de backup e verificação de integridade, assegurando sua reprodutibilidade e confiabilidade para as análises subsequentes.
 
-Em cada sessão experimental, registramos EEG/ECG em repouso por 5 min antes (pré) e 5 min após (pós) a aplicação da HD-tDCS (ativa ou sham). Todas as análises subsequentes foram realizadas sobre a diferença pós-pré em cada condição, de modo a quantificar explicitamente o efeito da estimulação catódica em relação à sham.
+Em cada sessão experimental, registramos EEG/ECG em repouso por 5 min antes (pré) e 5 min após (pós) a aplicação da HD-tDCS (ativa ou \textit{sham}). Todas as análises subsequentes foram realizadas sobre a diferença pós-pré em cada condição, de modo a quantificar explicitamente o efeito da estimulação catódica em relação à \textit{sham}.
 
 \section{Questionários e Escalas}
 Durante a coleta dos dados experimentais, foram aplicados questionários e escalas com o intuito de avaliar aspectos subjetivos relacionados ao estado psicológico e fisiológico das atletas. Embora esses instrumentos tenham sido incluídos no protocolo inicial com a finalidade de fornecer uma visão complementar às medidas neurofisiológicas, os dados obtidos não foram utilizados nas análises estatísticas ou nos resultados apresentados neste estudo. Os instrumentos aplicados foram:
@@ -61,7 +61,7 @@ A calibração do dispositivo e a verificação da impedância (mantida abaixo d
 \subsection{Processamento e Análise de Dados}
 O processamento e a análise dos dados seguiram um fluxo estruturado que abrange desde a coleta e organização dos arquivos até a extração das métricas de sincronização e a aplicação de testes estatísticos para avaliar as diferenças entre as condições experimentais. A Figura~\ref{fig:fluxo_processamento} apresenta um diagrama geral dessas etapas.
 
-\standardfigure{figs/0_intro_e_desenho_experimental/diagrama_processamento_e_analise_drawio.png}
+\ultrawidefigure{figs/0_intro_e_desenho_experimental/diagrama_processamento_e_analise_drawio.png}
 {Fluxo geral de processamento e análise de dados, desde a coleta e organização dos arquivos, passando pelas etapas de pré-processamento (EEG e ECG), sincronização temporal, extração de métricas de sincronização (PLI, PLV e CF-PLM) e, por fim, análises estatísticas e de conectividade em rede.}
 {fluxo_processamento}
 
@@ -75,7 +75,7 @@ Para possibilitar uma análise integrada, os sinais de EEG e ECG foram alinhados
 A sincronização entre os sinais foi avaliada utilizando três métricas. O \textit{Phase Lock Value} (PLV) e o \textit{Phase Lag Index} (PLI) foram aplicados para quantificar a conectividade na mesma faixa de frequência, enquanto o \textit{Cross-Frequency Phase Linearity Measurement} (CF-PLM) foi empregada para avaliar o acoplamento entre frequências distintas. Antes de sua aplicação nos dados experimentais, esses métodos foram testados e validados utilizando sinais simulados.
 
 \subsubsection{Análise Estatística} 
-Para cada par de canais e para cada condição (catódica e sham), computamos a diferença de sincronização \(\Delta = \text{valor}_{\text{pós}} - \text{valor}_{\text{pré}}\). Essas diferenças foram então submetidas aos testes estatísticos.
+Para cada par de canais e para cada condição (catódica e \textit{sham}), computamos a diferença de sincronização \(\Delta = \text{valor}_{\text{pós}} - \text{valor}_{\text{pré}}\). Essas diferenças foram então submetidas aos testes estatísticos.
 
 Para investigar as diferenças entre as condições experimentais, aplicamos métodos estatísticos robustos, incluindo testes de normalidade, testes não paramétricos e correções para comparações múltiplas. Adicionalmente, foram utilizadas medidas de centralidade em redes para avaliar a conectividade funcional entre diferentes regiões corticais. Os padrões de conectividade foram representados por meio de gráficos e redes, facilitando a visualização e a interpretação dos resultados.
 

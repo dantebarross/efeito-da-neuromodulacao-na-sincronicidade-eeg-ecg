@@ -1,6 +1,6 @@
 \chapter{Análise de Distribuição e Normalidade}
 \label{chap:analise_distribuicao_normalidade}
-Nesta seção, investigamos a forma das distribuições das métricas de conectividade, tanto em seus valores ``puros'' quanto nas diferenças (\textit{median\_diff}) entre as condições (Pós - Pré). Inicialmente, apresentamos as distribuições originais das métricas específicas \textbf{(PLI para EEG-EEG e CF-PLM para EEG-ECG)} que serão mantidas para análise. Em seguida, explicamos que, para testar o efeito da estimulação, calculamos a diferença entre os valores pós e pré (por exemplo, \emph{pós-sham} menos \emph{pré-sham}), e por fim discutimos a escolha dos testes estatísticos com base nessas distribuições.
+Nesta seção, investigamos a forma das distribuições das métricas de conectividade, tanto em seus valores ``puros'' quanto nas diferenças (\textit{median\_diff}) entre as condições (Pós - Pré). Inicialmente, apresentamos as distribuições originais das métricas específicas \textbf{(PLI para EEG-EEG e CF-PLM para EEG-ECG)} que serão mantidas para análise. Em seguida, explicamos que, para testar o efeito da estimulação, calculamos a diferença entre os valores pós e pré (por exemplo, pós-\textit{sham} menos pré-\textit{sham}), e por fim discutimos a escolha dos testes estatísticos com base nessas distribuições.
 
 \section{Distribuição das Métricas de Conectividade}
 Antes de subtrair os valores pré dos pós, as métricas de conectividade foram extraídas diretamente dos sinais, refletindo as medidas originais sem a influência do efeito de estimulação. As distribuições ``puras'' são ilustradas nas Figuras~\ref{fig:pli_eeg_eeg} (EEG-EEG, PLI) e~\ref{fig:cfplm_eeg_ecg} (EEG-ECG, CF-PLM):
@@ -14,7 +14,7 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 % -----------------------------------------------------------------------------  
 % PLI (EEG-EEG)  
 % -----------------------------------------------------------------------------  
-\standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
+\ultrawidefigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
 {Distribuição de PLI (EEG-EEG) por banda. Nota-se uma clara concentração de valores próximos a zero em todas as bandas de frequência, com a maioria situada entre 0 e 0.2. As bandas rápidas (beta e gamma) apresentam curvas mais estreitas e concentradas perto de zero. Já as bandas mais lentas (delta, theta e alpha), embora também centradas próximo a zero, exibem caudas superiores maiores, especialmente a banda delta (a mais lenta) onde se destacam alguns valores próximos a 1 (excepcionalmente altos nesta distribuição).}
 {pli_eeg_eeg}
 
@@ -22,7 +22,7 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 % -----------------------------------------------------------------------------  
 % CF-PLM (EEG-ECG)  
 % -----------------------------------------------------------------------------  
-\standardfigure{figs/3_1_connectivity_metrics/Distribuição_de_CF-PLM_(EEG-ECG)_por_Banda.png}
+\ultrawidefigure{figs/3_1_connectivity_metrics/Distribuição_de_CF-PLM_(EEG-ECG)_por_Banda.png}
 {Distribuição de CF-PLM (EEG-ECG) por banda. Observa-se que é praticamente inexistente valores muito próximos a zero. A maior parte encontra-se entre 0.05 e 0.20. A depender da banda de frequência analisada, é possível observar um deslocamento de seus dados em relação às demais. No geral, é possível observar que quanto mais rápidas as bandas de frequência (e.g. gamma), menores os valores de CF-PLM, e menos densos (curvas mais pontudas). Quanto mais lentas (e.g. delta), maiores os valores de CF-PLM, e mais densos (curvas menos pontudas).}
 {cfplm_eeg_ecg}
 
@@ -44,11 +44,11 @@ o que visa isolar o efeito da intervenção, removendo variações comuns que es
 
 As distribuições dessas diferenças foram avaliadas por meio de histogramas com \textit{cross-frequency} (KDE) para as métricas utilizadas nesta análise (PLI para EEG-EEG e CF-PLM para EEG-ECG). Os resultados são apresentados nas Figuras~\ref{fig:pli_freq_eeg_eeg} e~\ref{fig:cf_plm_freq_eeg_ecg}.
 
-\standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_PLI_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_EEG.png}
+\ultrawidefigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_PLI_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_EEG.png}
 {Distribuição da diferença da PLI (Pós - Pré) em EEG-EEG, por faixa de frequência.}
 {pli_freq_eeg_eeg}
 
-\standardfigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_CF-PLM_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_ECG.png}
+\ultrawidefigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_CF-PLM_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_ECG.png}
 {Distribuição da diferença da CF-PLM (Pós - Pré) em EEG-ECG, por faixa de frequência.}
 {cf_plm_freq_eeg_ecg}
 
@@ -71,11 +71,11 @@ Esses perfis de dispersão são fundamentais para a escolha dos testes estatíst
 \subsubsection{Exemplo Individual por Métrica e Banda}
 Para ilustrar de forma mais específica o comportamento das distribuições em um caso individual, a Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg} exibe a diferença da métrica \texttt{median\_cf\_plm\_diff} (Pós - Pré) para o atleta 4, na banda alpha, considerando todos os pares EEG-ECG. Já a Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg} apresenta a diferença da \textit{median\_pli\_diff} para o mesmo atleta e banda, mas agora em pares EEG-EEG.
 
-\standardfigure{figs/5_connectivity_metrics_individual_distribution/median_cf_plm_diff_athlete_4_alpha_EEG_ECG.png}
+\ultrawidefigure{figs/5_connectivity_metrics_individual_distribution/median_cf_plm_diff_athlete_4_alpha_EEG_ECG.png}
 {Distribuição da \texttt{median\_cf\_plm\_diff} (Pós - Pré) para o atleta 4, banda alpha, em pares EEG-ECG.}
 {median_cf_plm_diff_ath4_alpha_eeg_ecg}
 
-\standardfigure{figs/5_connectivity_metrics_individual_distribution/median_pli_diff_athlete_4_alpha_EEG_EEG.png}
+\ultrawidefigure{figs/5_connectivity_metrics_individual_distribution/median_pli_diff_athlete_4_alpha_EEG_EEG.png}
 {Distribuição da \textit{median\_pli\_diff} (Pós - Pré) para o atleta 4, banda alpha, em pares EEG-EEG.}
 {median_pli_diff_ath4_alpha_eeg_eeg}
 

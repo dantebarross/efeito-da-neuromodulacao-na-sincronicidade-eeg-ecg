@@ -2,23 +2,35 @@
 \label{chap:conclusoes_e_trabalhos_futuros}
 
 \section{Conclusões}
-Este trabalho demonstrou que a neuromodulação catódica por HD-tDCS sobre o DLPFC esquerdo em atletas de elite de basquetebol, em condição de repouso, promoveu mudanças consistentes e robustas na conectividade funcional cerebral e na integração cérebro-coração. Todas as análises estatísticas foram realizadas sobre as diferenças entre as medições Pós e Pré para cada condição, comparando-se diretamente a condição \emph{cathodic} em relação à \emph{sham}. Em resumo:
+Este trabalho demonstrou que a neuromodulação catódica por HD-tDCS sobre o DLPFC esquerdo em atletas de elite de basquetebol, em condição de repouso, promoveu alterações específicas na conectividade intra-frequencial (EEG-EEG). Todas as análises estatísticas consideraram as diferenças Pós - Pré entre as condições \emph{cathodic} e \textit{sham}, com correção de Bonferroni ($\alpha\$ = 0,01).
+
 \begin{itemize}
-  \item A sincronização de fase intrafrequencial (EEG-EEG) foi significativamente modulada, com efeitos robustos nas bandas alpha, delta, theta e gamma, e efeito marginal em beta.
-  \item O acoplamento cross-frequency (EEG-ECG) apresentou redução significativa nas bandas delta, beta e gamma, conforme testes globais, mas aumento localizado em pares específicos segundo a análise \textit{bootstraped} par-a-par.
-  \item Testes não paramétricos (Mann-Whitney U, Wilcoxon signed-rank, Kruskal-Wallis) confirmaram as alterações mesmo após correção de múltiplas comparações e no cenário com e sem remoção de outliers.
-  \item A fase \emph{bootstrap} par-a-par revelou dezenas de pares de canais com efeitos de grande magnitude, refletidos por correlações bisseriais de postos (RBC) frequentemente próximas de $\pm1$, indicando efeitos moduladores altos, fornecendo a base estatística para as análises de rede.
-  \item A análise de grafos mostrou reorganização topológica: emergiram novos hubs, destacando-se o canal \textbf{Fp2} na banda alpha, sugerindo realocação funcional e resiliência da rede.
+  \item[\textbf{Análise Macro (Fase 1)}]  
+    \begin{itemize}
+      \item \textbf{PLV:} aumento significativo de conectividade em \textbf{beta}, \textbf{delta}, \textbf{theta} e \textbf{gamma} (p < 0,01 em Wilcoxon e Mann–Whitney); sem mudança em \textbf{alpha}.
+      \item \textbf{PLI:} redução significativa em \textbf{alpha} e \textbf{theta} (efeitos negativos, p < 0,01) e aumento significativo em \textbf{delta} e \textbf{gamma} (efeitos positivos, p < 0,01); \textbf{beta} permaneceu sem efeito robusto.
+      \item Robustez: exclusão do outlier manteve as mesmas bandas significativas, embora os tamanhos de efeito em \textbf{beta} (PLV) e \textbf{delta} (PLV, PLI) tenham se reduzido.
+    \end{itemize}
+
+  \item[\textbf{Análise Micro (Fase 2 e 3)}]  
+    \begin{itemize}
+      \item \textbf{Bootstrap (Fase 2):} alguns pares de canais com RBC próximos a $+1$ e a $-1$, confirmando localizações específicas de efeito positivo da catódica em relação à \textit{sham} na sincronicidade de fase (alpha e theta) e negativo (delta e gamma).
+      \item \textbf{Centralidade (Fase 3):} Fp2 emergiu como hub dominante em alpha, sinalizando reorganização topológica consistente em ambos os cenários; demais hubs variaram por banda (p. ex., TPP7h em beta, CP5/CP4 em delta).
+    \end{itemize}
 \end{itemize}
-  
-Esses achados corroboram modelos de plasticidade funcional induzida e de integração corpo-cérebro, e indicam que a HD-tDCS catódica pode ser usada para modular especificamente ritmos e circuitos relevantes ao desempenho esportivo de alto nível.
+
+Esses resultados indicam que a HD-tDCS catódica:
+\begin{itemize}
+  \item Macro: modula de forma diferenciada os ritmos EEG-EEG—amplificando delta, theta e gamma (e beta no PLV) e reduzindo alpha.
+  \item Micro: provoca mudanças topográficas de sincronia e hierarquia de canais, com hubs funcionais estáveis mesmo após remoção de outliers.
+\end{itemize}
 
 \section{Trabalhos Futuros}
 Para aprofundar e ampliar estas descobertas, sugerimos:
 \begin{itemize}
   \item \textbf{Análise do efeito imediato no desempenho:} correlacionar as alterações de conectividade em repouso com a performance nos arremessos livres coletada na mesma sessão, a fim de mapear relações entre estado neural e execução motora.
   \item \textbf{Estudo longitudinal:} acompanhar atletas ao longo da temporada para avaliar a estabilidade e a evolução dos efeitos da HD-tDCS na conectividade e no rendimento.
-  \item \textbf{Paradigma \textit{event‑related} (\textit{trial‑based}):} desenhar experimentos baseados em eventos, por exemplo, apresentar estímulos ou comandos em trials controlados, para coletar múltiplas observações por participante em cada sessão, aumentando o poder estatístico e permitindo análises temporais finas das respostas neurais. Para um avanço do presente estudo, esta tarefa pode estar relacionada ao desempenho esportivo, como por exemplo \textit{trials} de lance livre de basquetebol.
+  \item \textbf{Paradigma \textit{event-related} (\textit{trial-based}):} desenhar experimentos baseados em eventos, por exemplo, apresentar estímulos ou comandos em trials controlados, para coletar múltiplas observações por participante em cada sessão, aumentando o poder estatístico e permitindo análises temporais finas das respostas neurais. Para um avanço do presente estudo, esta tarefa pode estar relacionada ao desempenho esportivo, como por exemplo \textit{trials} de lance livre de basquetebol.
   \item \textbf{Validação funcional dos \textit{hubs} de modulação:} investigar se os canais mais centrais identificados nas redes moduladas (como Fp2 em alpha) estão relacionados a marcadores de desempenho atlético e mais a fundo a responsividade à neuromodulação.
   \item \textbf{Comparação entre protocolos:} confrontar HD-tDCS e tDCS convencional para identificar vantagens de focalidade, intensidade e duração dos efeitos.
   \item \textbf{Generalização a outras populações:} incluir atletas de diferentes modalidades e níveis de experiência, bem como voluntários não atletas, para testar a robustez e a especificidade dos resultados.

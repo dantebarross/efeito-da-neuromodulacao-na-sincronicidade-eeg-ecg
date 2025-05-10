@@ -1,41 +1,45 @@
 \chapter{Análise Estatística Não Paramétrica}
 \label{chap:analise_estatistica_np}
+
 Considerando que as distribuições das métricas de conectividade (diferença entre Pós e Pré) não se comportam de maneira normal (ver Capítulo~\ref{chap:analise_distribuicao_normalidade}), optamos por empregar testes estatísticos não paramétricos para comparar as condições de estimulação \textit{cathodic} \textit{versus} \textit{sham}. Essa escolha evita pressupostos inadequados sobre a distribuição dos dados. Além da violação de normalidade, a presença de \textit{outliers} reforça a adoção de testes não paramétricos neste cenário de heterogeneidade amostral.
 
 Nesta etapa, foram aplicados os seguintes testes:
 \begin{itemize}
-    \item \textbf{Mann-Whitney U}: teste para amostras independentes, usado para avaliar se as distribuições das diferenças entre ``\textit{cathodic}'' e ``\textit{sham}'' diferem significativamente em cada faixa de frequência e grupo de canais.  
-      O tamanho de efeito foi calculado como correlação bisserial de postos:
-      \[
-        r_{rb} = \frac{2U}{n_1\,n_2} - 1,
-      \]
-      onde \(U\) é a estatística de Mann-Whitney e \(n_1,n_2\) são os tamanhos das amostras. Varia de \(-1\) a \(+1\):  
-      \(\,r_{rb}>0\) indica que ``cathodic'' tende a valores maiores que ``sham'' e \(r_{rb}<0\) o inverso.
-      
-    \item \textbf{Kruskal-Wallis}: teste para amostras independentes, matematicamente equivalente ao Mann-Whitney U quando há apenas duas amostras.  
-      O tamanho de efeito foi calculado como
-      \[
-        \eta = \frac{H}{n_1 + n_2 - 1},
-      \]
-      onde \(H\) é a estatística de Kruskal-Wallis. Varia de 0 a 1, representando apenas a magnitude do efeito (sem sinal direcional).
-      
-    \item \textbf{Wilcoxon signed-rank}: teste para amostras pareadas, que compara Pré \textit{versus} Pós em cada atleta e par de canais, capturando mudanças intraindividuais. O tamanho de efeito foi calculado como
-      \[
-        r = \frac{W}{n(n+1)/2},
-      \]
-      onde \(W\) é a soma de postos e \(n\) o número de pares. Varia de 0 a 1 e indica apenas magnitude (sem sinal); para direção consulte a análise bootstrap na Seção \ref{sec:effect_size_distribution}.
-  \end{itemize}
+  \item \textbf{Wilcoxon signed-rank (pareado)}: teste \textbf{principal} neste delineamento \textit{crossover}. Compara, atleta a atleta, as diferenças Pós-Pré entre as duas condições, explorando a correlação intra-sujeito e oferecendo maior potência em amostras pequenas (\(n=6\)).  
+        O tamanho de efeito foi calculado como
+        \[
+          r = \frac{W}{n(n+1)/2},
+        \]
+        em que \(W\) é a soma dos postos e \(n\) o número de atletas. O valor varia de \(0\) a \(1\) e expressa apenas a \textbf{magnitude}.
+  \item \textbf{Mann-Whitney U} (análise complementar): trata as distribuições das diferenças Pós-Pré em ``\textit{cathodic}'' e ``\textit{sham}'' como amostras \textbf{independentes}. Essa simplificação ignora a correlação intra-sujeito e, com \(n=6\), reduz a potência, mas fornece diretamente o sinal do efeito pela correlação bisserial de postos:
+        \[
+          r_{rb}= \frac{2U}{n_1\,n_2}-1 ,
+        \]
+        onde \(U\) é a estatística de Mann-Whitney e \(n_1,n_2\) são os tamanhos das amostras. Valores positivos indicam médias maiores em ``\textit{cathodic}''; valores negativos indicam médias maiores em ``\textit{sham}''.
+  \item \textbf{Kruskal-Wallis}: incluído para fins comparativos. Com apenas duas amostras o \(p\)-valor coincide com o do Mann-Whitney; relatamos a estatística \(H\) e estimamos o tamanho de efeito pela razão
+        \[
+          \eta = \frac{H}{n_1+n_2-1},
+        \]
+        que varia de \(0\) a \(1\) e expressa apenas a magnitude (sem direção).
+\end{itemize}
 
-Os testes foram realizados separadamente para cada métrica de conectividade (\textit{median\_plv\_diff}, \textit{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}) e para os grupos de canais \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Embora o código inclua remoção de dados nulos, na prática não houve valores faltantes.
+Os testes foram executados separadamente para cada métrica (\textit{median\_plv\_diff}, \textit{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}) e para os grupos de canais \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. Embora o código inclua verificação de valores nulos, na prática não houve dados faltantes.
 
-Em todo o conjunto de comparações (5 bandas × 2 grupos de canais = 10 testes), aplicamos Bonferroni
-\[ 
-  \alpha_{\mathrm{corr}} \;=\; \frac{0{,}05}{10} \;=\; 0{,}005 \,,
+\noindent\textbf{Análises com e sem remoção de \textit{outliers}.}  
+Para investigar o impacto de valores atípicos, conduzimos todos os testes estatísticos globais duas vezes: uma com o conjunto original e outra após a remoção de \textit{outliers}. Utilizamos o algoritmo ECOD (\textit{Empirical Cumulative Outlier Detection}) para essa etapa, devido à sua natureza não paramétrica e capacidade de detectar anomalias sem pressupor uma distribuição específica dos dados \cite{li2022ecod}. O ECOD estima a densidade local e identifica observações incomuns com base na função empírica de distribuição. Estudos demonstram que ele supera diversas técnicas convencionais de detecção de \textit{outliers} em termos de acurácia e robustez.
+
+Observou-se que, para o grupo \texttt{EEG\_EEG} (PLV e PLI), aproximadamente \(5\%\) dos dados foram removidos. Já para o grupo \texttt{EEG\_ECG} (CF-PLM), \textbf{0\% dos dados foram identificados como \textit{outliers}}, ou seja, os resultados com e sem remoção foram idênticos. Por esse motivo, na seção de resultados apresentamos duas versões (com e sem outliers) apenas para as métricas EEG‑EEG; no caso do EEG‑ECG, exibimos apenas uma versão consolidada.
+
+\medskip
+\noindent\textbf{Correção para múltiplas comparações.}  
+Em cada combinação métrica × teste, foram realizadas 5 comparações (uma por banda). Cada bloco foi corrigido separadamente com Bonferroni:
+\[
+  \alpha_{\mathrm{corr}} = \frac{0{,}05}{5} = 0{,}01 .
 \]
-ou seja, consideramos significativos apenas os testes com \(p_{\rm raw}<0{,}005\).
+Esse valor corrigido foi usado como limiar de significância em todos os testes dessa fase macro. Apenas resultados com \(p_{\text{raw}} < \alpha_{\mathrm{corr}}\) foram considerados estatisticamente significativos.
 
 \section{Detecção de \textit{Outliers}, Análise \textit{Bootstrap} e Correções para Comparações Múltiplas}
-Para avaliar o impacto dos pontos atípicos nas análises subsequentes, optamos por realizar uma etapa adicional de detecção e remoção de \textit{outliers} utilizando o método ECOD, especialmente adequado ao nosso conjunto de dados devido à sua natureza não paramétrica, identificando anomalias sem pressupor uma distribuição específica dos dados. Estudos demonstram que o ECOD supera diversas técnicas convencionais de detecção de \textit{outliers} em termos de acurácia e eficiência \cite{li2022ecod}.
+Utilizamos o mesmo método de detecção de \textit{outliers} empregado na etapa macro (ECOD, conforme descrito na seção anterior), aplicando-o agora às análises micro realizadas par a par. Essa filtragem visa aumentar a robustez das estimativas de tamanho de efeito e dos intervalos de confiança, especialmente em métricas mais sensíveis a valores extremos.
 
 Aplicamos o ECOD considerando as métricas \textit{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}. Inicialmente, o dataset continha 122915 entradas; após a aplicação do ECOD, aproximadamente 5,00\% dos dados foram identificados como \textit{outliers} e removidos. Paralelamente, todo o mesmo conjunto de análises foi executado sem remover os outliers, e esses resultados ``sem remoção'' são apresentados nas seções subsequentes.
 
@@ -60,58 +64,31 @@ Em resumo, nossa abordagem compreende as seguintes etapas:
 
 Devido ao grande número de comparações realizadas, apresentamos aqui um sumário estatístico dos resultados significativos. As tabelas completas com todos os resultados individuais estão disponíveis publicamente em nosso repositório GitHub \cite{barros2025repository} (\url{https://github.com/dantebarross/efeito-da-neuromodulacao-na-sincronicidade-eeg-ecg}). As Tabelas \ref{tab:summary_eeg_eeg_with} e \ref{tab:summary_eeg_eeg_without} apresentam os resultados sumarizados para as comparações EEG-EEG, com e sem outliers, respectivamente. e as Tabelas \ref{tab:summary_eeg_ecg_with} e \ref{tab:summary_eeg_ecg_without} mostram os resultados para as comparações EEG-ECG.
 
-As tabelas de resumo fornecem apenas uma visão geral dos resultados, sem aprofundar nos resultados individuais observados. Na próxima seção, exploramos esses achados em detalhes por meio de gráficos que ilustram as distribuições dos tamanhos de efeito (Cohen's \(d\), Hedges' \(g\) e correlação de postos Wilcoxon RBC) e dos p-valores. Em seguida, no Capítulo~\ref{chap:analise_de_rede}, apresentamos mapas de conectividade (visualizações em redes topográficas) para todos os grupo de canais e faixas de frequência.
-
-\inputtable{tabelas/summary_eeg_eeg_with_outliers.tex}
-{Sumário estatístico das comparações EEG-EEG com outliers}
-{summary_eeg_eeg_with}
-{Elaborado pelo autor (2025)}
-
-\inputtable{tabelas/summary_eeg_eeg_without_outliers.tex}
-{Sumário estatístico das comparações EEG-EEG sem outliers}
-{summary_eeg_eeg_without}
-{Elaborado pelo autor (2025)}
-
-\inputtable{tabelas/summary_eeg_ecg_with_outliers.tex}
-{Sumário estatístico das comparações EEG-ECG com outliers}
-{summary_eeg_ecg_with}
-{Elaborado pelo autor (2025)}
-
-\inputtable{tabelas/summary_eeg_ecg_without_outliers.tex}
-{Sumário estatístico das comparações EEG-ECG sem outliers}
-{summary_eeg_ecg_without}
-{Elaborado pelo autor (2025)}
+Na próxima seção, exploramos esses achados em detalhes por meio de gráficos que ilustram as distribuições dos tamanhos de efeito (Cohen's \(d\), Hedges' \(g\) e correlação de postos Wilcoxon RBC) e dos p-valores. Em seguida, no Capítulo~\ref{chap:analise_de_rede}, apresentamos mapas de conectividade (visualizações em redes topográficas) para todos os grupo de canais e faixas de frequência.
 
 \section{Distribuição de Tamanhos de Efeito e p-valores}
 \label{sec:effect_size_distribution}
 Nesta etapa, examinamos a distribuição das estimativas de tamanho de efeito (Cohen's \(d\), Hedges' \(g\)  e Wilcoxon RBC) e dos p-valores (brutos e corrigidos por Bonferroni) para as análises de PLI (EEG-EEG) e CF-PLM (EEG-ECG), considerando cenários com e sem \textit{outliers}. 
 
-A Figura~\ref{fig:effectsizehist_all} ilustra, em quatro subfiguras, como essas métricas se distribuem ao longo dos pares de canal e faixas de frequência analisados.
+A figura~\ref{fig:effectsize_com_pli} apresenta o histograma de tamanho de efeito (Cohen's \(d\), Hedges' \(g\) e Wilcoxon RBC) e p-valores (brutos e Bonferroni) para \emph{PLI} (EEG-EEG) \textbf{com outliers}. A figura~\ref{fig:effectsize_sem_pli} mostra o mesmo para \emph{PLI} \textbf{sem outliers}.
+  
+A figura~\ref{fig:effectsize_com_cfplm} apresenta os resultados para \emph{CF-PLM} (EEG-ECG) no cenário com outliers (não há versão sem outlier, pois nenhum dado foi removido pelo ECOD). Em cada plot, a linha vertical tracejada vermelha em \(p=0{,}05\) indica o limiar de significância após correção de Bonferroni.
 
-\begin{figure}[htb]
-    \centering
-    % Subfigura 1: PLI (EEG-EEG), Sem Outliers
-    \subfloat[Sem Outliers - PLI (EEG-EEG)]{
-        \includegraphics[width=0.45\textwidth]{figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_PLI_EEGEEG_Sem_Outliers.png}
-    }
-    \quad
-    % Subfigura 2: CF-PLM (EEG-ECG), Sem Outliers
-    \subfloat[Sem Outliers - CF-PLM (EEG-ECG)]{
-        \includegraphics[width=0.45\textwidth]{figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_CFPLM_EEGECG_Sem_Outliers.png}
-    }
-    \\
-    % Subfigura 3: PLI (EEG-EEG), Com Outliers
-    \subfloat[Com Outliers - PLI (EEG-EEG)]{
-        \includegraphics[width=0.45\textwidth]{figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_PLI_EEGEEG_Com_Outliers.png}
-    }
-    \quad
-    % Subfigura 4: CF-PLM (EEG-ECG), Com Outliers
-    \subfloat[Com Outliers - CF-PLM (EEG-ECG)]{
-        \includegraphics[width=0.45\textwidth]{figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_CFPLM_EEGECG_Com_Outliers.png}
-    }
-    \caption[Distribuições de tamanhos de efeito e p-valores]{Distribuição das métricas de tamanho de efeito (Cohen's \(d\), Hedges' \(g\)  e Wilcoxon RBC) e dos p-valores (brutos e corrigidos por Bonferroni) para PLI (EEG-EEG) e CF-PLM (EEG-ECG), em cenários com e sem \textit{outliers}. O Wilcoxon RBC e o p-valor corrigido por Bonferroni (vertical tracejada vermelha em $p=0.05$) foram escolhidos como as métricas para representar, respectivamente, o tamanho do efeito e a significância estatística nas análises subsequentes.}
-    \label{fig:effectsizehist_all}    
-\end{figure}
+
+\ultrawidefigure
+  {figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_PLI_EEGEEG_Com_Outliers.png}
+  {Com outliers - PLI (EEG-EEG).}
+  {effectsize_com_pli}
+
+\ultrawidefigure
+  {figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_PLI_EEGEEG_Sem_Outliers.png}
+  {Sem outliers - PLI (EEG-EEG).}
+  {effectsize_sem_pli}
+
+\ultrawidefigure
+  {figs/7_bootstrap_results_analysis/1_effect_size_histograms/Effect_Size_Histograms_CFPLM_EEGECG_Com_Outliers.png}
+  {Com outliers - CF-PLM (EEG-ECG).}
+  {effectsize_com_cfplm}
 
 \subsection{Distribuição dos Tamanhos de Efeito}
 \subsubsection{Cohen's \(d\) e Hedges' \(g\) }
@@ -148,7 +125,7 @@ Em resumo, os histogramas de Wilcoxon RBC (indicador de tamanho de efeito) e os 
 
 \subsection{Conclusões Principais}
 \begin{itemize}
-    \item A distribuição dos dados mostra que a maioria dos pares de canais apresenta diferenças pequenas entre as condições, com os valores de tamanho de efeito concentrando-se em torno de zero. Esse comportamento é esperado, dado o alto número de comparações e a aplicação de métodos rigorosos de correção múltipla, como Bonferroni.
+    \item A distribuição dos dados mostra que a maioria dos pares de canais apresenta diferenças pequenas entre as condições, com os valores de tamanho de efeito concentrando-se em torno de zero. \textbf{Contudo, nos testes globais (Fase 1) todas as bandas foram significativas na PLV e quatro bandas na PLI, evidenciando um efeito grupal que se dilui ao se examinar cada par isoladamente.} Esse padrão é esperado dado o alto número de comparações e o critério conservador de Bonferroni.
     
     \item Nos casos onde há significância estatística, os tamanhos de efeito se afastam de zero de forma mais pronunciada (conforme evidenciado por Cohen's \(d\), Hedges' \(g\)  ou RBC), indicando diferenças que podem ser relevantes do ponto de vista da dinâmica de conectividade funcional.
 

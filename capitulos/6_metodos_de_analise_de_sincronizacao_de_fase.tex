@@ -142,21 +142,21 @@ O protocolo de validação foi estruturado em quatro etapas metodológicas compl
 
 Para ilustrar o processo de injeção controlada, as Figuras~\ref{fig:ecg_injection} e~\ref{fig:eeg_injection} apresentam exemplos visuais dos sinais antes e após a injeção no cenário \textit{cross-frequency}. Estas visualizações demonstram como os sinais artificiais com frequências distintas (1 Hz para ECG e 40 Hz para EEG) foram incorporados aos sinais fisiológicos originais, permitindo uma avaliação controlada da capacidade dos métodos em detectar acoplamentos entre oscilações de diferentes frequências.
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/1_ECG_Original_vs_Injecao_Cross-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/1_ECG_Original_vs_Injecao_Cross-frequency.png}
 {ECG: comparação entre o sinal original (azul) e o sinal senoidal injetado de 1~Hz (vermelho) no cenário \textit{cross-frequency}. A injeção controlada permite avaliar a sensibilidade dos métodos de sincronização a acoplamentos de baixa frequência.}
 {ecg_injection}
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/3_EEG_Original_vs_Injecao_Cross-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/3_EEG_Original_vs_Injecao_Cross-frequency.png}
 {EEG: comparação entre o sinal original (azul) e o sinal senoidal injetado de 40~Hz (vermelho) no cenário \textit{cross-frequency}. A alta frequência do sinal injetado simula ritmos gamma cerebrais, permitindo avaliar a detecção de acoplamentos entre oscilações rápidas cerebrais e ritmos cardíacos mais lentos.}
 {eeg_injection}
 
 Para complementar a avaliação no cenário \textit{cross-frequency}, implementamos também um cenário \textit{same-frequency}, onde tanto o ECG quanto o EEG receberam sinais senoidais com frequências idênticas, mas com uma defasagem controlada de \(\pi/4\) radianos. Este cenário é particularmente relevante para avaliar a capacidade dos métodos em detectar sincronizações intrafrequencial com defasagens específicas, um padrão que pode ocorrer em determinados estados fisiológicos onde diferentes regiões cerebrais ou sistemas corporais oscilam na mesma frequência, mas com relações de fase estáveis. As Figuras~\ref{fig:eeg_original_vs_injection_samefreq} e~\ref{fig:eeg_injected_samefreq} ilustram este cenário experimental, evidenciando tanto os sinais de injeção quanto o resultado da incorporação controlada destes sinais aos dados originais.
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/10_EEG_Original_vs_Injecao_Same-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/10_EEG_Original_vs_Injecao_Same-frequency.png}
 {Visualização do cenário \textit{same-frequency}: sinal de EEG original (azul) e sinal senoidal de injeção (vermelho) com defasagem controlada de \(\pi/4\) radianos. Esta configuração permite avaliar a sensibilidade dos métodos a sincronizações com defasagens específicas.}
 {eeg_original_vs_injection_samefreq}
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/11_EEG_Injetado_Same-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/11_EEG_Injetado_Same-frequency.png}
 {Resultado da injeção controlada no cenário \textit{same-frequency}: sinal de EEG após a incorporação da componente senoidal (verde), comparado ao sinal original sem injeção (azul). A modificação controlada do sinal permite quantificar precisamente a resposta dos métodos de sincronização.}
 {eeg_injected_samefreq}
 
@@ -172,11 +172,11 @@ A interpretação desta diferença de fase é direta e intuitiva: valores positi
 
 As Figuras~\ref{fig:fases_instantaneas_samefreq} e~\ref{fig:sinal_interferometrico_samefreq} ilustram, respectivamente, as fases instantâneas extraídas dos sinais modificados (EEG e ECG, ambos injetados com a mesma frequência) e o sinal interferométrico resultante da diferença entre estas fases:
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/12_Passo1_Fases_Same-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/12_Passo1_Fases_Same-frequency.png}
 {Fases instantâneas extraídas dos sinais EEG e ECG no cenário \textit{same-frequency}. A visualização das fases desenroladas permite observar a evolução temporal da relação de fase entre os sinais, revelando padrões de sincronização potencial.}
 {fases_instantaneas_samefreq}
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/13_Passo2_Interferometrico_Same-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/13_Passo2_Interferometrico_Same-frequency.png}
 {Sinal interferométrico resultante da diferença de fase instantânea no cenário \textit{same-frequency}. As flutuações neste sinal refletem a dinâmica temporal da sincronização entre os sinais analisados, com períodos de maior e menor estabilidade na relação de fase.}
 {sinal_interferometrico_samefreq}
 
@@ -184,7 +184,7 @@ Uma característica fundamental a ser observada nestas visualizações é que, e
 
 Para quantificar o grau de sincronização entre os sinais, aplicamos a Transformada de Fourier (FFT) ao sinal interferométrico, obtendo sua densidade espectral de potência (PSD). Esta análise espectral constitui um passo fundamental no cálculo do índice CF-PLM e revela características importantes sobre a natureza do acoplamento entre os sinais. A Figura~\ref{fig:fft_psd_samefreq} ilustra este processo analítico no cenário \textit{same-frequency}, evidenciando um pico proeminente em 0 Hz, característico de sinais com a mesma frequência fundamental e diferença de fase relativamente estável.
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/14_Passo3_FFT_PSD_Same-frequency.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/14_Passo3_FFT_PSD_Same-frequency.png}
 {Densidade espectral de potência (PSD) do sinal interferométrico no cenário \textit{same-frequency}, revelando um pico característico em 0 Hz. Este padrão espectral é indicativo de uma diferença de fase estável entre sinais de mesma frequência, permitindo quantificar o grau de sincronização através da concentração de energia espectral.}
 {fft_psd_samefreq}
 
@@ -192,11 +192,11 @@ Para completar nossa avaliação sistemática, implementamos um cenário experim
 
 As Figuras~\ref{fig:zerolag_phases_final} e~\ref{fig:zerolag_difference_final} ilustram as características deste cenário especial. Na primeira visualização, observamos as fases desenroladas dos dois sinais praticamente sobrepostas, indicando sincronização quase perfeita. Na segunda figura, a diferença de fase permanece consistentemente próxima a zero ao longo de todo o período analisado, confirmando a ausência de defasagem significativa entre os sinais.
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/15_ZeroLag_Fases_Same-frequency Com Phase Lag Zero.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/15_ZeroLag_Fases_Same-frequency Com Phase Lag Zero.png}
 {Fases instantâneas desenroladas no cenário \textit{Same-frequency com Phase Lag Zero}, demonstrando sobreposição quase exata dos sinais. Esta configuração simula condições de sincronização perfeita que podem ocorrer em fenômenos como o \textit{volume conduction}, permitindo avaliar a especificidade dos diferentes métodos de sincronização.}
 {zerolag_phases_final}
 
-\standardfigure{figs/3_2_testing_connectivity_metrics/16_ZeroLag_Diferenca_Fase_Same-frequency Com Phase Lag Zero.png}
+\ultrawidefigure{figs/3_2_testing_connectivity_metrics/16_ZeroLag_Diferenca_Fase_Same-frequency Com Phase Lag Zero.png}
 {Diferença de fase no cenário \textit{Same-frequency com Phase Lag Zero}, mantendo-se consistentemente próxima a zero ao longo do tempo. Este padrão é característico de sincronizações potencialmente espúrias decorrentes de fontes comuns, representando um desafio metodológico importante para métricas de sincronização.}
 {zerolag_difference_final}
 
@@ -234,16 +234,16 @@ As Figuras~\ref{fig:cfplm_time_cat}, \ref{fig:pli_time_cat} e \ref{fig:plv_time_
 
 Em todas as figuras, observa-se relativa constância dos índices de sincronização ao longo dos 4 minutos e 30 segundos, conforme esperado para registros em repouso.
 
-Cada ponto nestas séries temporais representa a mediana dos valores de conectividade calculados para todos os pares de canais relevantes dentro de uma janela específica de 10 segundos, para cada banda de frequência e condição experimental (pré-sham, pós-sham, pré-\textit{cathodic} ou pós-\textit{cathodic}). Esta representação estatisticamente robusta minimiza o impacto de variações pontuais e \textit{outliers}, oferecendo uma caracterização confiável da dinâmica temporal da sincronização neural ao longo da sessão experimental.
+Cada ponto nestas séries temporais representa a mediana dos valores de conectividade calculados para todos os pares de canais relevantes dentro de uma janela específica de 10 segundos, para cada banda de frequência e condição experimental (pré-\textit{sham}, pós-\textit{sham}, pré-\textit{cathodic} ou pós-\textit{cathodic}). Esta representação estatisticamente robusta minimiza o impacto de variações pontuais e \textit{outliers}, oferecendo uma caracterização confiável da dinâmica temporal da sincronização neural ao longo da sessão experimental.
 
-\standardfigure{figs/4_connectivity_over_time/Mediana_do_CF-PLM_ao_longo_do_tempo_(EEG_ECG)_Catódica.png}
+\ultrawidefigure{figs/4_connectivity_over_time/Mediana_do_CF-PLM_ao_longo_do_tempo_(EEG_ECG)_Catódica.png}
 {Evolução temporal da mediana do CF-PLM para a condição \textit{cathodic} (EEG-ECG). Cada ponto representa a mediana dos valores de sincronização calculados em janelas consecutivas de 10 segundos, revelando a dinâmica do acoplamento \textit{cross-frequency} entre ritmos cerebrais e cardiovasculares ao longo da sessão experimental. A relativa estabilidade observada é consistente com o contexto de registro em \textit{resting-state}.}
 {cfplm_time_cat}
 
-\standardfigure{figs/4_connectivity_over_time/Mediana_do_PLI_ao_longo_do_tempo_(EEG_EEG)_Catódica.png}
+\ultrawidefigure{figs/4_connectivity_over_time/Mediana_do_PLI_ao_longo_do_tempo_(EEG_EEG)_Catódica.png}
 {Dinâmica temporal da mediana do PLI para a condição \textit{cathodic} (EEG-EEG). O gráfico ilustra a evolução da sincronização intrafrequencial entre diferentes regiões cerebrais ao longo da gravação, com padrões distintos para cada banda de frequência. A métrica PLI, resistente a efeitos de \textit{volume conduction}, revela padrões de conectividade funcional genuína entre áreas corticais.}
 {pli_time_cat}
 
-\standardfigure{figs/4_connectivity_over_time/Mediana_do_PLV_ao_longo_do_tempo_(EEG_EEG)_Catódica.png}
+\ultrawidefigure{figs/4_connectivity_over_time/Mediana_do_PLV_ao_longo_do_tempo_(EEG_EEG)_Catódica.png}
 {Evolução temporal da mediana do PLV para a condição \textit{cathodic} (EEG-EEG). Incluído como referência comparativa, o PLV apresenta padrões temporais que, quando contrastados com o PLI, permitem inferências sobre a natureza das sincronizações detectadas. Valores consistentemente mais elevados do PLV em comparação ao PLI podem sugerir contribuições de \textit{volume conduction} para a sincronização aparente.}
 {plv_time_cat}

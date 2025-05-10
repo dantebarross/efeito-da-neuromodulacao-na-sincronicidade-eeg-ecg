@@ -60,7 +60,39 @@
 \setlength{\parskip}{0.2cm}     % Espaçamento entre parágrafos
 \makeindex                       % Compilar índice remissivo
 
-% Comando de gerar imagens, padronizando a width.
+
+
+\newcommand{\ultrawidefigure}[3]{
+  \begin{figure}[htbp]
+    \noindent
+    \makebox[\textwidth]{%
+      \includegraphics[width=1.1\textwidth]{#1}
+    }
+    \caption{#2}
+    \label{fig:#3}
+  \end{figure}
+}
+
+\newcommand{\widefigure}[3]{
+  \begin{figure}[htbp]
+    \centering
+    \begin{adjustbox}{max width=\linewidth}
+      \includegraphics{#1}
+    \end{adjustbox}
+    \caption{#2}
+    \label{fig:#3}
+  \end{figure}
+}
+
+\newcommand{\mediumwidefigure}[3]{
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{#1}
+    \caption{#2}
+    \label{fig:#3}
+  \end{figure}
+}
+
 \newcommand{\standardfigure}[3]{
     \begin{figure}[htbp]
         \centering
@@ -184,7 +216,7 @@
   \item[$B$] Largura de banda utilizada para integrar a PSD na definição do índice CF-PLM.
   \item[$\text{stat}$] Valor da estatística do teste \textit{Mann-Whitney U}.
   \item[$n_{\text{cathodic}}$] Número de observações (amostras) na condição catódica.
-  \item[$n_{\text{sham}}$] Número de observações (amostras) na condição \textit{sham}.
+  \item[$n_{\text{\textit{sham}}}$] Número de observações (amostras) na condição \textit{sham}.
 \end{simbolos}
 
 

@@ -4,7 +4,7 @@
 Para este estudo, os dados foram coletados em sessões experimentais com atletas profissionais de basquetebol feminino, submetidas a duas condições: HD-tDCS catódica e uma condição de controle (\textit{sham}). Neste capítulo, descrevemos os procedimentos adotados para organizar, sincronizar e preparar os sinais de EEG e ECG para análise.
 
 \subsection{Organização Inicial dos Dados}
-Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a cada atleta e a cada condição experimental (\textit{pre\_sham}, \textit{post\_sham}, \textit{pre\_cathodic}, \textit{post\_cathodic}). Os sinais de EEG foram originalmente registrados a 1000 Hz, enquanto os sinais de ECG (obtidos a partir do EMG do músculo peitoral maior) foram registrados a 1111,11 Hz. Nesta etapa, os arquivos passaram por:
+Os dados de EEG e ECG foram armazenados em arquivos separados, correspondentes a cada atleta e a cada condição experimental (\textit{pre\_\textit{sham}}, \textit{post\_\textit{sham}}, \textit{pre\_cathodic}, \textit{post\_cathodic}). Os sinais de EEG foram originalmente registrados a 1000 Hz, enquanto os sinais de ECG (obtidos a partir do EMG do músculo peitoral maior) foram registrados a 1111,11 Hz. Nesta etapa, os arquivos passaram por:
 \begin{itemize}
     \item Identificação e associação a cada atleta e condição;
     \item Renomeação e normalização para garantir consistência;
@@ -41,7 +41,7 @@ Para a preparação dos dados de EEG, foram realizadas as seguintes etapas:
     \item \textbf{Reamostragem:} Para padronizar a taxa de amostragem e alinhar precisamente os sinais de EEG e ECG, assegurando o correto funcionamento das medidas de sincronicidade, os dados de EEG foram reamostrados.
 \end{itemize}
 
-\standardfigure{figs/1_preprocessamento_eeg/2_exemplo_sinais_canais_eeg.png}
+\ultrawidefigure{figs/1_preprocessamento_eeg/2_exemplo_sinais_canais_eeg.png}
 {Exemplo de sinais brutos de EEG, ilustrando a variação natural dos canais ao longo do tempo.}
 {exemplo_sinais_eeg}
 
@@ -65,11 +65,11 @@ A seguir, foram adotados os seguintes passos para aplicação do ICA:
 \end{itemize}
 
 
-\standardfigure{figs/1_preprocessamento_eeg/3_exemplo_compomentes_pos_ICA.png}
+\ultrawidefigure{figs/1_preprocessamento_eeg/3_exemplo_compomentes_pos_ICA.png}
 {Exemplo de componentes obtidos após a aplicação do ICA, com mapas topográficos que evidenciam a distribuição espacial de cada componente.}
 {componentes_pos_ICA}
 
-\standardfigure{figs/1_preprocessamento_eeg/4_exemplo_ICA_component_analysis.png}
+\ultrawidefigure{figs/1_preprocessamento_eeg/4_exemplo_ICA_component_analysis.png}
 {Exemplo de análise detalhada de um componente ICA, apresentando o mapa topográfico, o espectro de frequência e outras características relevantes para a identificação de artefatos.}
 {exemplo_ICA_component_analysis}
 
@@ -96,7 +96,7 @@ O processamento do sinal de ECG teve como objetivo obter uma versão refinada do
     Esse ajuste garante a acurácia na identificação dos batimentos, evitando omissões e inclusões indevidas.
 \end{itemize}
 
-\standardfigure{figs/2_preprocessamento_ecg/1_Sinal_de_ECG_-_Picos_Detectados_zoom.png}
+\ultrawidefigure{figs/2_preprocessamento_ecg/1_Sinal_de_ECG_-_Picos_Detectados_zoom.png}
 {Exemplo de sinal de ECG com picos detectados. O sinal bruto (cinza) representa o sinal de EMG coletado, enquanto o sinal processado (azul) corresponde ao ECG filtrado, com os picos R marcados em vermelho.}
 {ecg_picos_detectados}
 
@@ -109,7 +109,7 @@ Para refinar a definição dos eventos de pico R no ECG, foram aplicados filtros
 
 A combinação desses filtros resultou em um sinal final filtrado. A Figura~\ref{fig:ecg_filtros_aplicados} exemplifica o efeito dos filtros, comparando o sinal limpo inicial (linha colorida) com o sinal final filtrado, bem como os picos detectados.
 
-\standardfigure{figs/2_preprocessamento_ecg/2_Sinal_ECG_-_Aplicação_de_Filtros_zoom.png}
+\ultrawidefigure{figs/2_preprocessamento_ecg/2_Sinal_ECG_-_Aplicação_de_Filtros_zoom.png}
 {Exemplo de aplicação de filtros complementares ao sinal de ECG, destacando a morfologia dos picos R (em vermelho).}
 {ecg_filtros_aplicados}
 
@@ -127,7 +127,7 @@ Estudos como o de \citeonline{mollakazemi2021eeg} evidenciam que a segmentação
 
 A Figura~\ref{fig:ecg_comparacao_fase} ilustra a comparação de fase entre o sinal de ECG filtrado (azul), o sinal senoidal gerado (verde) e um sinal simulado (vermelho), evidenciando a diferença entre o sinal de ECG limpo e o transformado em senoide, que é totalmente baseado nos picos R detectados.
 
-\standardfigure{figs/2_preprocessamento_ecg/3_Comparação_de_Fase_entre_Sinais.png}
+\ultrawidefigure{figs/2_preprocessamento_ecg/3_Comparação_de_Fase_entre_Sinais.png}
 {Exemplo de comparação de fase entre o ECG filtrado (azul), o ECG senoidal (verde) e um sinal simulado (vermelho). A boa concordância entre as fases do ECG senoidal e da senoide simulada indica a consistência do procedimento de geração do sinal senoidal baseado em picos R e da extração de fase.}
 {ecg_comparacao_fase}
 
