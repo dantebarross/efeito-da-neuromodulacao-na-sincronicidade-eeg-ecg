@@ -12,17 +12,23 @@ Este trabalho demonstrou que a neuromodulação catódica por HD-tDCS sobre o DL
       \item Robustez: exclusão do outlier manteve as mesmas bandas significativas, embora os tamanhos de efeito em \textbf{beta} (PLV) e \textbf{delta} (PLV, PLI) tenham se reduzido.
     \end{itemize}
 
-  \item[\textbf{Análise Micro (Fase 2 e 3)}]  
+  \item[\textbf{Análise Micro (Fase 2 e 3) - EEG-EEG}]  
     \begin{itemize}
-      \item \textbf{Bootstrap (Fase 2):} alguns pares de canais com RBC próximos a $+1$ e a $-1$, confirmando localizações específicas de efeito positivo da catódica em relação à \textit{sham} na sincronicidade de fase (alpha e theta) e negativo (delta e gamma).
-      \item \textbf{Centralidade (Fase 3):} Fp2 emergiu como hub dominante em alpha, sinalizando reorganização topológica consistente em ambos os cenários; demais hubs variaram por banda (p. ex., TPP7h em beta, CP5/CP4 em delta).
+      \item \textbf{Bootstrap (Fase 2):} alguns pares de canais com RBC próximos a $+1$ e a $-1$, confirmando localizações específicas de efeito positivo da catódica em relação à \textit{sham} na sincronicidade de fase (alpha e theta) e negativo (delta e gamma), com beta apresentando padrões mistos e efeitos localizados.
+      \item \textbf{Centralidade (Fase 3):} Fp2 emergiu como hub dominante em alpha em todas as métricas; em beta, observou-se um núcleo centro-parietal com CP5-F5 com outliers, e posterior predominância de TPP7h sem outliers; CP5/CP4 destacaram-se em delta, enquanto F3 e FT10 lideraram as métricas em gamma; em theta, observou-se um padrão dual entre PO4-FC1 e TP9 conforme a métrica e o cenário.
     \end{itemize}
+
+  \item[\textbf{Análise Micro (Fase 2) - EEG-ECG}]  
+    \begin{itemize}
+      \item \textbf{Bootstrap:} os pares EEG-ECG mostraram efeitos predominantemente positivos em beta, gamma e delta (com destaque para regiões centro-parietais: CP1, CP3, CP5, TPP7h), e um único par significativo negativo em theta (F6-ECG); não houve efeitos significativos em alpha.
+    \end{itemize}
+
 \end{itemize}
 
 Esses resultados indicam que a HD-tDCS catódica:
 \begin{itemize}
   \item Macro: modula de forma diferenciada os ritmos EEG-EEG—amplificando delta, theta e gamma (e beta no PLV) e reduzindo alpha.
-  \item Micro: provoca mudanças topográficas de sincronia e hierarquia de canais, com hubs funcionais estáveis mesmo após remoção de outliers.
+  \item Micro: provoca mudanças topográficas de sincronia e hierarquia de canais, com \textit{hubs} funcionais parcialmente estáveis mesmo após remoção de outliers, como evidenciado pela alta correlação de rankings e preservação de estruturas principais.
 \end{itemize}
 
 \section{Trabalhos Futuros}

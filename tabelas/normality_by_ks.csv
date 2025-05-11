@@ -1,0 +1,10 @@
+metric,pair_type,outlier_removal,ks_stat,ks_p
+PLV,EEG_EEG,none,0.11372,0.00e+00
+PLV,EEG_EEG,iqr,0.04843,5.34e-220
+PLV,EEG_EEG,ecod,0.08797,0.00e+00
+PLI,EEG_EEG,none,0.17,0.00e+00
+PLI,EEG_EEG,iqr,0.03131,5.78e-91
+PLI,EEG_EEG,ecod,0.06923,0.00e+00
+CF-PLM,EEG_ECG,none,0.08612,4.94e-26
+CF-PLM,EEG_ECG,iqr,0.04088,6.30e-06
+CF-PLM,EEG_ECG,ecod,0.03542,1.53e-04

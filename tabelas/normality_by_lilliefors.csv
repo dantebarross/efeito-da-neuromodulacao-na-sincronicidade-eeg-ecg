@@ -1,0 +1,10 @@
+metric,pair_type,outlier_removal,lilliefors_stat,lilliefors_p
+PLV,EEG_EEG,none,0.11372,1.00e-03
+PLV,EEG_EEG,iqr,0.04843,1.00e-03
+PLV,EEG_EEG,ecod,0.08797,1.00e-03
+PLI,EEG_EEG,none,0.17,1.00e-03
+PLI,EEG_EEG,iqr,0.03131,1.00e-03
+PLI,EEG_EEG,ecod,0.06923,1.00e-03
+CF-PLM,EEG_ECG,none,0.08612,1.00e-03
+CF-PLM,EEG_ECG,iqr,0.04088,1.00e-03
+CF-PLM,EEG_ECG,ecod,0.03542,1.00e-03

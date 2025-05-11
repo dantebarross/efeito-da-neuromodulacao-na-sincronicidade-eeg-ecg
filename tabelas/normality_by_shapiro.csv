@@ -1,0 +1,10 @@
+metric,pair_type,outlier_removal,shapiro_stat,shapiro_p
+PLV,EEG_EEG,none,0.92059,1.05e-109
+PLV,EEG_EEG,iqr,0.98998,2.49e-59
+PLV,EEG_EEG,ecod,0.95757,2.25e-92
+PLI,EEG_EEG,none,0.74547,1.17e-143
+PLI,EEG_EEG,iqr,0.99347,5.83e-51
+PLI,EEG_EEG,ecod,0.96798,1.65e-85
+CF-PLM,EEG_ECG,none,0.94247,9.18e-37
+CF-PLM,EEG_ECG,iqr,0.99305,1.42e-12
+CF-PLM,EEG_ECG,ecod,0.99066,4.81e-15

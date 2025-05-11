@@ -105,13 +105,57 @@ Com base nesses resultados, prosseguimos para as etapas de análise estatística
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
 Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\textit{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. A Tabela~\ref{tab:normality_tests} apresenta os resultados completos dos testes de normalidade, incluindo Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors, tanto para os dados originais quanto após a remoção de \textit{outliers} pelos métodos IQR e ECOD.
 
-\inputtable{tabelas/normality_test_results.tex}
-{Resultados dos testes de normalidade para as métricas de conectividade}
-{normality_tests}
-{Elaborado pelo autor (2025)}
+\inputtable{tabelas/normality_by_shapiro.tex}
+{Resultados dos testes de normalidade — Shapiro-Wilk (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{normality_by_shapiro}
+{Elaborado pelo autor (2025).}
 
-  
-Com base nos resultados apresentados na Tabela~\ref{tab:normality_tests}, observamos que:
+\inputtable{tabelas/normality_by_ks.tex}
+{Resultados dos testes de normalidade — Kolmogorov-Smirnov (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{normality_by_ks}
+{Elaborado pelo autor (2025).}
+
+\inputtable{tabelas/normality_by_ad.tex}
+{Resultados dos testes de normalidade — Anderson-Darling (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{normality_by_ad}
+{Elaborado pelo autor (2025).}
+
+\inputtable{tabelas/normality_by_dagostino.tex}
+{Resultados dos testes de normalidade — D’Agostino’s K² (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{normality_by_dagostino}
+{Elaborado pelo autor (2025).}
+
+\inputtable{tabelas/normality_by_jarque_bera.tex}
+{Resultados dos testes de normalidade — Jarque-Bera (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{normality_by_jarque_bera}
+{Elaborado pelo autor (2025).}
+
+\inputtable{tabelas/normality_by_lilliefors.tex}
+{Resultados dos testes de normalidade — Lilliefors (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{normality_by_lilliefors}
+{Elaborado pelo autor (2025).}
+
+
+
+\begin{table}[htbp]
+  \centering
+  \caption{Estatísticas descritivas das diferenças pós-pré nas métricas de conectividade}
+  \label{tab:descriptive_stats}
+  \begin{adjustbox}{width=\textwidth}
+    \small
+    \input{tabelas/descriptive_stats.tex}
+  \end{adjustbox}
+
+  \vspace{0.5em}
+  \footnotesize\itshape
+  \textbf{Nota:} PLV e PLI em EEG-EEG ($n\approx119.000$) e CF-PLM em EEG-ECG ($n\approx3.800$). A média de todas as séries está muito próxima de zero; a dispersão (\textit{std}) é reduzida em 38-55\% pelo método IQR (PLV: de 0.168\textrightarrow0.105; PLI: de 0.057\textrightarrow0.023) e em 24-46\% pelo ECOD (PLV: 0.168\textrightarrow0.128; PLI: 0.057\textrightarrow0.031), indicando que o ECOD retira menos observações extremas, mas produz distribuições com curtose e assimetria mais próximas de uma gaussiana.
+  \normalsize
+
+  \vspace{0.5em}
+  \source{Elaborado pelo autor (2025).}
+\end{table}
+
+Com base nos resultados apresentados nas Tabelas~\ref{tab:normality_by_shapiro},~\ref{tab:normality_by_ks},~\ref{tab:normality_by_ad},~\ref{tab:normality_by_dagostino},~\ref{tab:normality_by_jarque_bera} e~\ref{tab:normality_by_lilliefors}, observamos que:
 
 \begin{itemize}
     \item Para o grupo \texttt{EEG\_EEG}, os valores p de todos os testes foram extremamente baixos ($p < 0.001$), tanto para PLI quanto para CF-PLM, rejeitando fortemente a hipótese de normalidade.
