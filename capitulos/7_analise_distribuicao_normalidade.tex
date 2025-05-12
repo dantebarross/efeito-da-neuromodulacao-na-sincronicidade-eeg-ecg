@@ -11,13 +11,13 @@ Antes de subtrair os valores pré dos pós, as métricas de conectividade foram 
 
 As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma.
 
+\clearpage
 % -----------------------------------------------------------------------------  
 % PLI (EEG-EEG)  
 % -----------------------------------------------------------------------------  
 \ultrawidefigure{figs/3_1_connectivity_metrics/Distribuição_de_PLI_(EEG-EEG)_por_Banda.png}
 {Distribuição de PLI (EEG-EEG) por banda. Nota-se uma clara concentração de valores próximos a zero em todas as bandas de frequência, com a maioria situada entre 0 e 0.2. As bandas rápidas (beta e gamma) apresentam curvas mais estreitas e concentradas perto de zero. Já as bandas mais lentas (delta, theta e alpha), embora também centradas próximo a zero, exibem caudas superiores maiores, especialmente a banda delta (a mais lenta) onde se destacam alguns valores próximos a 1 (excepcionalmente altos nesta distribuição).}
 {pli_eeg_eeg}
-
 
 % -----------------------------------------------------------------------------  
 % CF-PLM (EEG-ECG)  
@@ -26,6 +26,7 @@ As faixas de frequência investigadas incluem: delta, theta, alpha, beta e gamma
 {Distribuição de CF-PLM (EEG-ECG) por banda. Observa-se que é praticamente inexistente valores muito próximos a zero. A maior parte encontra-se entre 0.05 e 0.20. A depender da banda de frequência analisada, é possível observar um deslocamento de seus dados em relação às demais. No geral, é possível observar que quanto mais rápidas as bandas de frequência (e.g. gamma), menores os valores de CF-PLM, e menos densos (curvas mais pontudas). Quanto mais lentas (e.g. delta), maiores os valores de CF-PLM, e mais densos (curvas menos pontudas).}
 {cfplm_eeg_ecg}
 
+%\clearpage
 No geral, observamos que:
 \begin{itemize}
     \item \textbf{EEG-EEG (PLI)}: A distribuição exibe variabilidade entre as bandas. Enquanto a maioria dos valores se concentra próxima de zero (indicando baixa estabilidade de fase), algumas bandas, sobretudo alpha e gamma, apresentam caudas mais extensas, sugerindo pares de canais com maior \emph{phase-locking} (Figura~\ref{fig:pli_eeg_eeg}).
@@ -44,6 +45,7 @@ o que visa isolar o efeito da intervenção, removendo variações comuns que es
 
 As distribuições dessas diferenças foram avaliadas por meio de histogramas com \textit{cross-frequency} (KDE) para as métricas utilizadas nesta análise (PLI para EEG-EEG e CF-PLM para EEG-ECG). Os resultados são apresentados nas Figuras~\ref{fig:pli_freq_eeg_eeg} e~\ref{fig:cf_plm_freq_eeg_ecg}.
 
+%\clearpage
 \ultrawidefigure{figs/6_distribuicao_metricas_conectividade/Distribuição_da_Diferença_da_PLI_(Pós_-_Pré)_por_Faixa_de_Frequência_EEG_EEG.png}
 {Distribuição da diferença da PLI (Pós - Pré) em EEG-EEG, por faixa de frequência.}
 {pli_freq_eeg_eeg}
@@ -52,17 +54,18 @@ As distribuições dessas diferenças foram avaliadas por meio de histogramas co
 {Distribuição da diferença da CF-PLM (Pós - Pré) em EEG-ECG, por faixa de frequência.}
 {cf_plm_freq_eeg_ecg}
 
+%\clearpage
 Na Figura~\ref{fig:pli_freq_eeg_eeg} (diferença da PLI em EEG-EEG), podemos observar:
 \begin{itemize}
-    \item \textbf{Alpha e Beta}: distribuições com picos relativamente bem definidos próximos de zero, porém com caudas que se estendem para valores positivos e negativos. Isso indica que, embora a maioria dos pares de canais não apresente mudanças extremas de \emph{phase-locking}, há casos em que a PLI sofre variações mais intensas (tanto de aumento quanto de redução).
-    \item \textbf{Delta e Theta}: apresentam formatos mais ``achatados'' (\emph{platocúrticos}), com uma região larga de valores ao redor de zero em vez de um pico pontudo. Sugere-se, assim, que múltiplos pares sofrem pequenas variações dispersas, em vez de convergirem para um valor dominante.
+    \item \textbf{Alpha e beta}: distribuições com picos relativamente bem definidos próximos de zero, porém com caudas que se estendem para valores positivos e negativos. Isso indica que, embora a maioria dos pares de canais não apresente mudanças extremas de \emph{phase-locking}, há casos em que a PLI sofre variações mais intensas (tanto de aumento quanto de redução).
+    \item \textbf{Delta e theta}: apresentam formatos mais ``achatados'' (\emph{platocúrticos}), com uma região larga de valores ao redor de zero em vez de um pico pontudo. Sugere-se, assim, que múltiplos pares sofrem pequenas variações dispersas, em vez de convergirem para um valor dominante.
     \item \textbf{Gamma}: exibe uma curva um pouco mais pontuda, ainda que com assimetria leve. Isso pode significar que, em alguns pares, a diferença entre pós e pré se concentra de forma mais coesa em torno de um desvio particular (positivo ou negativo), enquanto a maioria dos pares permanece próxima de zero.
 \end{itemize}
 
 Já na Figura~\ref{fig:cf_plm_freq_eeg_ecg} (diferença da CF-PLM em EEG-ECG), o comportamento difere:
 \begin{itemize}
     \item \textbf{Gamma}: é a única banda que se aproxima de uma forma mais simétrica e quase gaussiana em torno de zero, indicando que os valores de diferença se distribuem de modo relativamente uniforme, com menor propensão a distorções ou caudas prolongadas.
-    \item \textbf{Delta, Alpha e Theta}: exibem curvas mais ``achatadas'', sugerindo novamente distribuições \emph{platocúrticas}. O pico central menos pronunciado e a largura mais acentuada indicam variações difusas em torno de zero (seja aumento ou redução), sem um valor predominante.
+    \item \textbf{Delta, alpha e theta}: exibem curvas mais ``achatadas'', sugerindo novamente distribuições \emph{platocúrticas}. O pico central menos pronunciado e a largura mais acentuada indicam variações difusas em torno de zero (seja aumento ou redução), sem um valor predominante.
     \item \textbf{Beta}: apresenta uma assimetria mais clara (cauda se estendendo em uma das direções), apontando que uma fração dos pares EEG-ECG tende a exibir diferenças (Pós $-$ Pré) mais extremas, enquanto a maioria se mantém próxima de zero.
 \end{itemize}
 
@@ -71,6 +74,7 @@ Esses perfis de dispersão são fundamentais para a escolha dos testes estatíst
 \subsubsection{Exemplo Individual por Métrica e Banda}
 Para ilustrar de forma mais específica o comportamento das distribuições em um caso individual, a Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg} exibe a diferença da métrica \texttt{median\_cf\_plm\_diff} (Pós - Pré) para o atleta 4, na banda alpha, considerando todos os pares EEG-ECG. Já a Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg} apresenta a diferença da \textit{median\_pli\_diff} para o mesmo atleta e banda, mas agora em pares EEG-EEG.
 
+%\clearpage
 \ultrawidefigure{figs/5_connectivity_metrics_individual_distribution/median_cf_plm_diff_athlete_4_alpha_EEG_ECG.png}
 {Distribuição da \texttt{median\_cf\_plm\_diff} (Pós - Pré) para o atleta 4, banda alpha, em pares EEG-ECG.}
 {median_cf_plm_diff_ath4_alpha_eeg_ecg}
@@ -79,6 +83,7 @@ Para ilustrar de forma mais específica o comportamento das distribuições em u
 {Distribuição da \textit{median\_pli\_diff} (Pós - Pré) para o atleta 4, banda alpha, em pares EEG-EEG.}
 {median_pli_diff_ath4_alpha_eeg_eeg}
 
+%\clearpage
 Nesses gráficos, cada curva KDE (azul para \textit{cathodic}, vermelha para \textit{sham}) reflete como os valores de diferença (Pós $-$ Pré) se distribuem entre todos os pares de canais daquele atleta e banda de frequência. Um deslocamento maior de uma curva em relação à outra indica uma tendência geral de aumento (deslocamento à direita) ou redução (deslocamento à esquerda) na métrica pós-estimulação, enquanto uma sobreposição acentuada sugere pouca variação entre as condições. 
 
 No exemplo da Figura~\ref{fig:median_cf_plm_diff_ath4_alpha_eeg_ecg}, observa-se que a curva azul (\textit{cathodic}) está levemente à direita da curva vermelha (\textit{sham}), indicando um ligeiro aumento na \texttt{median\_cf\_plm\_diff} para a maioria dos pares. Já na Figura~\ref{fig:median_pli_diff_ath4_alpha_eeg_eeg}, as curvas mostram maior sobreposição, sugerindo que a diferença na \textit{median\_pli\_diff} entre \textit{cathodic} e \textit{sham} é menos pronunciada.
@@ -103,41 +108,53 @@ Observou-se que a remoção de \textit{outliers} via Intervalo Interquartil (IQR
 Com base nesses resultados, prosseguimos para as etapas de análise estatística.
 
 \section{Testes de Normalidade e Decisão sobre o Tipo de Teste Estatístico}
-Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\textit{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. A Tabela~\ref{tab:normality_tests} apresenta os resultados completos dos testes de normalidade, incluindo Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors, tanto para os dados originais quanto após a remoção de \textit{outliers} pelos métodos IQR e ECOD.
+Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de normalidade às métricas de conectividade (\textit{median\_pli\_diff} e \texttt{median\_cf\_plm\_diff}), considerando os grupos \texttt{EEG\_EEG} e \texttt{EEG\_ECG}. As Tabelas a seguir apresentam os resultados completos dos testes de normalidade, incluindo Shapiro-Wilk, Kolmogorov-Smirnov, Anderson-Darling, D'Agostino's K-squared, Jarque-Bera e Lilliefors, tanto para os dados originais quanto após a remoção de \textit{outliers} pelos métodos IQR e ECOD.
 
+Com base nos resultados apresentados nas Tabelas~\ref{tab:normality_by_shapiro},~\ref{tab:normality_by_ks},~\ref{tab:normality_by_ad},~\ref{tab:normality_by_dagostino},~\ref{tab:normality_by_jarque_bera} e~\ref{tab:normality_by_lilliefors}, observamos que:
+\begin{itemize}
+    \item Para o grupo \texttt{EEG\_EEG}, os valores p de todos os testes foram extremamente baixos ($p < 0.001$), tanto para PLI quanto para CF-PLM, rejeitando fortemente a hipótese de normalidade.
+    \item A remoção de \textit{outliers} por IQR melhorou levemente os indicadores (especialmente para PLI, onde o estatístico Shapiro-Wilk aumentou de 0.745 para 0.993), mas ainda manteve a rejeição da normalidade na maioria dos testes.  
+    \item O método ECOD apresentou resultados intermediários entre os dados originais e a filtragem por IQR, sugerindo uma abordagem mais conservadora na remoção de valores extremos.
+    \item Os valores de assimetria (\textit{skewness}) e curtose (\textit{kurtosis}) confirmam o desvio da normalidade, com várias distribuições apresentando caudas pesadas (curtose > 3) e assimetrias significativas.
+\end{itemize}
+
+Além disso, na \textbf{Tabela~\ref{tab:descriptive_stats}} apresentamos as estatísticas descritivas completas (número de amostras, média, desvio-padrão, mediana, quartis, mín./máx., skew e curtose) para todas as métricas (PLV, PLI e CF-PLM) e métodos de remoção de outliers (nenhum, IQR e ECOD).
+
+As distribuições analisadas mostraram desvios notáveis de normalidade em todos os cenários. Isso sugere que a aplicação de testes paramétricos (por exemplo, ANOVA e t-test) seria inadequada, pois pressupõe dados aproximadamente gaussianos. Portanto, considerando tanto a alta sensibilidade dos testes de normalidade quanto a permanência de assimetrias e curtoses mesmo após remoção de \textit{outliers}, concluímos que a abordagem mais confiável seria a utilização de métodos não-paramétricos.
+
+Assim, optamos por empregar testes não-paramétricos de inferência (como Wilcoxon e Mann-Whitney) para comparar as diferenças (Pós - Pré) em ambas as condições \textit{cathodic} e \textit{sham}. Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.
+
+\clearpage
 \inputtable{tabelas/normality_by_shapiro.tex}
-{Resultados dos testes de normalidade — Shapiro-Wilk (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{Resultados dos testes de normalidade - Shapiro-Wilk (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
 {normality_by_shapiro}
-{Elaborado pelo autor (2025).}
+
 
 \inputtable{tabelas/normality_by_ks.tex}
-{Resultados dos testes de normalidade — Kolmogorov-Smirnov (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{Resultados dos testes de normalidade - Kolmogorov-Smirnov (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
 {normality_by_ks}
-{Elaborado pelo autor (2025).}
+
 
 \inputtable{tabelas/normality_by_ad.tex}
-{Resultados dos testes de normalidade — Anderson-Darling (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{Resultados dos testes de normalidade - Anderson-Darling (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
 {normality_by_ad}
-{Elaborado pelo autor (2025).}
+
 
 \inputtable{tabelas/normality_by_dagostino.tex}
-{Resultados dos testes de normalidade — D’Agostino’s K² (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{Resultados dos testes de normalidade - D'Agostino's K² (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
 {normality_by_dagostino}
-{Elaborado pelo autor (2025).}
+
 
 \inputtable{tabelas/normality_by_jarque_bera.tex}
-{Resultados dos testes de normalidade — Jarque-Bera (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{Resultados dos testes de normalidade - Jarque-Bera (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
 {normality_by_jarque_bera}
-{Elaborado pelo autor (2025).}
+
 
 \inputtable{tabelas/normality_by_lilliefors.tex}
-{Resultados dos testes de normalidade — Lilliefors (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
+{Resultados dos testes de normalidade - Lilliefors (EEG-EEG: PLV/PLI; EEG-ECG: CF-PLM)}
 {normality_by_lilliefors}
-{Elaborado pelo autor (2025).}
 
-
-
-\begin{table}[htbp]
+\begin{table}[!ht]
   \centering
   \caption{Estatísticas descritivas das diferenças pós-pré nas métricas de conectividade}
   \label{tab:descriptive_stats}
@@ -150,24 +167,4 @@ Dando seguimento aos procedimentos descritos, aplicamos uma série de testes de 
   \footnotesize\itshape
   \textbf{Nota:} PLV e PLI em EEG-EEG ($n\approx119.000$) e CF-PLM em EEG-ECG ($n\approx3.800$). A média de todas as séries está muito próxima de zero; a dispersão (\textit{std}) é reduzida em 38-55\% pelo método IQR (PLV: de 0.168\textrightarrow0.105; PLI: de 0.057\textrightarrow0.023) e em 24-46\% pelo ECOD (PLV: 0.168\textrightarrow0.128; PLI: 0.057\textrightarrow0.031), indicando que o ECOD retira menos observações extremas, mas produz distribuições com curtose e assimetria mais próximas de uma gaussiana.
   \normalsize
-
-  \vspace{0.5em}
-  \source{Elaborado pelo autor (2025).}
 \end{table}
-
-Com base nos resultados apresentados nas Tabelas~\ref{tab:normality_by_shapiro},~\ref{tab:normality_by_ks},~\ref{tab:normality_by_ad},~\ref{tab:normality_by_dagostino},~\ref{tab:normality_by_jarque_bera} e~\ref{tab:normality_by_lilliefors}, observamos que:
-
-\begin{itemize}
-    \item Para o grupo \texttt{EEG\_EEG}, os valores p de todos os testes foram extremamente baixos ($p < 0.001$), tanto para PLI quanto para CF-PLM, rejeitando fortemente a hipótese de normalidade.
-    
-    \item A remoção de \textit{outliers} por IQR melhorou levemente os indicadores (especialmente para PLI, onde o estatístico Shapiro-Wilk aumentou de 0.745 para 0.993), mas ainda manteve a rejeição da normalidade na maioria dos testes.
-    
-    \item O método ECOD apresentou resultados intermediários entre os dados originais e a filtragem por IQR, sugerindo uma abordagem mais conservadora na remoção de valores extremos.
-    
-    \item Os valores de assimetria (\textit{skewness}) e curtose (\textit{kurtosis}) confirmam o desvio da normalidade, com várias distribuições apresentando caudas pesadas (curtose > 3) e assimetrias significativas.
-\end{itemize}
-
-As distribuições analisadas mostraram desvios notáveis de normalidade em todos os cenários. Isso sugere que a aplicação de testes paramétricos (por exemplo, ANOVA e t-test) seria inadequada, pois pressupõe dados aproximadamente gaussianos. 
-Portanto, considerando tanto a alta sensibilidade dos testes de normalidade quanto a permanência de assimetrias e curtoses mesmo após remoção de \textit{outliers}, concluímos que a abordagem mais confiável seria a utilização de métodos não-paramétricos.
-
-Assim, optamos por empregar testes não-paramétricos de inferência (como Wilcoxon e Mann-Whitney) para comparar as diferenças (Pós - Pré) em ambas as condições \textit{cathodic} e \textit{sham}. Essa abordagem evita conclusões equivocadas decorrentes de pressupostos de normalidade violados.

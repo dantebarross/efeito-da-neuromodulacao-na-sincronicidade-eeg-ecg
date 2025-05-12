@@ -61,9 +61,19 @@
 \makeindex                       % Compilar índice remissivo
 
 
-
 \newcommand{\ultrawidefigure}[3]{
-  \begin{figure}[htbp]
+  \begin{figure}[!ht]
+    \noindent
+    \makebox[\textwidth]{%
+      \includegraphics[width=1.1\textwidth]{#1}
+    }
+    \caption{#2}
+    \label{fig:#3}
+  \end{figure}
+}
+
+\newcommand{\ultrawidefigureh}[3]{
+  \begin{figure}[H]
     \noindent
     \makebox[\textwidth]{%
       \includegraphics[width=1.1\textwidth]{#1}
@@ -74,7 +84,7 @@
 }
 
 \newcommand{\widefigure}[3]{
-  \begin{figure}[htbp]
+  \begin{figure}[!ht]
     \centering
     \begin{adjustbox}{max width=\linewidth}
       \includegraphics{#1}
@@ -85,7 +95,7 @@
 }
 
 \newcommand{\mediumwidefigure}[3]{
-  \begin{figure}[htbp]
+  \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.9\textwidth]{#1}
     \caption{#2}
@@ -94,7 +104,16 @@
 }
 
 \newcommand{\standardfigure}[3]{
-    \begin{figure}[htbp]
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{#1}
+        \caption{#2}
+        \label{fig:#3}
+    \end{figure}
+}
+
+\newcommand{\standardfigureh}[3]{
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{#1}
         \caption{#2}
@@ -103,7 +122,7 @@
 }
 
 \newcommand{\smallfigure}[3]{
-  \begin{figure}[H]
+  \begin{figure}[!ht]
   \centering
   \includegraphics[width=0.6\textwidth]{#1}
   \caption{\small #2}
@@ -112,15 +131,15 @@
 }
 
 \newcommand{\inputtable}[4]{%
-    \begin{table}[htbp]
+    \begin{table}[!ht]
         \centering
         \caption{#2}
         \label{tab:#3}
-        \begin{adjustbox}{width=\textwidth}
-            \input{#1}
-        \end{adjustbox}
-        \vspace{0.5em}% <— espaço extra antes da fonte
-        \source{#4}
+        \begin{center}
+            \begin{adjustbox}{max width=\textwidth}
+                \input{#1}
+            \end{adjustbox}
+        \end{center}
     \end{table}
 }
 
@@ -261,12 +280,10 @@
 \bibliography{bibliografia}
 
 % Anexos e Apêndices
-\input{postextual/apendices}
-\input{postextual/anexos}
+% \input{postextual/apendices}
+% \input{postextual/anexos}
 
 % Se necessário, índice remissivo
 % \printindex
 
 \end{document}
-
-
