@@ -16,8 +16,8 @@ Os resultados desta fase utilizam os mesmos dados de resultados do Capítulo \re
 
 \noindent\textbf{Implementação em \texttt{Python/NetworkX}:}
 \begin{itemize}
-    \item \textbf{Grafo binário}: para \textbf{Degree} e \textbf{Betweenness} definimos \texttt{weight=None}; todas as arestas significativas contam igualmente (\(w=1\)). Isso evita interpretar o RBC (que não é distância) como ``custo'' nos caminhos mínimos \cite{networkx_doc}.
-    \item \textbf{Grafo ponderado}: para \textbf{Eigenvector} passamos \texttt{weight='weight'}, atribuindo a cada aresta o próprio valor RBC. A rotina soma \(I\) à matriz de adjacência, garantindo convergência mesmo com arestas negativas \cite{networkx_doc}.
+    \item \textbf{Grafo binário}: para \textbf{Degree} e \textbf{Betweenness} definimos \verb|weight=None|; todas as arestas significativas contam igualmente (\(w=1\)). Isso evita interpretar o RBC (que não é distância) como ``custo'' nos caminhos mínimos \cite{networkx_doc}.
+    \item \textbf{Grafo ponderado}: para \textbf{Eigenvector} passamos \verb|weight='weight'|, atribuindo a cada aresta o próprio valor RBC. A rotina soma \(I\) à matriz de adjacência, garantindo convergência mesmo com arestas negativas \cite{networkx_doc}.
 \end{itemize}
 
 \noindent\textbf{Layout gráfico:} As figuras usam o algoritmo \textbf{Kamada-Kawai} da biblioteca Python \texttt{NetworkX}, que posiciona os nós \textbf{exclusivamente} segundo a estrutura do grafo; a disposição visual não corresponde às coordenadas reais dos eletrodos.
@@ -25,7 +25,7 @@ Os resultados desta fase utilizam os mesmos dados de resultados do Capítulo \re
 \noindent\textbf{Cenários analisados:}
 \begin{itemize}
   \item \textbf{Com outliers} - conjunto original.
-  \item \textbf{Sem outliers} - após remover \approx 5\% das observações pelo ECOD.
+  \item \textbf{Sem outliers} - após remover \(\approx5\%\) das observações pelo ECOD.
 \end{itemize}
 
 \noindent\textbf{Notas interpretativas:}
